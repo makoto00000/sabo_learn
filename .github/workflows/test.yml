@@ -25,7 +25,7 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: /backend/.ruby-version
+          ruby-version: backend/.ruby-version
 
       - name: Install dependencies
         run: bundle install
