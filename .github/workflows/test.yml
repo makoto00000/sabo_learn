@@ -25,15 +25,18 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: backend/.ruby-version
+          ruby-version: 3.2.2
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          cd backend
+          bundle install
 
       - name: Setup Database
         env:
           RAILS_ENV: test
         run: |
+          cd backend
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create
           bundle exec rails db:migrate

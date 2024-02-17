@@ -1,0 +1,10 @@
+test:
+  adapter: mysql2
+  charset: utf8mb4
+  collation: utf8mb4_bin
+  encoding: utf8mb4
+  database: sabo_learn_test
+  host: 127.0.0.1
+  username: root
+  password: 1234
+  reconnect: false
