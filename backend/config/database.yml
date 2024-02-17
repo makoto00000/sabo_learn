@@ -1,0 +1,21 @@
+default: &default
+  adapter: mysql2
+  encoding: utf8mb4
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+  username: root
+  password: password
+  host: db
+
+development:
+  <<: *default
+  database: sabo_learn_development
+
+test:
+  <<: *default
+  database: sabo_learn_test
+
+production:
+  <<: *default
+  database: sabo_learn_production
+  username: sabo_learn
+  password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
