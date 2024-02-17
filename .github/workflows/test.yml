@@ -25,23 +25,30 @@ jobs:
       - name: Set up Ruby
         uses: ruby/setup-ruby@v1
         with:
-          ruby-version: .ruby-version
+          ruby-version: 3.2.2
 
       - name: Install dependencies
-        run: bundle install
+        run: |
+          cd backend
+          bundle install
 
       - name: Setup Database
         env:
           RAILS_ENV: test
         run: |
+          cd backend
           cp config/database.yml.ci config/database.yml
           bundle exec rails db:create
           bundle exec rails db:migrate
 
       - name: Rubocop
-        run: bundle exec rubocop
+        run: |
+          cd backend
+          bundle exec rubocop
       
       - name: minitest
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
-        run: bundle exec rails test
+        run: |
+          cd backend
+          bundle exec rails test
