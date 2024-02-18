@@ -1,94 +1,56 @@
-import Image from "next/image";
-import styles from "./page.module.css";
+"use client";
+import { prepare, connect } from "@/app/main";
+import { useRef } from "react";
 
 export default function Home() {
+  const myVideoRef = useRef<HTMLVideoElement>(null);
+  const otherVideoRef = useRef<HTMLVideoElement>(null);
+  const sendSdpRef = useRef<HTMLTextAreaElement>(null);
+  const recvSdpRef = useRef<HTMLTextAreaElement>(null);
+
   return (
-    <main className={styles.main}>
-      <div className={styles.description}>
-        <p>
-          Get started by editing&nbsp;
-          <code className={styles.code}>src/app/page.tsx</code>
-        </p>
-        <div>
-          <a
-            href="https://vercel.com?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            By{" "}
-            <Image
-              src="/vercel.svg"
-              alt="Vercel Logo"
-              className={styles.vercelLogo}
-              width={100}
-              height={24}
-              priority
-            />
-          </a>
-        </div>
+    <main>
+      <div>
+        <video
+          id="local_video"
+          ref={myVideoRef}
+          autoPlay
+          playsInline
+          width={200}
+          height={200}
+        ></video>
+        <video
+          id="remote_video"
+          ref={otherVideoRef}
+          autoPlay
+          playsInline
+          width={200}
+          height={200}
+        ></video>
       </div>
-
-      <div className={styles.center}>
-        <Image
-          className={styles.logo}
-          src="/next.svg"
-          alt="Next.js Logo"
-          width={180}
-          height={37}
-          priority
-        />
+      <div>
+        <textarea
+          id="text_for_send_sdp"
+          ref={sendSdpRef}
+          rows={5}
+          cols={43}
+        ></textarea>
+        <textarea
+          id="text_for_recv_sdp"
+          ref={recvSdpRef}
+          rows={5}
+          cols={43}
+        ></textarea>
       </div>
-
-      <div className={styles.grid}>
-        <a
-          href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
+      <div>
+        <button
+          onClick={() =>
+            prepare(myVideoRef.current, otherVideoRef.current, sendSdpRef.current, recvSdpRef.current)
+          }
         >
-          <h2>
-            Docs <span>-&gt;</span>
-          </h2>
-          <p>Find in-depth information about Next.js features and API.</p>
-        </a>
-
-        <a
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Learn <span>-&gt;</span>
-          </h2>
-          <p>Learn about Next.js in an interactive course with&nbsp;quizzes!</p>
-        </a>
-
-        <a
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Templates <span>-&gt;</span>
-          </h2>
-          <p>Explore starter templates for Next.js.</p>
-        </a>
-
-        <a
-          href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-          className={styles.card}
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <h2>
-            Deploy <span>-&gt;</span>
-          </h2>
-          <p>
-            Instantly deploy your Next.js site to a shareable URL with Vercel.
-          </p>
-        </a>
+          Prepare
+        </button>
+        <button onClick={() => connect(sendSdpRef.current)}>Connect</button>
       </div>
     </main>
   );
