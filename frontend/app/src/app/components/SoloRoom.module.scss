@@ -1,0 +1,101 @@
+.container {
+  position: relative;
+  background-image: url("/room_background.png");
+  object-fit: none;
+  width: 100%;
+  max-width: 1440px;
+  height: 100vh;
+  max-height: 700px;
+  .layer {
+    position: absolute;
+    width: 100%;
+    height: 100vh;
+    max-height: 700px;
+    background: rgba(0, 0, 0, 28%);
+    z-index: 0;
+  }
+  .contents {
+    .roomName {
+      position: absolute;
+      z-index: 1;
+      left: 60px;
+      top: 60px;
+    }
+    .record {
+      position: absolute;
+      z-index: 1;
+      top: 60px;
+      right: 60px;
+      .time {
+        font-size: 40px;
+        font-weight: bold;
+      }
+      .point {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 2px;
+        .coinImage {
+          margin-right: 3px;
+        }
+        .coinCount {
+          font-size: 22px;
+          font-weight: bold;
+          margin-right: 10px;
+          display: block;
+        }
+        .coinUnit {
+          font-size: 20px;
+          font-weight: bold;
+          display: block;
+        }
+        .plusCoin {
+          font-size: 22px;
+          font-weight: bold;
+          color: #ffcc02;
+          margin-left: 20px;
+        }
+      }
+    }
+    .videoContainer {
+      width: 360px;
+      height: 360px;
+      box-sizing: border-box;
+      object-fit: cover;
+      background: #303030;
+      border: 6px solid #00f143;
+      position: absolute;
+      left: 50%;
+      top: 50%;
+      transform: translate(-50%, -50%);
+    }
+    .logo {
+      position: absolute;
+      bottom: 20px;
+      left: 60px;
+    }
+    .navigation {
+      position: absolute;
+      bottom: 20px;
+      right: 60px;
+      background: rgba(0, 0, 0, 35%);
+      border-radius: 5px;
+      padding: 25px 30px;
+      .menus {
+        li {
+          width: 280px;
+          font-weight: bold;
+          font-size: 22px;
+          display: flex;
+          align-items: center;
+          padding: 15px 0 15px 30px;
+          border-radius: 6px;
+          transition: all 0.3s 0s ease;
+        }
+        li:hover {
+          background: #282828;
+        }
+      }
+    }
+  }
+}
