@@ -1,0 +1,48 @@
+.container {
+  background: #000;
+  position: absolute;
+  top: 20px;
+  right: 10px;
+  padding: 2px 5px 2px 2px;
+  border-radius: 33px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  .userImageBg {
+    background: #517589;
+    width: 37px;
+    height: 37px;
+    border-radius: 50%;
+    margin-right: 6px;
+    .userImage {
+      border-radius: 50%;
+    }
+  }
+  .userInfo {
+    margin-right: 30px;
+    .userCoin {
+      display: flex;
+      align-items: center;
+      margin-bottom: 2px;
+      .coinImage {
+        margin-right: 3px;
+      }
+      .coinCount {
+        font-size: 10px;
+        margin-right: 2px;
+        display: block;
+      }
+      .coinUnit {
+        font-size: 8px;
+        display: block;
+      }
+    }
+    .userName {
+      font-size: 20px;
+      font-weight: bold;
+      line-height: 0.75em;
+      margin-bottom: 2px;
+    }
+
+  }
+}
