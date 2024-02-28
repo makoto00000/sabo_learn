@@ -4,19 +4,72 @@ import { useEffect, useRef } from "react";
 import styles from "./SoloRoom.module.scss";
 import Image from "next/image";
 import Link from "next/link";
+import { MotionDetection } from "@/app/utils/MotionDetection";
 
 export default function SoloRoom() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const statusRef = useRef<HTMLParagraphElement>(null);
+
   useEffect(() => {
-    const startVideo = async (video: HTMLVideoElement | null) => {
-      const config = { video: true, audio: false };
-      const stream = await navigator.mediaDevices.getUserMedia(config);
-      if (video) {
-        video.srcObject = stream;
+    const playVideo = async()=> {
+      const medias = {
+        audio: false,
+        video: {
+          facingMode: "user",
+        },
+      };
+
+      try {
+        const stream = await navigator.mediaDevices.getUserMedia(medias);
+        if (videoRef.current) {
+          videoRef.current.srcObject = stream;
+        }
+        await successCallback(stream)
+        
+      } catch (error) {
+        errorCallback(error)
       }
-    };
-    startVideo(videoRef?.current);
+    }
+    const script = document.createElement("script");
+    script.src = "https://docs.opencv.org/3.4.0/opencv.js";
+    script.async = true;
+    document.body.appendChild(script);
+
+    playVideo()
   }, [videoRef]);
+
+  async function successCallback(stream: MediaStream) {
+    const video = videoRef.current;
+    const status = statusRef.current;
+    const fps = 8;
+    if (video) {
+      video.oncanplay = () => {
+        new MotionDetection({
+          video,
+          onMove,
+          onStop,
+          fps,
+        });
+      };
+    }
+
+    function onMove() {
+      if (status) {
+        status.innerText = "MOVE";
+      }
+    }
+
+    function onStop() {
+      if (status) {
+        status.innerText = "STOP";
+      }
+    }
+
+  }
+
+  function errorCallback(err: any) {
+    alert(err);
+  }
 
   return (
     <div className={styles.container}>
@@ -39,13 +92,16 @@ export default function SoloRoom() {
           </div>
         </div>
         <div className={styles.videoContainer}>
-          <video
-            ref={videoRef}
-            width={346}
-            height={346}
-            playsInline
-            autoPlay
-          ></video>
+          <div className={styles.videoFrame}>
+            <video
+              ref={videoRef}
+              width={346}
+              height={346}
+              playsInline
+              autoPlay
+            ></video>
+          </div>
+          <p ref={statusRef} className={styles.status}></p>
         </div>
 
         <Image
