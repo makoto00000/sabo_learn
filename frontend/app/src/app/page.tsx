@@ -1,3 +1,4 @@
+import Loading from "./components/Loading";
 import RoomSelect from "./components/RoomSelect";
 import Sidebar from "./components/Sidebar";
 import UserInfo from "./components/UserInfo";
@@ -12,6 +13,7 @@ export default function Home() {
       <RoomSelect />
       <UserInfo />
       {/* <Video /> */}
+      <Loading />
     </main>
   );
 }
