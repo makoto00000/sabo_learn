@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import styles from "./SoloRoom.module.scss";
 import Image from "next/image";
 import Link from "next/link";
@@ -8,10 +8,16 @@ import { MotionDetection } from "@/app/utils/MotionDetection";
 
 export default function SoloRoom() {
   const videoRef = useRef<HTMLVideoElement>(null);
+  const videoFrameRef = useRef<HTMLDivElement>(null);
   const statusRef = useRef<HTMLParagraphElement>(null);
 
+  const [time, setTime] = useState<number>(0);
+  const timeRef = useRef<number>(0);
+  const isRunningRef = useRef<boolean>(false);
+  const intervalRef = useRef<NodeJS.Timeout | null>(null);
+
   useEffect(() => {
-    const playVideo = async()=> {
+    const playVideo = async () => {
       const medias = {
         audio: false,
         video: {
@@ -24,18 +30,17 @@ export default function SoloRoom() {
         if (videoRef.current) {
           videoRef.current.srcObject = stream;
         }
-        await successCallback(stream)
-        
+        await successCallback(stream);
       } catch (error) {
-        errorCallback(error)
+        errorCallback(error);
       }
-    }
+    };
     const script = document.createElement("script");
     script.src = "https://docs.opencv.org/3.4.0/opencv.js";
     script.async = true;
     document.body.appendChild(script);
 
-    playVideo()
+    playVideo();
   }, [videoRef]);
 
   async function successCallback(stream: MediaStream) {
@@ -55,21 +60,59 @@ export default function SoloRoom() {
 
     function onMove() {
       if (status) {
-        status.innerText = "MOVE";
+        // status.innerText = "MOVE";
+        resetTimer();
       }
     }
 
     function onStop() {
       if (status) {
-        status.innerText = "STOP";
+        // status.innerText = "STOP";
+        if (!isRunningRef.current) {
+          startTimer();
+        }
       }
     }
-
   }
 
   function errorCallback(err: any) {
     alert(err);
   }
+
+  const startTimer = () => {
+    isRunningRef.current = true;
+    if (intervalRef) {
+      intervalRef.current = setInterval(() => {
+        setTime((prevTime) => prevTime + 1);
+
+        setTime((prevTime) => {
+          if (prevTime > 5) {
+            if (statusRef.current && videoFrameRef.current) {
+              statusRef.current.innerText = "Sabo?";
+              statusRef.current.style.color = "#D00000";
+              videoFrameRef.current.style.border = "6px solid #D00000";
+            }
+          }
+          return prevTime;
+        });
+      }, 1000);
+      console.log("start");
+    }
+  };
+
+  const resetTimer = () => {
+    isRunningRef.current = false;
+    if (intervalRef.current) {
+      clearInterval(intervalRef.current);
+      setTime(0);
+      if (statusRef.current && videoFrameRef.current) {
+        statusRef.current.innerText = "Studying";
+        statusRef.current.style.color = "#00F143";
+        videoFrameRef.current.style.border = "6px solid #00F143";
+      }
+      console.log("reset");
+    }
+  };
 
   return (
     <div className={styles.container}>
@@ -92,7 +135,7 @@ export default function SoloRoom() {
           </div>
         </div>
         <div className={styles.videoContainer}>
-          <div className={styles.videoFrame}>
+          <div ref={videoFrameRef} className={styles.videoFrame}>
             <video
               ref={videoRef}
               width={346}
@@ -101,7 +144,10 @@ export default function SoloRoom() {
               autoPlay
             ></video>
           </div>
-          <p ref={statusRef} className={styles.status}></p>
+          <p ref={statusRef} className={styles.status}>
+            Studying
+          </p>
+          <p>{time}</p>
         </div>
 
         <Image
