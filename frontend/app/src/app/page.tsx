@@ -1,4 +1,5 @@
 import Loading from "./components/Loading";
+import MyVideo from "./components/MyVideo";
 import RoomSelect from "./components/RoomSelect";
 import Sidebar from "./components/Sidebar";
 import SoloRoom from "./components/SoloRoom";

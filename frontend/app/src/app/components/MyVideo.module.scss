@@ -1,0 +1,30 @@
+.videoContainer {
+  position: absolute;
+  left: 50%;
+  top: 50%;
+  transform: translate(-50%, -50%);
+  .videoFrame {
+    width: 360px;
+    height: 360px;
+    box-sizing: border-box;
+    object-fit: cover;
+    background: #303030;
+    border: 6px solid #00f143;
+    margin-bottom: 10px;
+  }
+  .myVideo {
+    position: absolute;
+    z-index: -1;
+  }
+  .mosaicVideo {
+    position: absolute;
+    top: 6;
+    left: 6;
+  }
+  .status {
+    text-align: center;
+    font-weight: bold;
+    font-size: 20px;
+    color:#00f143
+  }
+}
