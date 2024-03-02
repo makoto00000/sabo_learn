@@ -5,16 +5,47 @@ import Image from "next/image";
 import Link from "next/link";
 import MyVideo from "./MyVideo";
 import Score from "./Score";
+import { useVideo } from "@/app/hooks/useVideo";
 
 export default function SoloRoom() {
+  const {
+    videoFrameRef,
+    videoRef,
+    canvasRef,
+    mosaicVideoRef,
+    statusRef,
+    // time,
+    isStudyingRef,
+    scoreTime,
+    point,
+    getPointRef,
+    showAnimation
+  } = useVideo();
+
+  const MyVideoProps = {
+    videoFrameRef: videoFrameRef,
+    videoRef: videoRef,
+    canvasRef: canvasRef,
+    mosaicVideoRef: mosaicVideoRef,
+    statusRef: statusRef,
+  };
+
+
+  const ScoreProps = {
+    scoreTime: scoreTime,
+    point: point,
+    getPointRef: getPointRef,
+    showAnimation: showAnimation,
+    isStudyingRef: isStudyingRef,
+  };
 
   return (
     <div className={styles.container}>
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Solo Room</h1>
-        <Score />
-        <MyVideo />
+        <Score {...ScoreProps} />
+        <MyVideo {...MyVideoProps} />
 
         <Image
           className={styles.logo}
