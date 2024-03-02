@@ -4,6 +4,7 @@ import styles from "./SoloRoom.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import MyVideo from "./MyVideo";
+import Score from "./Score";
 
 export default function SoloRoom() {
 
@@ -12,21 +13,7 @@ export default function SoloRoom() {
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Solo Room</h1>
-        <div className={styles.record}>
-          <div className={styles.time}>Time 01:22:33</div>
-          <div className={styles.point}>
-            <Image
-              className={styles.coinImage}
-              src="/coin_icon.png"
-              width={40}
-              height={40}
-              alt="coinIcon"
-            ></Image>
-            <span className={styles.coinCount}>1234</span>
-            <span className={styles.coinUnit}>sp</span>
-            <span className={styles.plusCoin}>+100</span>
-          </div>
-        </div>
+        <Score />
         <MyVideo />
 
         <Image

@@ -21,63 +21,6 @@
       left: 60px;
       top: 60px;
     }
-    .record {
-      position: absolute;
-      z-index: 1;
-      top: 60px;
-      right: 60px;
-      .time {
-        font-size: 40px;
-        font-weight: bold;
-      }
-      .point {
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        margin-bottom: 2px;
-        .coinImage {
-          margin-right: 3px;
-        }
-        .coinCount {
-          font-size: 22px;
-          font-weight: bold;
-          margin-right: 10px;
-          display: block;
-        }
-        .coinUnit {
-          font-size: 20px;
-          font-weight: bold;
-          display: block;
-        }
-        .plusCoin {
-          font-size: 22px;
-          font-weight: bold;
-          color: #ffcc02;
-          margin-left: 20px;
-        }
-      }
-    }
-    .videoContainer {
-      position: absolute;
-      left: 50%;
-      top: 50%;
-      transform: translate(-50%, -50%);
-      .videoFrame {
-        width: 360px;
-        height: 360px;
-        box-sizing: border-box;
-        object-fit: cover;
-        background: #303030;
-        border: 6px solid #00f143;
-        margin-bottom: 10px;
-      }
-      .status {
-        text-align: center;
-        font-weight: bold;
-        font-size: 20px;
-        color:#00f143
-      }
-    }
     .logo {
       position: absolute;
       bottom: 20px;
