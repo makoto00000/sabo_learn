@@ -60,12 +60,15 @@ export default function MusicPlayer() {
   const [duration, setDuration] = useState<number>(0);
   const [timePosition, setTimePosition] = useState(0);
   const [isRepeat, setIsRepeat] = useState<boolean>(false);
+  const [isShuffle, setIsShuffle] = useState<boolean>(false);
 
   /** 音声の再生時間を更新する処理 */
   useEffect(() => {
-    setTimePosition(audioRef.current!.currentTime);
-    setDuration(audioRef.current!.duration);
-  }, [audioRef, timePosition]);
+    // setTimePosition(audioRef.current!.currentTime);
+    if(audioRef.current) {
+      setDuration(audioRef.current.duration);
+    }
+  }, [currentTrack, timePosition]);
 
   /** 秒数を「0:00:00」の形式に変換する処理 */
   const getTimeStringFromSeconds = (seconds: number): string => {
@@ -88,7 +91,11 @@ export default function MusicPlayer() {
       audioRef.current!.play();
       setIsAudioPlaying(true);
     } else {
-      handleNext();
+      if (isShuffle) {
+        shuffleUserTracks();
+      } else {
+        handleNext();
+      }
     }
   };
 
@@ -149,17 +156,33 @@ export default function MusicPlayer() {
     }
   };
 
+  // ! 1曲しか持っていない場合、次の曲になっても再生されない。（ユーザーには初期状態で複数曲をもたせるので問題なし）
   useEffect(() => {
     audioRef.current!.src = `${trackPath}${currentTrack.source}`;
     if (isAudioPlaying !== null) {
       audioRef.current!.play();
       setIsAudioPlaying(true);
     }
-  }, [audioRef, currentTrack]);
+  }, [currentTrack]);
 
   // リピート再生
   const handleRepeat = () => {
     setIsRepeat((prev) => !prev);
+  };
+
+  // シャッフル再生
+  const handleShuffle = () => {
+    setIsShuffle((prev) => !prev);
+  };
+
+  const shuffleUserTracks = () => {
+    let randomIndex = Math.floor(Math.random() * (userTracks.length));
+    while (randomIndex === trackIndex) {
+      randomIndex = Math.floor(Math.random() * (userTracks.length));
+    }
+
+    setTrackIndex(randomIndex);
+    setCurrentTrack(userTracks[randomIndex]);
   };
 
   return (
@@ -181,10 +204,15 @@ export default function MusicPlayer() {
         <div className={styles.control}>
           <Image
             className={`${styles.shuffleButton} ${styles.controller}`}
-            src={`${imagePath}shuffle.png`}
+            src={
+              isShuffle
+                ? `${imagePath}shuffle.png`
+                : `${imagePath}no-shuffle.png`
+            }
             width={24}
             height={24}
             alt="shuffle icon"
+            onClick={() => handleShuffle()}
           ></Image>
           <Image
             className={`${styles.previousButton} ${styles.controller}`}
@@ -238,7 +266,7 @@ export default function MusicPlayer() {
           <input
             type="range"
             min={0}
-            max={duration}
+            max={duration ? duration : 0}
             value={timePosition}
             onChange={handleChangeTimePosition}
             className={`${styles.seekBar} ${styles.controller}`}
