@@ -6,6 +6,7 @@ import Link from "next/link";
 import MyVideo from "./MyVideo";
 import Score from "./Score";
 import { useVideo } from "@/app/hooks/useVideo";
+import MusicPlayer from "./MusicPlayer";
 
 export default function SoloRoom() {
   const {
@@ -79,6 +80,7 @@ export default function SoloRoom() {
           </ul>
         </nav>
       </div>
+      <MusicPlayer />
     </div>
   );
 }

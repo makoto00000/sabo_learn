@@ -1,0 +1,71 @@
+.container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #181818;
+  padding: 20px;
+  .musicInfo {
+    display: flex;
+    align-items: center;
+    .musicImage {
+      margin-right: 20px;
+    }
+    .title {
+      font-size: 18px;
+      font-weight: bold;
+    }
+    .artist {
+      color: #B3B3B3;
+      font-size: 15px;
+      font-weight: bold;
+    }
+  }
+  .player {
+    .control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      .shuffleButton {
+        margin-right: 20px;
+      }
+      .playButton {
+        margin: 0 10px;
+      }
+      .repeatButton {
+        margin-left: 20px;
+      }
+    }
+    .seekBarContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .currentTime, .totalTime {
+        font-size: 14px;
+        color: #C4C4C4;
+      }
+      .seekBar {
+        width: 511px;
+        height: 5px;
+        background: #C4C4C4;
+        border-radius: 2.5px;
+        margin: 0 10px;
+      }
+    }
+  }
+  .volume {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .volumeBar {
+      width: 116px;
+      height: 5px;
+      background: #C4C4C4;
+      border-radius: 2.5px;
+      margin-left: 10px;
+    }
+  }
+}

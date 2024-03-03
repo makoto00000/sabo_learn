@@ -23,12 +23,12 @@
     }
     .logo {
       position: absolute;
-      bottom: 20px;
+      bottom: calc(20px + 112px);
       left: 60px;
     }
     .navigation {
       position: absolute;
-      bottom: 20px;
+      bottom: calc(20px + 112px);
       right: 60px;
       background: rgba(0, 0, 0, 35%);
       border-radius: 5px;
