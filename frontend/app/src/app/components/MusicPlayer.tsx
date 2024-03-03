@@ -2,7 +2,7 @@
 
 import styles from "@/app/components/MusicPlayer.module.scss";
 import Image from "next/image";
-import { ChangeEvent, FormEvent, FormEventHandler, useEffect, useRef, useState } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 
 type musicInfo = {
   title: string;
@@ -16,7 +16,6 @@ export default function MusicPlayer() {
   const [title, setTitle] = useState<string>("Sample Music");
   const [artist, setArtist] = useState<string>("Sample Artist");
   const [image, setImage] = useState<string>("music_image.png");
-
 
   const audioRef = useRef<HTMLAudioElement>(null);
   const [isAudioPlaying, setIsAudioPlaying] = useState<boolean>(false);
@@ -36,13 +35,11 @@ export default function MusicPlayer() {
   const [source, setSource] = useState<string>("summer-walk.mp3");
   const [duration, setDuration] = useState<number>(0);
   const [timePosition, setTimePosition] = useState(0);
-  const timePositionRef = useRef(null);
 
   /** 音声の再生時間を更新する処理 */
   useEffect(() => {
     setTimePosition(audioRef.current!.currentTime);
     setDuration(audioRef.current!.duration);
-
   }, [audioRef.current, setTimePosition]);
 
   /** 秒数を「0:00:00」の形式に変換する処理 */
@@ -51,8 +48,8 @@ export default function MusicPlayer() {
     const m = Math.floor(Math.floor(seconds % 3600) / 60);
     const s = Math.floor(seconds % 60);
     const hh = h.toString().padStart(2, "0");
-    const mm =  m.toString().padStart(2, "0");
-    const ss =  s.toString().padStart(2, "0");
+    const mm = m.toString().padStart(2, "0");
+    const ss = s.toString().padStart(2, "0");
     return `${hh}:${mm}:${ss}`;
   };
 
@@ -71,6 +68,33 @@ export default function MusicPlayer() {
     audioRef.current!.currentTime = position;
   };
 
+  // 音楽の音量を管理
+  const [volume, setVolume] = useState<number>(50);
+  const [isMute, setIsMute] = useState<boolean>(false);
+
+  const handleChangeVolume = (e: ChangeEvent<HTMLInputElement>) => {
+    const volume = parseInt(e.target.value);
+    setVolume(volume);
+    audioRef.current!.volume = volume / 100;
+  };
+
+  const toggleMute = () => {
+    if (isMute) {
+      audioRef.current!.muted = false;
+      setIsMute(false);
+    } else {
+      audioRef.current!.muted = true;
+      setIsMute(true);
+    }
+  };
+
+  const seekBarBackground = {
+    background: `linear-gradient(to right, #C4C4C4 ${100*timePosition/duration}%, #535353 ${100*timePosition/duration}%)`
+  };
+
+  const volumeBarBackground = {
+    background: `linear-gradient(to right, #C4C4C4 ${volume}%, #535353 ${volume}%)`
+  };
 
   return (
     <div className={styles.container}>
@@ -105,7 +129,9 @@ export default function MusicPlayer() {
           ></Image>
           <Image
             className={`${styles.playButton} ${styles.controller}`}
-            src={isAudioPlaying ? `${imageSrc}pause.png` : `${imageSrc}play.png`}
+            src={
+              isAudioPlaying ? `${imageSrc}pause.png` : `${imageSrc}play.png`
+            }
             width={51}
             height={51}
             alt="play icon"
@@ -144,8 +170,8 @@ export default function MusicPlayer() {
             max={duration}
             value={timePosition}
             onChange={handleChangeTimePosition}
-            ref={timePositionRef}
             className={`${styles.seekBar} ${styles.controller}`}
+            style={seekBarBackground}
           ></input>
           <span className={styles.totalTime}>
             {getTimeStringFromSeconds(duration)}
@@ -155,12 +181,23 @@ export default function MusicPlayer() {
       <div className={styles.volume}>
         <Image
           className={`${styles.controlButton} ${styles.controller}`}
-          src={`${imageSrc}speaker.png`}
+          src={
+            isMute ? `${imageSrc}mute.png` : `${imageSrc}speaker.png`
+          }
           width={24}
           height={24}
-          alt="repeat icon"
+          alt="speaker icon"
+          onClick={() => toggleMute()}
         ></Image>
-        <div className={`${styles.volumeBar} ${styles.controller}`}></div>
+        <input
+          type="range"
+          min={0}
+          max={100}
+          value={volume}
+          onChange={handleChangeVolume}
+          className={`${styles.volumeBar} ${styles.controller}`}
+          style={volumeBarBackground}
+        ></input>
       </div>
     </div>
   );

@@ -50,7 +50,6 @@
       .seekBar {
         width: 511px;
         height: 5px;
-        background: #C4C4C4;
         border-radius: 2.5px;
         margin: 0 10px;
       }
@@ -63,7 +62,6 @@
     .volumeBar {
       width: 116px;
       height: 5px;
-      background: #C4C4C4;
       border-radius: 2.5px;
       margin-left: 10px;
     }
@@ -72,4 +70,19 @@
 
 .controller {
   cursor: pointer;
+}
+
+.seekBar, .volumeBar {
+  // 選択表示の枠を消す
+  outline: 0;
+  // ブラウザによる描画を外す
+  appearance: none;
+  -webkit-appearance: none;
+  // ボタンの設定
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+  }
 }
