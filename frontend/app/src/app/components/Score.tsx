@@ -36,11 +36,11 @@ export default function Score({
     <div className={styles.record}>
       <div className={styles.time} ref={scoreTimeRef}>
         Time{" "}
-        {Math.floor(scoreTime / 360)
+        {Math.floor(scoreTime / 3600)
           .toString()
           .padStart(2, "0")}
         :
-        {Math.floor(scoreTime / 60)
+        {Math.floor(scoreTime  / 60)
           .toString()
           .padStart(2, "0")}
         :
