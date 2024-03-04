@@ -1,9 +1,7 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import io from "socket.io-client" 
-import Script from "next/script";
-// const socket = io("http://localhost:3001")
+import "./styles/globals.css";
+import 'ress'
 
 const inter = Inter({ subsets: ["latin"] });
 
