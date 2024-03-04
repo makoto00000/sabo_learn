@@ -10,17 +10,23 @@
   .musicInfo {
     display: flex;
     align-items: center;
+    overflow: hidden;
     .musicImage {
       margin-right: 20px;
     }
-    .title {
-      font-size: 18px;
-      font-weight: bold;
-    }
-    .artist {
-      color: #B3B3B3;
-      font-size: 15px;
-      font-weight: bold;
+    .titleInfo {
+      width: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      .title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .artist {
+        color: #b3b3b3;
+        font-size: 15px;
+        font-weight: bold;
+      }
     }
   }
   .player {
@@ -43,9 +49,10 @@
       display: flex;
       align-items: center;
       justify-content: center;
-      .currentTime, .totalTime {
+      .currentTime,
+      .totalTime {
         font-size: 14px;
-        color: #C4C4C4;
+        color: #c4c4c4;
       }
       .seekBar {
         width: 511px;
@@ -72,7 +79,8 @@
   cursor: pointer;
 }
 
-.seekBar, .volumeBar {
+.seekBar,
+.volumeBar {
   // 選択表示の枠を消す
   outline: 0;
   // ブラウザによる描画を外す
@@ -84,5 +92,18 @@
     appearance: none;
     width: 20px;
     height: 20px;
+  }
+}
+
+.animate {
+  animation: scrollAnimation 9s linear infinite;
+}
+
+@keyframes scrollAnimation {
+  0% {
+    transform: translateX(130%);
+  }
+  100% {
+    transform: translateX(-200%);
   }
 }
