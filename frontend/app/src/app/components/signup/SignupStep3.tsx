@@ -2,6 +2,7 @@ import styles from "@/app/components/signup/SignupContent.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { User } from "@/app/types/User";
+import { useRef, useState } from "react";
 
 export default function SignupStep3({
   handlePage,
@@ -10,6 +11,12 @@ export default function SignupStep3({
   handlePage: (page: number) => void;
   userData: User;
 }) {
+  const [isAgreement, setIsAgreement] = useState<boolean>(false);
+
+  const handleAgreement = () => {
+    setIsAgreement((prev) => !prev);
+  };
+
   return (
     <div className={styles.container}>
       <div className={`${styles.progressBar} ${styles.progressBar3}`}></div>
@@ -34,6 +41,7 @@ export default function SignupStep3({
               className={styles.agreementCheckbox}
               type="checkbox"
               name="agreement"
+              onChange={handleAgreement}
             />
             <p>
               <Link className={styles.accentLink} href="/">
@@ -51,7 +59,11 @@ export default function SignupStep3({
         </Link>
         をご覧ください。
       </p>
-      <button className={styles.formButton} type="button">
+      <button
+        className={styles.formButton}
+        type="button"
+        disabled={!isAgreement}
+      >
         登録する
       </button>
     </div>

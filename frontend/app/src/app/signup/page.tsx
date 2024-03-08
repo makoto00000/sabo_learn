@@ -29,7 +29,6 @@ export default function Signup() {
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, email: e.target.value });
-    console.log(userData);
   };
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
     setUserData({ ...userData, password: e.target.value });
@@ -41,13 +40,19 @@ export default function Signup() {
     setUserData({ ...userData, birthday: new Date(birthday) });
   };
   const handleChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
-    setYear(Number(e.target.value));
+    const integerPattern = /^[1-9]\d*$/;
+    if (integerPattern.test(e.target.value)) {
+      setYear(Number(e.target.value));
+    }
   };
   const handleChangeMonth = (e: ChangeEvent<HTMLSelectElement>) => {
     setMonth(Number(e.target.value));
   };
   const handleChangeDay = (e: ChangeEvent<HTMLInputElement>) => {
-    setDay(Number(e.target.value));
+    const integerPattern = /^[1-9]\d*$/;
+    if (integerPattern.test(e.target.value)) {
+      setDay(Number(e.target.value));
+    }
   };
 
   useEffect(() => {

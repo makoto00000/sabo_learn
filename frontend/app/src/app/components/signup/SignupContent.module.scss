@@ -61,6 +61,9 @@
     margin-bottom: 8px;
     color: #b3b3b3;
   }
+  .reasonBirthDay {
+    text-decoration: underline;
+  }
   .formInput {
     border: 0.5px solid #888;
     border-radius: 5px;
@@ -193,7 +196,6 @@
 }
 .privacyExpranation {
   margin-bottom: 50px;
-  font-weight: bold;
 }
 
 .invalidMessageContainer {
@@ -204,6 +206,10 @@
 .invalidMessage {
   color: #c00000;
 }
+.invalidMessageLink {
+  color: #c00000;
+  text-decoration: underline;
+}
 .exclamationIcon {
   margin-top: 6px;
   margin-right: 5px;
@@ -211,7 +217,7 @@
 
 .attentionMessageContainer {
   margin-top: 10px;
-  background: #FFA42B;
+  background: #ffa42b;
   padding: 12px;
   border-radius: 5px;
   display: flex;

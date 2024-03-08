@@ -13,15 +13,16 @@ export default function SignupContent({
   handleChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
   userData: User;
 }) {
-  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const [invalidEmail, setInvalidEmail] = useState<boolean | null>(null);
   const emailInputRef = useRef<HTMLInputElement>(null);
   const nextButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
     const isCollectEmail = (email: string) => {
-      return email.match(/^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i);
+      const regex = /^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i
+      return regex.test(email);
     };
-    if (userData.email) {
+    if (userData.email !== undefined) {
       if (isCollectEmail(userData.email)) {
         setInvalidEmail(false);
         emailInputRef.current!.style.border = "0.5px solid #888";
@@ -93,6 +94,7 @@ export default function SignupContent({
             className={styles.formButton}
             type="button"
             onClick={() => handlePage(1)}
+            disabled={userData.email === undefined}
           >
             次へ
           </button>
