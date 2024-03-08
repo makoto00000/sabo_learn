@@ -1,0 +1,194 @@
+.container {
+  width: 350px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+}
+.head {
+  font-size: 50px;
+  font-weight: bold;
+  margin-bottom: 70px;
+}
+.progressBar {
+  height: 2px;
+  width: 480px;
+  background: #575757;
+  margin-bottom: 30px;
+}
+.progressBar1 {
+  background: linear-gradient(to right, #ffcc02 33%, #575757 33%);
+}
+.progressBar2 {
+  background: linear-gradient(to right, #ffcc02 66%, #575757 66%);
+}
+.progressBar3 {
+  background: linear-gradient(to right, #ffcc02 100%, #575757 100%);
+}
+.stepContainer {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  margin-bottom: 50px;
+  .prevArrow {
+    margin-right: 30px;
+    cursor: pointer;
+    -webkit-user-drag: none;
+  }
+  .stepNumber {
+    color: #b3b3b3;
+    font-size: 16px;
+    font-weight: bold;
+  }
+  .stepText {
+    font-size: 18px;
+    font-weight: bold;
+  }
+}
+.formContent {
+  width: 350px;
+}
+.formControl {
+  margin-bottom: 30px;
+  position: relative;
+  .formLabel {
+    font-size: 16px;
+    font-weight: bold;
+    display: block;
+    margin-bottom: 10px;
+  }
+  .subLabel {
+    margin-bottom: 8px;
+    color: #b3b3b3;
+  }
+  .formInput {
+    border: 0.5px solid #888;
+    border-radius: 5px;
+    display: block;
+    width: 100%;
+    height: 50px;
+    padding: 0 10px;
+  }
+  .eyeIcon {
+    position: absolute;
+    right: 10px;
+    bottom: 15px;
+    cursor: pointer;
+    -webkit-user-drag: none;
+  }
+  .inputContainer {
+    display: flex;
+    justify-content: space-between;
+  }
+  .yearInput {
+    width: 30%;
+    display: inline;
+  }
+  .monthSelect {
+    border: 0.5px solid #888;
+    border-radius: 5px;
+    display: block;
+    width: 40%;
+    height: 50px;
+    padding: 0 10px;
+  }
+  .dayInput {
+    width: 20%;
+    display: inline;
+  }
+  .agreementContainer {
+    display: flex;
+    background: #303030;
+    padding: 17px 0 17px 20px;
+    font-size: 14px;
+  }
+  .agreementCheckbox {
+    margin-right: 20px;
+    accent-color: #ffcc02;
+  }
+}
+.formButton {
+  background: #ffcc02;
+  border-radius: 100px;
+  color: #333;
+  font-weight: bold;
+  width: 100%;
+  height: 50px;
+}
+.divLine {
+  margin: 50px auto;
+  position: relative;
+  text-align: center;
+  &::before {
+    content: "";
+    display: inline-block;
+    width: 140px;
+    height: 1px;
+    background: #575757;
+    position: absolute;
+    top: 50%;
+    left: 0;
+  }
+  &::after {
+    content: "";
+    display: inline-block;
+    width: 140px;
+    height: 1px;
+    background: #575757;
+    position: absolute;
+    top: 50%;
+    right: 0;
+  }
+}
+.googleButton {
+  border: 1px solid #909090;
+  border-radius: 100px;
+  width: 100%;
+  height: 50px;
+  text-align: center;
+  .googleLogo {
+    margin-right: 20px;
+    vertical-align: middle;
+    -webkit-user-drag: none;
+  }
+}
+.border {
+  width: 100%;
+  height: 1px;
+  background: #575757;
+  margin: 70px 0;
+}
+.loginLink {
+  color: #a7a7a7;
+  .link:hover {
+    text-decoration: underline;
+  }
+}
+
+.validation {
+  margin-bottom: 50px;
+  p {
+    font-size: 15px;
+    font-weight: bold;
+    margin-bottom: 10px;
+  }
+  .listIcon {
+    margin-right: 10px;
+    -webkit-user-drag: none;
+  }
+  ul {
+    li {
+      font-size: 14px;
+    }
+  }
+}
+.accentLink {
+  color: #ffcc02;
+}
+.accentLink:hover {
+  text-decoration: underline;
+}
+.privacyExpranation {
+  margin-bottom: 50px;
+  font-weight: bold;
+}

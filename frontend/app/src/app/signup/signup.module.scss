@@ -1,0 +1,34 @@
+.header {
+  background: #0f0f0f;
+  width: 100%;
+  height: 110px;
+  padding: 40px 0 40px 60px;
+}
+.content {
+  width: 80%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 32px auto;
+  padding: 120px 20px;
+  background: linear-gradient(
+    180deg,
+    #121212 0%,
+    #121212 14.55%,
+    #121212 24.66%,
+    #121212 44.78%,
+    #131313 55.11%,
+    #151515 64.02%,
+    #161616 67.06%,
+    #171717 74.34%,
+    #1f1f1f 88.36%,
+    #222222 100%
+  );
+  border-radius: 5px;
+}
+.footer {
+  height: 85px;
+  background: #121212;
+  color: #a7a7a7;
+  text-align: center;
+}
