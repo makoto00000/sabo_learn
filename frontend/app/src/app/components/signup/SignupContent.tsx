@@ -1,7 +1,7 @@
 import styles from "@/app/components/signup/SignupContent.module.scss";
 import Image from "next/image";
 import Link from "next/link";
-import { ChangeEvent } from "react";
+import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { User } from "@/app/types/User";
 
 export default function SignupContent({
@@ -13,6 +13,27 @@ export default function SignupContent({
   handleChangeEmail: (e: ChangeEvent<HTMLInputElement>) => void;
   userData: User;
 }) {
+  const [invalidEmail, setInvalidEmail] = useState<boolean>(false);
+  const emailInputRef = useRef<HTMLInputElement>(null);
+  const nextButtonRef = useRef<HTMLButtonElement>(null);
+
+  useEffect(() => {
+    const isCollectEmail = (email: string) => {
+      return email.match(/^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i);
+    };
+    if (userData.email) {
+      if (isCollectEmail(userData.email)) {
+        setInvalidEmail(false);
+        emailInputRef.current!.style.border = "0.5px solid #888";
+        nextButtonRef.current!.disabled = false;
+      } else {
+        setInvalidEmail(true);
+        emailInputRef.current!.style.border = "1px solid #C00000";
+        nextButtonRef.current!.disabled = true;
+      }
+    }
+  }, [userData.email]);
+
   return (
     <div className={styles.container}>
       <h1 className={styles.head}>登録して自習を始めよう</h1>
@@ -23,6 +44,7 @@ export default function SignupContent({
               メールアドレス
             </label>
             <input
+              ref={emailInputRef}
               className={styles.formInput}
               type="text"
               name="email"
@@ -32,8 +54,42 @@ export default function SignupContent({
               value={userData.email}
               onChange={handleChangeEmail}
             />
+            {invalidEmail && (
+              <div className={styles.invalidMessageContainer}>
+                <Image
+                  className={styles.exclamationIcon}
+                  src="/exclamation.png"
+                  width={12}
+                  height={12}
+                  alt="exclamation_icon"
+                ></Image>
+                <p className={styles.invalidMessage}>
+                  このメールアドレスは無効です。
+                  <br />
+                  example@email.comのような形式でメールアドレスが入力されているか確認してください。
+                </p>
+              </div>
+            )}
+            {/* //TODO すでに存在しているメールアドレスであれば以下を表示する  */}
+            {/* <div className={styles.attentionMessageContainer}>
+              <Image
+                className={styles.exclamationIcon}
+                src="/attention_exclamation.png"
+                width={12}
+                height={12}
+                alt="exclamation_icon"
+              ></Image>
+              <p className={styles.attentionMessage}>
+                このメールアドレスは既存のアカウントに登録されています。続行するには
+                <Link className={styles.attentionMessageLink} href="/login">
+                  ログイン
+                </Link>
+                してください。
+              </p>
+            </div> */}
           </div>
           <button
+          ref={nextButtonRef}
             className={styles.formButton}
             type="button"
             onClick={() => handlePage(1)}

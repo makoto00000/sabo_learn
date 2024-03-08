@@ -17,10 +17,10 @@ export default function Signup() {
   };
 
   const [userData, setUserData] = useState<User>({
-    username: "",
-    email: "",
-    password: "",
-    birthday: null,
+    username: undefined,
+    email: undefined,
+    password: undefined,
+    birthday: undefined,
   });
 
   const [year, setYear] = useState<number>();

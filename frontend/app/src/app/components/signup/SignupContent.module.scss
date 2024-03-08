@@ -115,6 +115,9 @@
   width: 100%;
   height: 50px;
 }
+.formButton:disabled {
+  background: #888;
+}
 .divLine {
   margin: 50px auto;
   position: relative;
@@ -191,4 +194,33 @@
 .privacyExpranation {
   margin-bottom: 50px;
   font-weight: bold;
+}
+
+.invalidMessageContainer {
+  display: flex;
+  align-items: start;
+  margin-top: 10px;
+}
+.invalidMessage {
+  color: #c00000;
+}
+.exclamationIcon {
+  margin-top: 6px;
+  margin-right: 5px;
+}
+
+.attentionMessageContainer {
+  margin-top: 10px;
+  background: #FFA42B;
+  padding: 12px;
+  border-radius: 5px;
+  display: flex;
+}
+
+.attentionMessage {
+  color: #111;
+  .attentionMessageLink {
+    color: #333;
+    text-decoration: underline;
+  }
 }
