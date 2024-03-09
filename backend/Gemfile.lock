@@ -75,7 +75,6 @@ GEM
       minitest (>= 5.1)
       mutex_m
       tzinfo (~> 2.0)
-    ansi (1.5.0)
     ast (2.4.2)
     base64 (0.2.0)
     bcrypt (3.1.20)
@@ -90,6 +89,7 @@ GEM
     debug (1.9.1)
       irb (~> 1.10)
       reline (>= 0.3.8)
+    diff-lcs (1.5.1)
     dotenv (3.0.2)
     dotenv-rails (3.0.2)
       dotenv (= 3.0.2)
@@ -121,11 +121,6 @@ GEM
     marcel (1.0.2)
     mini_mime (1.1.5)
     minitest (5.22.2)
-    minitest-reporters (1.6.1)
-      ansi
-      builder
-      minitest (>= 5.0)
-      ruby-progressbar
     msgpack (1.7.2)
     mutex_m (0.2.0)
     mysql2 (0.5.6)
@@ -199,6 +194,23 @@ GEM
     reline (0.4.2)
       io-console (~> 0.5)
     rexml (3.2.6)
+    rspec-core (3.13.0)
+      rspec-support (~> 3.13.0)
+    rspec-expectations (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-mocks (3.13.0)
+      diff-lcs (>= 1.2.0, < 2.0)
+      rspec-support (~> 3.13.0)
+    rspec-rails (6.1.1)
+      actionpack (>= 6.1)
+      activesupport (>= 6.1)
+      railties (>= 6.1)
+      rspec-core (~> 3.12)
+      rspec-expectations (~> 3.12)
+      rspec-mocks (~> 3.12)
+      rspec-support (~> 3.12)
+    rspec-support (3.13.1)
     rubocop (1.60.2)
       json (~> 2.3)
       language_server-protocol (>= 3.17.0)
@@ -216,9 +228,6 @@ GEM
       rubocop (~> 1.41)
     rubocop-factory_bot (2.25.1)
       rubocop (~> 1.41)
-    rubocop-minitest (0.34.5)
-      rubocop (>= 1.39, < 2.0)
-      rubocop-ast (>= 1.30.0, < 2.0)
     rubocop-performance (1.20.2)
       rubocop (>= 1.48.1, < 2.0)
       rubocop-ast (>= 1.30.0, < 2.0)
@@ -256,14 +265,12 @@ DEPENDENCIES
   dotenv-rails
   faker
   jwt
-  minitest
-  minitest-reporters
   mysql2 (~> 0.5)
   puma (>= 5.0)
   rack-cors
   rails (~> 7.1.2)
+  rspec-rails
   rubocop
-  rubocop-minitest
   rubocop-performance
   rubocop-rails
   rubocop-rspec

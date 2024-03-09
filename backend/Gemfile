@@ -26,10 +26,8 @@ gem 'dotenv-rails'
 
 group :development, :test do
   gem 'debug', platforms: %i[mri windows]
-  gem 'minitest'
-  gem 'minitest-reporters'
+  gem 'rspec-rails'
   gem 'rubocop', require: false
-  gem 'rubocop-minitest', require: false
   gem 'rubocop-performance', require: false
   gem 'rubocop-rails', require: false
   gem 'rubocop-rspec', require: false

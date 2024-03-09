@@ -46,9 +46,9 @@ jobs:
           cd backend
           bundle exec rubocop
       
-      - name: minitest
+      - name: rspec
         env:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: |
           cd backend
-          bundle exec rails test
+          bundle exec rails rspec
