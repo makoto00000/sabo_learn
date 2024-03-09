@@ -51,4 +51,4 @@ jobs:
           RAILS_MASTER_KEY: ${{ secrets.RAILS_MASTER_KEY  }}
         run: |
           cd backend
-          bundle exec rails rspec
+          bundle exec rspec
