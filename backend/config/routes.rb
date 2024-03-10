@@ -7,4 +7,5 @@ Rails.application.routes.draw do
     end
   end
   get 'up' => 'rails/health#show', as: :rails_health_check
+  post 'auth/:provider/callback', to: 'api/v1/google#callback'
 end
