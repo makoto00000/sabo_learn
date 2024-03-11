@@ -7,7 +7,7 @@
   align-items: end;
   .userInfoContainer {
     background: #000;
-    padding: 2px 5px 2px 2px;
+    padding: 3px 5px 3px 3px;
     border-radius: 33px;
     display: flex;
     justify-content: center;
@@ -51,6 +51,7 @@
     .caretDown {
       transition: transform .5s;
       transform: rotate(0);
+      cursor: pointer;
     }
   }
   .modal {
@@ -62,12 +63,22 @@
     margin-right: 3px;
     font-size: 14px;
     font-weight: bold;
+    nav ul .menuItem {
+      cursor: pointer;
+      padding: 5px 20px;
+      border-radius: 5px;
+      transition: all 0.3s 0s ease;
+    }
+    nav ul .menuItem:hover {
+      background: #353535;
+    }
   }
 }
 
 .rotate180 {
   transition: transform .5s;
   transform: rotate(180deg);
+  cursor: pointer;
 }
 
 .open {

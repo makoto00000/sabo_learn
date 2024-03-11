@@ -61,7 +61,7 @@ const handler = NextAuth({
         );
         if (response.status === 200) {
 					const data = await response.data
-					setCookie("user_id", data.user.token);
+					setCookie("token", data.user.token);
 					return true
         } else {
           return false;

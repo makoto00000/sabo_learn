@@ -4,8 +4,9 @@ import styles from "./UserInfo.module.scss";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
+import { User } from "../types/User";
 
-export default function UserInfo() {
+export default function UserInfo({ name, coin }: User) {
   const router = useRouter();
   const caretRef = useRef<HTMLImageElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -60,10 +61,10 @@ export default function UserInfo() {
               height={12}
               alt="coinIcon"
             ></Image>
-            <span className={styles.coinCount}>1234</span>
+            <span className={styles.coinCount}>{coin}</span>
             <span className={styles.coinUnit}>sp</span>
           </div>
-          <div className={styles.userName}>username</div>
+          <div className={styles.userName}>{name}</div>
         </div>
         <Image
           ref={caretRef}
@@ -78,7 +79,9 @@ export default function UserInfo() {
       <div className={`${styles.modal} ${styles.close}`} ref={modalRef}>
         <nav>
           <ul>
-            <li onClick={() => handleSignOut()}>Log out</li>
+            <li className={styles.menuItem} onClick={() => handleSignOut()}>
+              Log out
+            </li>
           </ul>
         </nav>
       </div>

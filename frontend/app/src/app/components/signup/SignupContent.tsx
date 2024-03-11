@@ -40,7 +40,7 @@ export default function SignupContent({
     <div className={styles.container}>
       <h1 className={styles.head}>登録して自習を始めよう</h1>
       <div className={styles.formContent}>
-        <form action="" className={styles.form}>
+        {/* <form action="" className={styles.form}>
           <div className={styles.formControl}>
             <label className={styles.formLabel} htmlFor="email">
               メールアドレス
@@ -55,8 +55,8 @@ export default function SignupContent({
               placeholder="name@domain.com"
               value={userData.email}
               onChange={handleChangeEmail}
-            />
-            {invalidEmail && (
+            /> */}
+            {/*invalidEmail && (
               <div className={styles.invalidMessageContainer}>
                 <Image
                   className={styles.exclamationIcon}
@@ -71,8 +71,8 @@ export default function SignupContent({
                   example@email.comのような形式でメールアドレスが入力されているか確認してください。
                 </p>
               </div>
-            )}
-            {/* //TODO すでに存在しているメールアドレスであれば以下を表示する  */}
+            )*/}
+            {/* TODO すでに存在しているメールアドレスであれば以下を表示する  */}
             {/* <div className={styles.attentionMessageContainer}>
               <Image
                 className={styles.exclamationIcon}
@@ -89,7 +89,7 @@ export default function SignupContent({
                 してください。
               </p>
             </div> */}
-          </div>
+          {/* </div>
           <button
             ref={nextButtonRef}
             className={styles.formButton}
@@ -99,8 +99,8 @@ export default function SignupContent({
           >
             次へ
           </button>
-        </form>
-        <div className={styles.divLine}>または</div>
+        </form> */}
+        {/* <div className={styles.divLine}>または</div> */}
         <button
           className={styles.googleButton}
           onClick={() =>

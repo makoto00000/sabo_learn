@@ -36,7 +36,7 @@ export default function SignupStep2({
   const nextButtonRef = useRef<HTMLButtonElement>(null);
 
   useEffect(() => {
-    const username = userData.username;
+    const username = userData.name;
 
     const isValidUesrname = (username: string) => {
       return username.length !== 0;
@@ -111,7 +111,7 @@ export default function SignupStep2({
       setInvalidDate(!isValidDate(year, month, day));
       setInvalidAge(!isOverThirteen(year, month, day));
     }
-  }, [userData.username, year, month, day]);
+  }, [userData.name, year, month, day]);
   return (
     <div className={styles.container}>
       <div className={`${styles.progressBar} ${styles.progressBar2}`}></div>
@@ -144,7 +144,7 @@ export default function SignupStep2({
             name="username"
             id="username"
             autoComplete="name"
-            value={userData.username}
+            value={userData.name}
             onChange={handleChangeUsername}
           />
           {invalidUsername && (
@@ -284,7 +284,7 @@ export default function SignupStep2({
         type="button"
         onClick={() => handlePage(3)}
         disabled={
-          userData.username === undefined ||
+          userData.name === undefined ||
           year === undefined ||
           month === undefined ||
           day === undefined

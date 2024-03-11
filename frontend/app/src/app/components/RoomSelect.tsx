@@ -3,11 +3,13 @@ import Link from "next/link";
 import styles from "./RoomSelect.module.scss";
 import Image from "next/image";
 import UserInfo from "./UserInfo";
-export default function RoomSelect() {
+import { getCurrentUser } from "../utils/UserAPI";
+export default async function RoomSelect() {
+  const currentUser = await getCurrentUser();
 
   return (
     <div className={`${styles.container} background`}>
-      <UserInfo />
+      {currentUser && <UserInfo {...currentUser} /> }
       <Link href="/room">
         <div className={styles.solo}>
           <Image
@@ -23,6 +25,7 @@ export default function RoomSelect() {
         </div>
       </Link>
       <div className={styles.multi}>
+        <div className={styles.musk}>開 発 中</div>
         <Image
           className={styles.multiImage}
           src="/multi.png"

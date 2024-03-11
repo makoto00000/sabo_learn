@@ -24,19 +24,21 @@ export default function Login() {
     <main>
       <div className={`${styles.container} background`}>
         <header className={styles.header}>
+          <Link href="/">
           <Image
             className={styles.logo}
             src="/logo.png"
             width={148}
             height={35}
             alt="logo"
-          ></Image>
+            ></Image>
+            </Link>
         </header>
         <div className={`${styles.content} content`}>
           <div className={contentStyles.container}>
             <h1 className={contentStyles.head}>SaboLearnにログイン</h1>
             <div className={contentStyles.formContent}>
-              <form action="" className={contentStyles.form}>
+              {/* <form action="" className={contentStyles.form}>
                 <div className={contentStyles.formControl}>
                   <label className={contentStyles.formLabel} htmlFor="email">
                     メールアドレスまたはユーザー名
@@ -85,7 +87,7 @@ export default function Login() {
                   <Link href="/">パスワードをお忘れですか？</Link>
                 </div>
               </form>
-              <div className={contentStyles.divLine}>または</div>
+              <div className={contentStyles.divLine}>または</div> */}
               <button
                 className={contentStyles.googleButton}
                 onClick={() => signIn("google", {callbackUrl: 'https://localhost:4000'}, { prompt: "login" })}
@@ -99,18 +101,18 @@ export default function Login() {
                 ></Image>
                 Googleで続行
               </button>
-              <div className={contentStyles.border}></div>
+              {/* <div className={contentStyles.border}></div>
               <div className={contentStyles.loginLink}>
                 アカウントをお持ちでない場合は
                 <Link className={contentStyles.link} href="/signup">
                   SaboLearnに登録する
                 </Link>
-              </div>
+              </div> */}
             </div>
           </div>
         </div>
         <footer className={styles.footer}>
-          このサイトはreCAPTCHAによって保護されており、Googleの
+          {/* このサイトはreCAPTCHAによって保護されており、Googleの
           <Link target="_blank" href="https://policies.google.com/privacy">
             プライバシーポリシー
           </Link>
@@ -118,7 +120,7 @@ export default function Login() {
           <Link target="_blank" href="https://policies.google.com/terms">
             利用規約
           </Link>
-          が適用されます。
+          が適用されます。 */}
         </footer>
       </div>
     </main>

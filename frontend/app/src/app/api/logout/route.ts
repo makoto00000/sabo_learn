@@ -3,7 +3,7 @@ import { deleteCookie } from "../../utils/Cookie";
 
 export async function POST() {
   try {
-    deleteCookie('user_id');
+    deleteCookie('token');
     return NextResponse.json({
       message: "success",
     }, { status: 200 });
