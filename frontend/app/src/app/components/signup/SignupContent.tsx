@@ -3,6 +3,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { User } from "@/app/types/User";
+import { signIn } from "next-auth/react";
 
 export default function SignupContent({
   handlePage,
@@ -19,7 +20,7 @@ export default function SignupContent({
 
   useEffect(() => {
     const isCollectEmail = (email: string) => {
-      const regex = /^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i
+      const regex = /^[a-z\d][\w.-]*@[\w.-]+\.[a-z\d]+$/i;
       return regex.test(email);
     };
     if (userData.email !== undefined) {
@@ -90,7 +91,7 @@ export default function SignupContent({
             </div> */}
           </div>
           <button
-          ref={nextButtonRef}
+            ref={nextButtonRef}
             className={styles.formButton}
             type="button"
             onClick={() => handlePage(1)}
@@ -100,7 +101,16 @@ export default function SignupContent({
           </button>
         </form>
         <div className={styles.divLine}>または</div>
-        <button className={styles.googleButton}>
+        <button
+          className={styles.googleButton}
+          onClick={() =>
+            signIn(
+              "google",
+              { callbackUrl: "https://localhost:4000" },
+              { prompt: "login" }
+            )
+          }
+        >
           <Image
             className={styles.googleLogo}
             src="/google.png"

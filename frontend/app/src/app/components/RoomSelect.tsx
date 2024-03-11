@@ -1,9 +1,13 @@
+
 import Link from "next/link";
 import styles from "./RoomSelect.module.scss";
 import Image from "next/image";
+import UserInfo from "./UserInfo";
 export default function RoomSelect() {
+
   return (
     <div className={`${styles.container} background`}>
+      <UserInfo />
       <Link href="/room">
         <div className={styles.solo}>
           <Image

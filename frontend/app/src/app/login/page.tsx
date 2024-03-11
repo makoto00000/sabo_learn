@@ -1,10 +1,11 @@
-'use client'
+"use client";
 import styles from "@/app/signup/signup.module.scss";
 import contentStyles from "@/app/components/signup/SignupContent.module.scss";
 import Image from "next/image";
 import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { User } from "@/app/types/User";
+import { signIn } from "next-auth/react";
 
 export default function Login() {
   const [email, setEmail] = useState<User["email"]>();
@@ -13,7 +14,7 @@ export default function Login() {
     setEmail(e.target.value);
   };
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setPassword(e.target.value );
+    setPassword(e.target.value);
   };
   const [showPassword, setShowPassword] = useState<boolean>(false);
   const toggleShowPassword = () => {
@@ -85,7 +86,10 @@ export default function Login() {
                 </div>
               </form>
               <div className={contentStyles.divLine}>または</div>
-              <button className={contentStyles.googleButton}>
+              <button
+                className={contentStyles.googleButton}
+                onClick={() => signIn("google", {callbackUrl: 'https://localhost:4000'}, { prompt: "login" })}
+              >
                 <Image
                   className={contentStyles.googleLogo}
                   src="/google.png"
