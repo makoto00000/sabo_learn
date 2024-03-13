@@ -97,7 +97,7 @@ export default function Signup() {
           {currentPage === 3 && <SignupStep3 {...{ handlePage, userData }} />}
         </div>
         <footer className={styles.footer}>
-          このサイトはreCAPTCHAによって保護されており、Googleの
+          {/* このサイトはreCAPTCHAによって保護されており、Googleの
           <Link target="_blank" href="https://policies.google.com/privacy">
             プライバシーポリシー
           </Link>
@@ -105,7 +105,7 @@ export default function Signup() {
           <Link target="_blank" href="https://policies.google.com/terms">
             利用規約
           </Link>
-          が適用されます。
+          が適用されます。 */}
         </footer>
       </div>
     </main>

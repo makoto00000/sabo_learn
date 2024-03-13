@@ -57,7 +57,7 @@ export default function SoloRoom() {
         ></Image>
         <nav className={styles.navigation}>
           <ul className={styles.menus}>
-            <li>
+            {/* <li>
               <Image
                 className={styles.listIcon}
                 src="/restroom_icon.png"
@@ -66,7 +66,7 @@ export default function SoloRoom() {
                 alt="roomIcon"
               ></Image>
               <Link href="/">Rest Room</Link>
-            </li>
+            </li> */}
             <li>
               <Image
                 className={styles.listIcon}
