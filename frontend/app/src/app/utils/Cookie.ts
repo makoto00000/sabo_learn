@@ -12,6 +12,7 @@ export const setCookie = (name: string, value: string) => {
     value: value,
     expires: Date.now() + 24 * 60 * 60 * 1000,
     httpOnly: true,
+    secure: true,
     path: '/',
   })
 }
