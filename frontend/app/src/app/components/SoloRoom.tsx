@@ -2,11 +2,12 @@
 
 import styles from "./SoloRoom.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 import MyVideo from "./MyVideo";
 import Score from "./Score";
 import { useVideo } from "@/app/hooks/useVideo";
 import MusicPlayer from "./MusicPlayer";
+import { useState } from "react";
+import ExitConfirmModal from "./ExitConfirmModal";
 
 export default function SoloRoom() {
   const {
@@ -20,7 +21,7 @@ export default function SoloRoom() {
     scoreTime,
     point,
     getPointRef,
-    showAnimation
+    showAnimation,
   } = useVideo();
 
   const MyVideoProps = {
@@ -31,7 +32,6 @@ export default function SoloRoom() {
     statusRef: statusRef,
   };
 
-
   const ScoreProps = {
     scoreTime: scoreTime,
     point: point,
@@ -40,8 +40,17 @@ export default function SoloRoom() {
     isStudyingRef: isStudyingRef,
   };
 
+  const [isOpen, setIsOpen] = useState<boolean>(false);
+  const openModal = () => {
+    setIsOpen(true);
+  }
+  const closeModal = () => {
+    setIsOpen(false);
+  }
+
   return (
     <div className={styles.container}>
+      {isOpen && <ExitConfirmModal {...{closeModal, scoreTime, point}} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Solo Room</h1>
@@ -67,7 +76,7 @@ export default function SoloRoom() {
               ></Image>
               <Link href="/">Rest Room</Link>
             </li> */}
-            <li>
+            <li onClick={() => openModal()}>
               <Image
                 className={styles.listIcon}
                 src="/exit_icon.png"
@@ -75,7 +84,7 @@ export default function SoloRoom() {
                 height={30}
                 alt="roomIcon"
               ></Image>
-              <Link href="/">Exit</Link>
+              Exit
             </li>
           </ul>
         </nav>
