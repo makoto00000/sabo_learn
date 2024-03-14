@@ -3,6 +3,7 @@
 import { LegacyRef, MutableRefObject, useEffect, useRef } from "react";
 import styles from "./Score.module.scss";
 import Image from "next/image";
+import { getTimeStringFromSeconds } from "@/app/utils/Format";
 
 type ScoreProps = {
   scoreTime: number,
@@ -31,16 +32,6 @@ export default function Score({
     }
     handleTimer();
   }, [isStudyingRef.current])
-
-  const getTimeStringFromSeconds = (seconds: number): string => {
-    const h = Math.floor(seconds / 3600);
-    const m = Math.floor(Math.floor(seconds % 3600) / 60);
-    const s = Math.floor(seconds % 60);
-    const hh = h.toString().padStart(2, "0");
-    const mm = m.toString().padStart(2, "0");
-    const ss = s.toString().padStart(2, "0");
-    return `${hh}:${mm}:${ss}`;
-  };
 
   return (
     <div className={styles.record}>
