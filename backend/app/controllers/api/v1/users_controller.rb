@@ -22,9 +22,10 @@ class Api::V1::UsersController < ApplicationController
   def add_coin
     add_coin_count = params[:coin].to_i
     if @current_user
-      new_coin_count = @current_user.coin + add_coin_count
+      prev_coin_count = @current_user.coin
+      new_coin_count = prev_coin_count + add_coin_count
       if @current_user.update!(coin: new_coin_count)
-        render json: { coin: new_coin_count }, status: :ok
+        render json: { coin: new_coin_count, prevCoin: prev_coin_count }, status: :ok
       else
         render json: { error: '更新に失敗しました', pending_coin: add_coin_count }, status: :unprocessable_entity
       end
