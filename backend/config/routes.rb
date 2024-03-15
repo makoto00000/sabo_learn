@@ -7,6 +7,6 @@ Rails.application.routes.draw do
       post '/login', to: 'authentication#login'
     end
   end
-  get 'up' => 'rails/health#show', as: :rails_health_check
+  get '/health_check' => 'rails/health#show', as: :rails_health_check
   post '/auth/:provider/callback', to: 'api/v1/google#callback'
 end

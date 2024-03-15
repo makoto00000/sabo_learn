@@ -17,5 +17,5 @@ test:
 production:
   <<: *default
   database: sabo_learn_production
-  username: sabo_learn
+  username: admin
   password: <%= ENV["BACKEND_DATABASE_PASSWORD"] %>
