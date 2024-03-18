@@ -10,6 +10,7 @@ module Backend
     config.autoload_lib(ignore: %w[assets tasks])
     config.api_only = true
     config.hosts << 'www.example.com'
+    config.hosts << 'localhost'
 
     config.generators do |g|
       g.test_framework :rspec,

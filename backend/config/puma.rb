@@ -33,3 +33,5 @@ pidfile ENV.fetch('PIDFILE') { 'tmp/pids/server.pid' }
 
 # Allow puma to be restarted by `bin/rails restart` command.
 plugin :tmp_restart
+
+stdout_redirect File.expand_path('log/puma_access.log'), File.expand_path('log/puma_error.log'), true
