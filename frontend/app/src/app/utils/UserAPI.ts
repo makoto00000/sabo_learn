@@ -3,7 +3,7 @@ import { User } from "@/app/types/User";
 
 export const getCurrentUser: () => Promise<User> = async () => {
   const token = getCookie("token");
-  const res = await fetch(`${process.env.API_ENDPOINT}/api/v1/user`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/user`, {
     cache: "no-store",
     headers: { Authorization: `Bearer ${token}` },
   });
