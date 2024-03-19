@@ -1,0 +1,109 @@
+.container {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  background: #181818;
+  padding: 20px;
+  .musicInfo {
+    display: flex;
+    align-items: center;
+    overflow: hidden;
+    .musicImage {
+      margin-right: 20px;
+    }
+    .titleInfo {
+      width: 110px;
+      white-space: nowrap;
+      overflow: hidden;
+      .title {
+        font-size: 18px;
+        font-weight: bold;
+      }
+      .artist {
+        color: #b3b3b3;
+        font-size: 15px;
+        font-weight: bold;
+      }
+    }
+  }
+  .player {
+    .control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 10px;
+      .shuffleButton {
+        margin-right: 20px;
+      }
+      .playButton {
+        margin: 0 10px;
+      }
+      .repeatButton {
+        margin-left: 20px;
+      }
+    }
+    .seekBarContainer {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .currentTime,
+      .totalTime {
+        font-size: 14px;
+        color: #c4c4c4;
+      }
+      .seekBar {
+        width: 511px;
+        height: 5px;
+        border-radius: 2.5px;
+        margin: 0 10px;
+      }
+    }
+  }
+  .volume {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    .volumeBar {
+      width: 116px;
+      height: 5px;
+      border-radius: 2.5px;
+      margin-left: 10px;
+    }
+  }
+}
+
+.controller {
+  cursor: pointer;
+}
+
+.seekBar,
+.volumeBar {
+  // 選択表示の枠を消す
+  outline: 0;
+  // ブラウザによる描画を外す
+  appearance: none;
+  -webkit-appearance: none;
+  // ボタンの設定
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+  }
+}
+
+.animate {
+  animation: scrollAnimation 9s linear infinite;
+}
+
+@keyframes scrollAnimation {
+  0% {
+    transform: translateX(130%);
+  }
+  100% {
+    transform: translateX(-200%);
+  }
+}

@@ -1,9 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
-import "./globals.css";
-import io from "socket.io-client" 
-import Script from "next/script";
-// const socket = io("http://localhost:3001")
+import "./styles/globals.css";
+import 'ress'
+import NextAuthProvider from "./providers/NextAuth";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -19,7 +18,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en">
-      <body className={inter.className}>{children}</body>
+      <body className={inter.className}>
+        <NextAuthProvider>{children}</NextAuthProvider>
+      </body>
     </html>
   );
 }

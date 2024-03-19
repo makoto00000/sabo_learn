@@ -1,0 +1,55 @@
+.container {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100vh;
+  .solo,
+  .multi {
+    width: 360px;
+    height: 360px;
+    background: #303030;
+    object-fit: contain;
+    border-radius: 4px;
+    border: 5px solid #303030;
+    transition: all 0.2s 0s ease;
+  }
+  .solo {
+    margin-right: 150px;
+    padding: 50px 65px 80px;
+    position: relative;
+  }
+  .multi {
+    padding: 94px 20px;
+    position: relative;
+  }
+  .solo:hover,
+  .multi:hover {
+    border: 5px solid #ffcc02;
+  }
+  .roomName {
+    color: #fff;
+    font-size: 24px;
+    font-weight: bold;
+    text-align: center;
+    position: absolute;
+    bottom: 25px;
+    left: 50%;
+    transform: translateX(-50%);
+  }
+}
+
+.musk {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  left: 0;
+  top: 0;
+  z-index: 3;
+  background: rgba($color: #000000, $alpha: 0.8);
+  font-size: 32px;
+  font-weight: bold;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

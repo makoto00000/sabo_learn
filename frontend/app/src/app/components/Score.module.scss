@@ -1,0 +1,50 @@
+.record {
+  position: absolute;
+  z-index: 1;
+  top: 60px;
+  right: 60px;
+  .time {
+    font-size: 40px;
+    font-weight: bold;
+  }
+  .point {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 2px;
+    .coinImage {
+      margin-right: 10px;
+    }
+    .coinCount {
+      font-size: 22px;
+      font-weight: bold;
+      margin-right: 10px;
+      display: block;
+    }
+    .coinUnit {
+      font-size: 20px;
+      font-weight: bold;
+      display: block;
+    }
+    .plusCoin {
+      font-size: 22px;
+      font-weight: bold;
+      color: #ffcc02;
+      position:absolute;
+      right: 0;
+      transition: opacity 0.3s ease-out;
+      animation: slideIn 1.2s forwards;
+    }
+  }
+}
+
+@keyframes slideIn {
+  from {
+    transform: translateY(100%);
+    opacity: 0;
+  }
+  to {
+    transform: translateY(0);
+    opacity: 1;
+  }
+}
