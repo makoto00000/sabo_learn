@@ -17,10 +17,11 @@ export default function Signup() {
   };
 
   const [userData, setUserData] = useState<User>({
-    username: undefined,
+    name: undefined,
     email: undefined,
     password: undefined,
     birthday: undefined,
+    coin: undefined,
   });
 
   const [year, setYear] = useState<number>();
@@ -34,7 +35,7 @@ export default function Signup() {
     setUserData({ ...userData, password: e.target.value });
   };
   const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, username: e.target.value });
+    setUserData({ ...userData, name: e.target.value });
   };
   const handleChangeBirthday = (birthday: string) => {
     setUserData({ ...userData, birthday: new Date(birthday) });
