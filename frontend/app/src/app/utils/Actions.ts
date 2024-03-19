@@ -5,7 +5,7 @@ import { getCookie } from "./Cookie";
 
 export async function addCoinAction(time: number, coin: number) {
   const token = getCookie("token");
-  const res = await fetch(`${process.env.API_ENDPOINT}/api/v1/user/coin`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/user/coin`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
