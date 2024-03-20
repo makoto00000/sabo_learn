@@ -28,22 +28,22 @@ const handler = NextAuth({
       clientSecret: process.env.GOOGLE_CLIENT_SECRET ?? "",
     }),
   ],
-	session: {
-		strategy: "jwt",
-	},
+  session: {
+    strategy: "jwt",
+  },
   callbacks: {
-		async jwt({ token, user }) {
-			if (user) {
-				token.id = user.id;
-			}
-			return token;
-		},
-		async session({ session, token }) {
-			if (token) {
-				session.user.id = token.id;
-			}
-			return session;
-		},
+    async jwt({ token, user }) {
+      if (user) {
+        token.id = user.id;
+      }
+      return token;
+    },
+    async session({ session, token }) {
+      if (token) {
+        session.user.id = token.id;
+      }
+      return session;
+    },
     async signIn({ user, account }) {
       const provider = account?.provider;
       const uid = user?.id;
@@ -60,9 +60,9 @@ const handler = NextAuth({
           }
         );
         if (response.status === 200) {
-					const data = await response.data
-					setCookie("token", data.user.token);
-					return true
+          const data = await response.data;
+          setCookie("token", data.user.token);
+          return true;
         } else {
           return false;
         }
