@@ -25,14 +25,14 @@ export default function Login() {
       <div className={`${styles.container} background`}>
         <header className={styles.header}>
           <Link href="/">
-          <Image
-            className={styles.logo}
-            src="/logo.png"
-            width={148}
-            height={35}
-            alt="logo"
+            <Image
+              className={styles.logo}
+              src="/logo.png"
+              width={148}
+              height={35}
+              alt="logo"
             ></Image>
-            </Link>
+          </Link>
         </header>
         <div className={`${styles.content} content`}>
           <div className={contentStyles.container}>
@@ -90,7 +90,13 @@ export default function Login() {
               <div className={contentStyles.divLine}>または</div> */}
               <button
                 className={contentStyles.googleButton}
-                onClick={() => signIn("google", {callbackUrl: 'https://localhost:4000'}, { prompt: "login" })}
+                onClick={() =>
+                  signIn(
+                    "google",
+                    { callbackUrl: `${process.env.NEXT_PUBLIC_ROOT_URL}` },
+                    { prompt: "login" }
+                  )
+                }
               >
                 <Image
                   className={contentStyles.googleLogo}

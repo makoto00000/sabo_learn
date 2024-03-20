@@ -106,7 +106,7 @@ export default function SignupContent({
           onClick={() =>
             signIn(
               "google",
-              { callbackUrl: "https://localhost:4000" },
+              { callbackUrl: `${process.env.NEXT_PUBLIC_ROOT_URL}` },
               { prompt: "login" }
             )
           }
