@@ -1,0 +1,14 @@
+{
+  "name": "sabo_learn",
+  "version": "1.0.0",
+  "description": "オンライン自習室アプリ",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "next": "^14.1.0"
+  }
+}
