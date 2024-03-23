@@ -6,6 +6,7 @@ import { useState, useEffect } from "react";
 import styles from "@/app/lp/lp.module.scss";
 import React from "react";
 import { useInView } from "react-intersection-observer";
+import Footer from "../components/Footer";
 
 export default function Lp() {
   const [feature1Ref, feature1InView] = useInView({
@@ -307,21 +308,7 @@ export default function Lp() {
         </section>
       </main>
 
-      <footer className={styles.footer}>
-        <nav>
-          <ul>
-            <li>
-              <Link href="/terms">利用規約</Link>
-            </li>
-            <li>
-              <Link href="/privacy">プライバシーポリシー</Link>
-            </li>
-          </ul>
-        </nav>
-        <div className={styles.copyright}>
-          Copyright © SaboLearn. All Rights Reserved.
-        </div>
-      </footer>
+      <Footer />
     </div>
   );
 }

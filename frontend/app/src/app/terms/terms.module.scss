@@ -57,22 +57,4 @@
       text-decoration: underline;
     }
   }
-  .footer {
-    background: #121212;
-    padding: 20px 0;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    flex-direction: column;
-    ul {
-      display: flex;
-      margin-bottom: 10px;
-      li:hover {
-        text-decoration: underline;
-      }
-      li:nth-child(1) {
-        margin-right: 30px;
-      }
-    }
-  }
 }
