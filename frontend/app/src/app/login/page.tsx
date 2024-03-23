@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ChangeEvent, useState } from "react";
 import { User } from "@/app/types/User";
 import { signIn } from "next-auth/react";
+import Footer from "../components/Footer";
 
 export default function Login() {
   const [email, setEmail] = useState<User["email"]>();
@@ -117,17 +118,7 @@ export default function Login() {
             </div>
           </div>
         </div>
-        <footer className={styles.footer}>
-          {/* このサイトはreCAPTCHAによって保護されており、Googleの
-          <Link target="_blank" href="https://policies.google.com/privacy">
-            プライバシーポリシー
-          </Link>
-          と
-          <Link target="_blank" href="https://policies.google.com/terms">
-            利用規約
-          </Link>
-          が適用されます。 */}
-        </footer>
+        <Footer />
       </div>
     </main>
   );
