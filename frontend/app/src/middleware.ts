@@ -7,7 +7,7 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL('/login', request.url))
   }
   if (currentUser === null && request.nextUrl.pathname === '/') {
-    return NextResponse.redirect(new URL('/login', request.url))
+    return NextResponse.redirect(new URL('/lp', request.url))
   }
   return NextResponse.next()
 }
