@@ -1,0 +1,89 @@
+.container {
+  .header {
+    width: 100%;
+    height: 110px;
+    background: #333333;
+    display: flex;
+    align-items: center;
+    padding-left: 60px;
+  }
+  .mainContainer {
+    padding: 50px;
+    background: #EFEFEF;
+    counter-reset: heading-number;
+    .title {
+      font-size: 30px;
+      letter-spacing: 5%;
+      text-align: center;
+      margin-bottom: 50px;
+    }
+    .heading {
+      font-size: 22px;
+      line-height: 30px;
+      font-weight: bold;
+      &:before {
+        content: counter(heading-number) ". ";
+      counter-increment: heading-number;
+      }
+    }
+    .paragraph,
+    .list {
+      font-size: 17px;
+      line-height: 30px;
+    }
+    h1,
+    h2,
+    p,
+    ol {
+      color: #333;
+      margin-bottom: 20px;
+    }
+    .childOl {
+      counter-reset: list-counter;
+    }
+    li {
+      color: #333;
+      list-style: decimal;
+      list-style-position: inside;
+      text-indent: -1em;
+      padding: 0.5em 0 0.5em 1em;
+    }
+    .childList {
+      text-indent: -1.5em;
+      padding: 0.5em 0 0.5em 3em;
+      list-style: none;
+      &:before {
+        content: "(" counter(list-counter) ") ";
+        counter-increment: list-counter;
+      }
+      li {
+        list-style: disc;
+        list-style-position: inside;
+        text-indent: -2em;
+        padding: 0.1em 0 0.1em 2em;
+      }
+    }
+    a {
+      color: #333;
+      text-decoration: underline;
+    }
+  }
+  .footer {
+    background: #121212;
+    padding: 20px 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    ul {
+      display: flex;
+      margin-bottom: 10px;
+      li:hover {
+        text-decoration: underline;
+      }
+      li:nth-child(1) {
+        margin-right: 30px;
+      }
+    }
+  }
+}
