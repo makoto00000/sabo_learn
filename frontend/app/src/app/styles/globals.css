@@ -14,6 +14,10 @@ a {
 .main {
   display: flex;
   width: 100vw;
+  height: 100vh;
+  max-width: 1440px;
+  max-height: 1000px;
+  margin: 0 auto;
 }
 
 .background {
