@@ -50,19 +50,23 @@ export function useVideo() {
         if (ctx) {
           ctx.clearRect(0, 0, canvas.width, canvas.height);
           // videoを12分の1に縮小してcanvasに描画
-          ctx.drawImage(video, 0, 0, width / 12, height / 12);
+          // ctx.drawImage(video, 0, 0, width / 12, height / 12);
           // canvasに描画されているものを12倍にしてcanvasに描画
-          ctx.drawImage(
-            canvas,
-            0,
-            0,
-            width / 12,
-            height / 12,
-            0,
-            0,
-            width,
-            height
-          );
+          // ctx.drawImage(
+          //   canvas,
+          //   0,
+          //   0,
+          //   width / 12,
+          //   height / 12,
+          //   0,
+          //   0,
+          //   width,
+          //   height
+          // );
+          // フィルターをかけて再描画
+          ctx.drawImage(video, 0, 0, width, height);
+          ctx.drawImage(canvas, 0, 0, width, height);
+          ctx.filter = "blur(10px)";
         }
         requestAnimationFrame(draw);
       }

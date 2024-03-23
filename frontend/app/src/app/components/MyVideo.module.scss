@@ -15,11 +15,12 @@
   .myVideo {
     position: absolute;
     z-index: -1;
+    filter: blur(10px);
   }
   .mosaicVideo {
     position: absolute;
-    top: 6;
-    left: 6;
+    // top: 6;
+    // left: 6;
   }
   .status {
     text-align: center;
