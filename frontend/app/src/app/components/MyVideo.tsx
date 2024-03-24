@@ -40,8 +40,8 @@ export default function MyVideo({
         <video
           ref={mosaicVideoRef}
           className={styles.mosaicVideo}
-          width={346}
-          height={346}
+          width={348}
+          height={348}
           autoPlay
           playsInline
         ></video>

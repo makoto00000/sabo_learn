@@ -3,6 +3,7 @@
 import styles from "@/app/components/MusicPlayer.module.scss";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
+import { useWindowSize } from "../hooks/useWindowSize";
 
 type tracks = {
   title: string;
@@ -200,6 +201,8 @@ export default function MusicPlayer() {
   const titleRef = useRef<HTMLDivElement>(null);
   const artistRef = useRef<HTMLDivElement>(null);
 
+  const { height, width } = useWindowSize();
+
   useEffect(() => {
     const checkOverflowAndAnimate = () => {
       if (titleInfoRef.current && titleRef.current && artistRef.current) {
@@ -210,118 +213,25 @@ export default function MusicPlayer() {
         const artistLength = currentTrack.artist.length;
 
         if (titleLength > 9 || artistLength > 15) {
-          container.scrollTo(0, 0);
-          title.classList.add(styles.animate);
-          artist.classList.add(styles.animate);
+            container.scrollTo(0, 0);
+            title.classList.add(styles.animate);
+            artist.classList.add(styles.animate);
         } else {
+          title.classList.remove(styles.animate);
+          artist.classList.remove(styles.animate);
+        }
+        if (width < 500) {
           title.classList.remove(styles.animate);
           artist.classList.remove(styles.animate);
         }
       }
     };
     checkOverflowAndAnimate();
-  }, [currentTrack]);
+  }, [currentTrack, width]);
 
   return (
     <div className={styles.container}>
-      <div className={styles.musicInfo}>
-        <Image
-          className={styles.musicImage}
-          src={`${trackPath}${currentTrack.image}`}
-          width={70}
-          height={70}
-          alt="music image"
-        ></Image>
-        <div
-          className={styles.titleInfo}
-          ref={titleInfoRef}
-        >
-          <div className={styles.title} ref={titleRef}>
-            {currentTrack.title}
-          </div>
-          <div className={styles.artist} ref={artistRef}>
-            {currentTrack.artist}
-          </div>
-        </div>
-      </div>
-      <div className={styles.player}>
-        <div className={styles.control}>
-          <Image
-            className={`${styles.shuffleButton} ${styles.controller}`}
-            src={
-              isShuffle
-                ? `${imagePath}shuffle.png`
-                : `${imagePath}no-shuffle.png`
-            }
-            width={24}
-            height={24}
-            alt="shuffle icon"
-            onClick={() => handleShuffle()}
-          ></Image>
-          <Image
-            className={`${styles.previousButton} ${styles.controller}`}
-            src={`${imagePath}previous.png`}
-            width={24}
-            height={24}
-            alt="previous icon"
-            onClick={() => handlePrevious()}
-          ></Image>
-          <Image
-            className={`${styles.playButton} ${styles.controller}`}
-            src={
-              isAudioPlaying ? `${imagePath}pause.png` : `${imagePath}play.png`
-            }
-            width={51}
-            height={51}
-            alt="play icon"
-            onClick={() => {
-              handleTogglePlay();
-            }}
-          ></Image>
-          <Image
-            className={`${styles.nextButton} ${styles.controller}`}
-            src={`${imagePath}next.png`}
-            width={24}
-            height={24}
-            alt="next icon"
-            onClick={() => handleNext()}
-          ></Image>
-          <Image
-            className={`${styles.repeatButton} ${styles.controller}`}
-            src={
-              isRepeat ? `${imagePath}one-repeat.png` : `${imagePath}repeat.png`
-            }
-            width={24}
-            height={24}
-            alt="repeat icon"
-            onClick={() => handleRepeat()}
-          ></Image>
-        </div>
-        <audio
-          src={`${trackPath}${currentTrack.source}`}
-          ref={audioRef}
-          onTimeUpdate={handleTimeUpdate}
-          onEnded={handleEnded}
-        />
-        <div className={styles.seekBarContainer}>
-          <span className={styles.currentTime}>
-            {getTimeStringFromSeconds(timePosition)}
-          </span>
-          <input
-            type="range"
-            min={0}
-            max={duration ? duration : 0}
-            value={timePosition}
-            onChange={handleChangeTimePosition}
-            className={`${styles.seekBar} ${styles.controller}`}
-            style={seekBarBackground}
-          ></input>
-          <span className={styles.totalTime}>
-            {duration ? getTimeStringFromSeconds(duration) : "00:00:00"}
-          </span>
-        </div>
-      </div>
-      <div className={styles.volume}>
+      <div className={styles.spVolume}>
         <Image
           className={`${styles.controlButton} ${styles.controller}`}
           src={isMute ? `${imagePath}mute.png` : `${imagePath}speaker.png`}
@@ -339,6 +249,142 @@ export default function MusicPlayer() {
           className={`${styles.volumeBar} ${styles.controller}`}
           style={volumeBarBackground}
         ></input>
+      </div>
+      <div className={styles.pcContainer}>
+        <div className={styles.musicInfo}>
+          <Image
+            className={styles.musicImage}
+            src={`${trackPath}${currentTrack.image}`}
+            width={70}
+            height={70}
+            alt="music image"
+          ></Image>
+          <div className={styles.titleInfo} ref={titleInfoRef}>
+            <div className={styles.title} ref={titleRef}>
+              {currentTrack.title}
+            </div>
+            <div className={styles.artist} ref={artistRef}>
+              {currentTrack.artist}
+            </div>
+          </div>
+        </div>
+        <div className={styles.player}>
+          <div className={styles.control}>
+            <Image
+              className={`${styles.shuffleButton} ${styles.controller}`}
+              src={
+                isShuffle
+                  ? `${imagePath}shuffle.png`
+                  : `${imagePath}no-shuffle.png`
+              }
+              width={24}
+              height={24}
+              alt="shuffle icon"
+              onClick={() => handleShuffle()}
+            ></Image>
+            <Image
+              className={`${styles.previousButton} ${styles.controller}`}
+              src={`${imagePath}previous.png`}
+              width={24}
+              height={24}
+              alt="previous icon"
+              onClick={() => handlePrevious()}
+            ></Image>
+            <Image
+              className={`${styles.playButton} ${styles.controller}`}
+              src={
+                isAudioPlaying
+                  ? `${imagePath}pause.png`
+                  : `${imagePath}play.png`
+              }
+              width={51}
+              height={51}
+              alt="play icon"
+              onClick={() => {
+                handleTogglePlay();
+              }}
+            ></Image>
+            <Image
+              className={`${styles.nextButton} ${styles.controller}`}
+              src={`${imagePath}next.png`}
+              width={24}
+              height={24}
+              alt="next icon"
+              onClick={() => handleNext()}
+            ></Image>
+            <Image
+              className={`${styles.repeatButton} ${styles.controller}`}
+              src={
+                isRepeat
+                  ? `${imagePath}one-repeat.png`
+                  : `${imagePath}repeat.png`
+              }
+              width={24}
+              height={24}
+              alt="repeat icon"
+              onClick={() => handleRepeat()}
+            ></Image>
+          </div>
+          <audio
+            src={`${trackPath}${currentTrack.source}`}
+            ref={audioRef}
+            onTimeUpdate={handleTimeUpdate}
+            onEnded={handleEnded}
+          />
+          <div className={styles.seekBarContainer}>
+            <span className={styles.currentTime}>
+              {getTimeStringFromSeconds(timePosition)}
+            </span>
+            <input
+              type="range"
+              min={0}
+              max={duration ? duration : 0}
+              value={timePosition}
+              onChange={handleChangeTimePosition}
+              className={`${styles.seekBar} ${styles.controller}`}
+              style={seekBarBackground}
+            ></input>
+            <span className={styles.totalTime}>
+              {duration ? getTimeStringFromSeconds(duration) : "00:00:00"}
+            </span>
+          </div>
+        </div>
+        <div className={styles.volume}>
+          <Image
+            className={`${styles.controlButton} ${styles.controller}`}
+            src={isMute ? `${imagePath}mute.png` : `${imagePath}speaker.png`}
+            width={24}
+            height={24}
+            alt="speaker icon"
+            onClick={() => toggleMute()}
+          ></Image>
+          <input
+            type="range"
+            min={0}
+            max={100}
+            value={volume}
+            onChange={handleChangeVolume}
+            className={`${styles.volumeBar} ${styles.controller}`}
+            style={volumeBarBackground}
+          ></input>
+        </div>
+      </div>
+      <div className={styles.spSeekBarContainer}>
+            <span className={styles.currentTime}>
+              {getTimeStringFromSeconds(timePosition)}
+            </span>
+            <input
+              type="range"
+              min={0}
+              max={duration ? duration : 0}
+              value={timePosition}
+              onChange={handleChangeTimePosition}
+              className={`${styles.seekBar} ${styles.controller}`}
+              style={seekBarBackground}
+            ></input>
+            <span className={styles.totalTime}>
+              {duration ? getTimeStringFromSeconds(duration) : "00:00:00"}
+            </span>
       </div>
     </div>
   );

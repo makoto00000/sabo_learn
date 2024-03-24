@@ -62,7 +62,7 @@ export default function UserInfo({ name, coin }: User) {
               alt="coinIcon"
             ></Image>
             <span className={styles.coinCount}>{coin}</span>
-            <span className={styles.coinUnit}>sp</span>
+            {/* <span className={styles.coinUnit}>sp</span> */}
           </div>
           <div className={styles.userName}>{name}</div>
         </div>

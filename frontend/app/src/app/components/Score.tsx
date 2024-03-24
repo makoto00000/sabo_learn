@@ -47,7 +47,7 @@ export default function Score({
           alt="coinIcon"
         ></Image>
         <span className={styles.coinCount}>{point}</span>
-        <span className={styles.coinUnit}>sp</span>
+        {/* <span className={styles.coinUnit}>sp</span> */}
         {showAnimation && (
           <span className={styles.plusCoin} ref={getPointRef}>
             +100

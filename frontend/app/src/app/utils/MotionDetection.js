@@ -33,7 +33,7 @@ export class MotionDetection {
       canvasList.push(document.createElement("canvas"));
     }
 
-    const contextList = canvasList.map((canvas) => canvas.getContext("2d"));
+    const contextList = canvasList.map((canvas) => canvas.getContext("2d", {willReadFrequently: true}));
     const diffCanvas = canvasList[canvasLength - 1];
     const diffCtx = diffCanvas.getContext("2d");
     // パフォーマンスを上げるためにcanvasを小さくしておく

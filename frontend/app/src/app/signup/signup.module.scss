@@ -4,6 +4,13 @@
   height: 110px;
   padding: 40px 0 40px 60px;
 }
+.container {
+  min-height: 800px;
+  max-height: 100vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-around;
+}
 .content {
   width: 80%;
   display: flex;
