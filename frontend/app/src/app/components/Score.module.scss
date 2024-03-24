@@ -3,9 +3,16 @@
   z-index: 1;
   top: 60px;
   right: 60px;
+  @media screen and (max-width: 950px) {
+    top: 20px;
+    right: 20px;
+  }
   .time {
     font-size: 40px;
     font-weight: bold;
+    @media screen and (max-width: 950px) {
+      font-size: 22px;
+    }
   }
   .point {
     display: flex;
@@ -14,6 +21,10 @@
     margin-bottom: 2px;
     .coinImage {
       margin-right: 10px;
+      @media screen and (max-width: 950px) {
+        width: 20px;
+        height: 20px;
+      }
     }
     .coinCount {
       font-size: 22px;

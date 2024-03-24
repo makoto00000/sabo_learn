@@ -1,0 +1,743 @@
+.container {
+  .header {
+    width: 100%;
+    height: 110px;
+    background: #0f0f0f;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 60px;
+    @media screen and (max-width: 1000px) {
+      padding: 0 30px;
+    }
+    .headerNavContainer {
+      display: flex;
+      align-items: center;
+      @media screen and (max-width: 768px) {
+        display: none;
+      }
+      .headerNav {
+        margin-right: 30px;
+        .headerNavUl {
+          display: flex;
+          .headerNavLi {
+            font-weight: bold;
+            margin-right: 20px;
+            @media screen and (max-width: 1000px) {
+              font-size: 14px;
+            }
+            cursor: pointer;
+            &:last-child {
+              margin-right: 0;
+            }
+          }
+        }
+      }
+      .loginButton {
+        background: #ffcc02;
+        padding: 12px 36px;
+        border-radius: 20px;
+        .loginButtonLink {
+          color: #333;
+          font-weight: bold;
+        }
+      }
+    }
+  }
+  .mainContainer {
+    width: 100%;
+    .sectionContainer {
+      margin-bottom: 100px;
+      .sectionTitle {
+        font-size: 50px;
+        font-weight: bold;
+        text-align: center;
+        letter-spacing: 0.1em;
+        margin-bottom: 50px;
+        @media screen and (max-width: 1024px) {
+          font-size: 38px;
+        }
+        @media screen and (max-width: 540px) {
+          font-size: 30px;
+        }
+      }
+      .mainVisual {
+        position: relative;
+        .mainVisualFilter {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          z-index: 2;
+          background: rgba(#000, 0.5);
+          animation: filter 12s ease-in 0s 1 alternate none running;
+        }
+        .firstViewContainer {
+          .firstView {
+            position: absolute;
+            z-index: 3;
+            font-size: 36px;
+            font-family: "Zen Antique", serif;
+            @media screen and (max-width: 1440px) {
+              font-size: 20px;
+            }
+            @media screen and (max-width: 1000px) {
+              font-size: 16px;
+            }
+            @media screen and (max-width: 768px) {
+              font-size: 14px;
+            }
+            @media screen and (max-width: 540px) {
+              font-size: 10px;
+            }
+            &:first-child {
+              top: 30%;
+              left: 10%;
+              width: 52ch;
+              animation: typing 2s steps(26), fadeout 3s 5s forwards;
+              white-space: nowrap;
+              overflow: hidden;
+              @media screen and (max-width: 540px) {
+                left: 5%;
+                top: 20%;
+              }
+            }
+            &:last-child {
+              bottom: 30%;
+              left: 10%;
+              width: 56ch;
+              animation: typing 2s 2s steps(26) both, fadeout 3s 5s forwards;
+              white-space: nowrap;
+              overflow: hidden;
+              @media screen and (max-width: 540px) {
+                left: 5%;
+                bottom: 20%;
+              }
+            }
+          }
+        }
+        .mainVisualText {
+          width: 100%;
+          text-align: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          font-size: 50px;
+          font-weight: bold;
+          letter-spacing: 0.5rem;
+          opacity: 0;
+          animation: fadein ease-in 3s 6s forwards;
+          @media screen and (max-width: 1440px) {
+            font-size: 40px;
+          }
+          @media screen and (max-width: 1024px) {
+            font-size: 32px;
+          }
+          @media screen and (max-width: 768px) {
+            font-size: 24px;
+            letter-spacing: 0.3rem;
+          }
+          @media screen and (max-width: 540px) {
+            font-size: 18px;
+          }
+          p:first-child {
+            margin-bottom: 30px;
+            @media screen and (max-width: 1024px) {
+              margin-bottom: 10px;
+            }
+          }
+        }
+      }
+      .about {
+        position: relative;
+        .aboutVideo {
+          width: 100%;
+          height: 600px;
+          object-fit: cover;
+          @media screen and (max-width: 540px) {
+            height: 400px;
+          }
+        }
+        .aboutFilter {
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 100%;
+          height: 100%;
+          background: rgba(#000, 0.5);
+          z-index: 2;
+        }
+        .aboutText {
+          width: 100%;
+          text-align: center;
+          position: absolute;
+          top: 50%;
+          left: 50%;
+          transform: translate(-50%, -50%);
+          z-index: 3;
+          font-weight: bold;
+          .aboutTitle {
+            font-size: 60px;
+            margin-bottom: 60px;
+            letter-spacing: 0.1em;
+            @media screen and (max-width: 1024px) {
+              font-size: 44px;
+            }
+            @media screen and (max-width: 540px) {
+              font-size: 32px;
+            }
+          }
+          .aboutParagraph {
+            font-size: 38px;
+            letter-spacing: 0.1em;
+            @media screen and (max-width: 1024px) {
+              font-size: 28px;
+            }
+            @media screen and (max-width: 540px) {
+              font-size: 20px;
+              
+            }
+          }
+        }
+      }
+      .feature {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-top: 20px;
+        @media screen and (max-width: 540px) {
+          flex-direction: column;
+        }
+        .featureCard {
+          opacity: 0;
+          transform: translateY(100px);
+          width: calc((100% - 50px) / 3);
+          height: 500px;
+          color: #333;
+          background: #fff;
+          padding: 30px 50px;
+          border-radius: 10px;
+          position: relative;
+          margin-right: 10px;
+          @media screen and (max-width: 1440px) {
+            padding: 30px 30px;
+            height: 450px;
+          }
+          @media screen and (max-width: 1024px) {
+            height: 350px;
+          }
+          @media screen and (max-width: 830px) {
+            height: 300px;
+          }
+          @media screen and (max-width: 768px) {
+            padding: 30px 10px;
+          }
+          @media screen and (max-width: 540px) {
+            width: 90%;
+            margin-bottom: 60px;
+            height: 400px;
+          }
+          &:last-child {
+            margin-right: 0;
+          }
+          .featureNum {
+            position: absolute;
+            top: -70px;
+            left: 0;
+            color: #ffcc02;
+            font-size: 88px;
+            font-weight: bold;
+            letter-spacing: -0.1em;
+            @media screen and (max-width: 1024px) {
+              font-size: 65px;
+              top: -50px;
+            }
+          }
+          .cardTitle {
+            color: #333;
+            font-size: 30px;
+            font-weight: bold;
+            text-align: center;
+            margin-bottom: 30px;
+            @media screen and (max-width: 1440px) {
+              font-size: 24px;
+              margin-bottom: 20px;
+            }
+            @media screen and (max-width: 1024px) {
+              font-size: 20px;
+            }
+            @media screen and (max-width: 830px) {
+              font-size: 16px;
+              margin-bottom: 10px;
+            }
+            @media screen and (max-width: 540px) {
+              font-size: 20px;
+            }
+          }
+          .cardImage {
+            margin-bottom: 10px;
+          }
+          .cardText {
+            color: #333;
+            font-size: 22px;
+            font-weight: bold;
+            @media screen and (max-width: 1440px) {
+              font-size: 18px;
+            }
+            @media screen and (max-width: 1024px) {
+              font-size: 16px;
+            }
+            @media screen and (max-width: 830px) {
+              font-size: 12px;
+            }
+            @media screen and (max-width: 540px) {
+              font-size: 16px;
+            }
+          }
+        }
+        .show1 {
+          animation: fadeInUp 1s forwards;
+        }
+        .show2 {
+          animation: fadeInUp 1s 0.5s forwards;
+        }
+        .show3 {
+          animation: fadeInUp 1s 1s forwards;
+        }
+      }
+      .howto {
+        width: 90%;
+        margin: 0 auto;
+        .step {
+          border-top: 3px solid #575757;
+          padding: 80px 0;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          &:last-child {
+            border-bottom: 3px solid #575757;
+          }
+          .stepLeft {
+            margin-right: 50px;
+            width: 50%;
+            @media screen and (max-width: 1024px) {
+              margin-right: 20px;
+            }
+            @media screen and (max-width: 540px) {
+              width: 90%;
+              margin: 0 auto;
+            }
+            .stepTitle {
+              font-size: 50px;
+              font-weight: bold;
+              margin-bottom: 40px;
+              @media screen and (max-width: 1024px) {
+                font-size: 40px;
+              }
+              @media screen and (max-width: 1000px) {
+                font-size: 32px;
+              }
+              @media screen and (max-width: 1000px) {
+                font-size: 28px;
+              }
+              @media screen and (max-width: 540px) {
+                margin-bottom: 20px;
+              }
+            }
+            .stepImageSp {
+              display: none;
+              @media screen and (max-width: 540px) {
+                display: block;
+                margin-bottom: 10px;
+              }
+            }
+            .stepParagraph {
+              font-size: 28px;
+              font-weight: bold;
+              @media screen and (max-width: 1024px) {
+                font-size: 22px;
+              }
+              @media screen and (max-width: 1000px) {
+                font-size: 18px;
+              }
+              @media screen and (max-width: 1000px) {
+                font-size: 14px;
+              }
+              @media screen and (max-width: 540px) {
+                font-size: 16px;
+              }
+            }
+            .attention {
+              display: block;
+              font-size: 20px;
+              @media screen and (max-width: 1024px) {
+                font-size: 14px;
+              }
+            }
+          }
+          .stepImage {
+            max-width: 40%;
+            @media screen and (max-width: 540px) {
+              display: none;
+            }
+          }
+        }
+      }
+      .faq {
+        width: 90%;
+        margin: 0 auto;
+        background: #d7d7d7;
+        padding: 50px;
+        border-radius: 5px;
+        transition: height 0.3s ease-out;
+        @media screen and (max-width: 768px) {
+          padding: 20px;
+        }
+        @media screen and (max-width: 540px) {
+          padding: 10px;
+        }
+        .faqItem {
+          background: #202020;
+          padding: 50px;
+          border-radius: 10px;
+          box-shadow: 6px 6px 15px rgba(#000, 0.25);
+          transition: height 0.3s ease-out;
+          margin-bottom: 30px;
+          @media screen and (max-width: 1000px) {
+            padding: 30px;
+          }
+          @media screen and (max-width: 768px) {
+            padding: 10px;
+          }
+          .question {
+            border-bottom: 3px solid #383838;
+            padding-bottom: 20px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            @media screen and (max-width: 768px) {
+              padding-bottom: 10px;
+            }
+            .questionText {
+              font-size: 24px;
+              font-weight: bold;
+              display: flex;
+              align-items: center;
+              cursor: pointer;
+              transition: all 0.3s ease;
+              @media screen and (max-width: 1000px) {
+                font-size: 18px;
+              }
+              @media screen and (max-width: 768px) {
+                font-size: 16px;
+              }
+              &:hover {
+                color: #ffcc02;
+              }
+              &:before {
+                content: "Q";
+                color: #ffcc02;
+                font-size: 48px;
+                margin-right: 50px;
+                @media screen and (max-width: 768px) {
+                  margin-right: 20px;;
+                  font-size: 30px;
+                }
+              }
+            }
+            .triangleIcon {
+              width: 15px;
+              height: 10px;
+            }
+          }
+          .answer {
+            font-size: 22px;
+            font-weight: bold;
+            line-height: 40px;
+            margin-top: 20px;
+            padding-left: 90px;
+            display: grid;
+            transition: 250ms grid-template-rows ease;
+            overflow: hidden;
+            @media screen and (max-width: 1000px) {
+              font-size: 16px;
+              line-height: 30px;
+            }
+            @media screen and (max-width: 768px) {
+              padding-left: 45px;
+              margin-top: 10px;
+              font-size: 12px;
+              line-height: 22px;
+            }
+            & > div {
+              overflow: hidden;
+              white-space: pre-wrap;
+            }
+          }
+        }
+      }
+      .update {
+        display: flex;
+        justify-content: center;
+        .updateList {
+          .updateListItem {
+            font-size: 30px;
+            font-weight: bold;
+            list-style: disc;
+            padding: 5px 0;
+            @media screen and (max-width: 768px) {
+              font-size: 22px;
+            }
+          }
+          .subText {
+            display: block;
+            font-size: 20px;
+            text-align: right;
+            @media screen and (max-width: 768px) {
+              font-size: 16px;
+            }
+          }
+        }
+      }
+      .login {
+        display: flex;
+        align-items: center;
+        flex-direction: column;
+        .buttonMessage {
+          font-size: 20px;
+          font-weight: bold;
+          letter-spacing: 5%;
+          margin-bottom: 10px;
+        }
+        .loginButton {
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          background: #ffcc02;
+          color: #333;
+          padding: 23px 0;
+          width: 410px;
+          border-radius: 100px;
+          font-size: 28px;
+          font-weight: bold;
+          transition: all 0.5s ease;
+          @media screen and (max-width: 768px) {
+            width: 300px;
+            font-size: 22px;
+            padding: 12px 0;
+          }
+          &:hover {
+            letter-spacing: 0.15em;
+            background: #ffe476;
+          }
+          .doorIcon {
+            margin-left: 16px;
+          }
+        }
+      }
+    }
+  }
+}
+
+.accentColor {
+  color: #ffcc02;
+}
+
+.rotateClose {
+  transition: transform 0.5s;
+  transform: rotate(-180deg);
+  cursor: pointer;
+}
+
+.rotateOpen {
+  transition: transform 0.5s;
+  transform: rotate(0);
+  cursor: pointer;
+}
+
+.open {
+  grid-template-rows: 1fr;
+}
+
+.close {
+  grid-template-rows: 0fr;
+}
+
+@keyframes filter {
+  0% {
+    background: rgba(#000, 1);
+  }
+  100% {
+    background: rgba(#000, 0.5);
+  }
+}
+
+@keyframes typing {
+  from {
+    width: 0;
+  }
+}
+
+@keyframes fadeout {
+  to {
+    opacity: 0;
+  }
+}
+
+@keyframes fadein {
+  to {
+    opacity: 1;
+  }
+}
+
+@keyframes fadeInUp {
+  to {
+      opacity: 1;
+      transform: translate(0);
+  }
+}
+
+
+
+
+@mixin burgerSpan {
+  display: inline-block;
+  position: absolute;
+  width: 100%;
+  height: 3px;
+  background-color: #ffffff;
+}
+
+.spHeader {
+  display: none;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1.4em;
+  background: #0f0f0f;
+  border-bottom: 2px solid #3c4356;
+  position: fixed;
+  top: 0;
+  width: 100%;
+  height: 110px;
+  z-index: 10;
+  @media screen and (max-width: 768px) {
+    display: flex;
+  }
+  .logotype {
+    font-family: sans-serif;
+    font-size: 24px;
+    color: #ffffff;
+  }
+  nav {
+    display: flex;
+    align-items: center;
+    @media screen and (max-width: 768px) {
+      nav {display: inline;}
+    }
+    .menu__toggle {
+      opacity: 0;
+      
+      &:checked ~ .menu__btn > span {
+        transform: rotate(45deg);
+        }
+    
+      &:checked ~ .menu__btn > span::before {
+        top: 0;
+        transform: rotate(0);
+        background: #ffcc02;
+      }
+    
+        &:checked ~ .menu__btn > span::after {
+          top: 0;
+          transform: rotate(90deg);
+          background: #ffcc02;
+      }
+    
+        &:checked ~ .menu__box {
+          visibility: visible;
+          left: 0;
+          margin: 0;
+      }
+    
+    }
+    .menu__btn {
+      transition-duration: 0.25s;
+      box-sizing: border-box;
+      display: flex;
+      align-items: center;
+      position: relative;
+      bottom: 2px;
+      width: 26px;
+      height: 26px;
+      cursor: pointer;
+      z-index: 10;
+      
+      span {
+        @include burgerSpan;
+        
+        &::before {
+          @include burgerSpan;
+          content: '';
+          top: -8px;
+          transition-duration: 0.25s;
+        }
+    
+        &::after {
+          @include burgerSpan;
+          content: '';
+          top: 8px;
+          transition-duration: 0.25s;
+        }
+      }
+      @media screen and (min-width: 770px) {display: none;}
+    }
+    .menu__box {
+      display: flex;
+      flex-direction: row;
+      list-style-type: none;
+      
+      @media screen and (max-width: 768px) {
+        flex-direction: column;
+        position: fixed;
+        visibility: hidden;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 18em;
+        margin: -600px 0 0 0;
+        padding: 0.6em 0;
+        text-align: center;
+        background-color: #0f0f0f;
+        box-shadow: 1px 0 6px rgba(0, 0, 0, .2);
+        z-index: 5;
+        transition-duration: 0.5s;
+      }
+    
+      .accent {color: #ffcc02;}
+      .menu__item {
+        display: flex;
+        flex-direction: column;
+        padding: 0 1em 0 1.9em;
+        color: #ffffff;
+        font-size: 14px;
+        font-weight: bold;
+        text-decoration: none;
+        
+        @media screen and (max-width: 768px) {
+          display: block;
+          padding: 12px 24px;
+          color: #ffffff;
+          font-size: 18px;
+          transition-duration: 0.5s;
+      
+          &:hover {background-color: #202020;}
+          
+        }
+        
+      }
+    }
+  }
+}

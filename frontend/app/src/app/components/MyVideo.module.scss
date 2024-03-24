@@ -3,6 +3,14 @@
   left: 50%;
   top: 50%;
   transform: translate(-50%, -50%);
+  @media screen and (max-width: 500px) {
+    top: 40%;
+  }
+  @media screen and (max-width: 950px) {
+    @media (orientation: landscape) {
+      top: 38%;
+    }
+  }
   .videoFrame {
     width: 360px;
     height: 360px;
@@ -11,20 +19,46 @@
     background: #303030;
     border: 6px solid #00f143;
     margin-bottom: 10px;
+    @media screen and (max-width: 950px) {
+      width: 250px;
+      height: 250px;
+      @media (orientation: landscape) {
+        width: 200px;
+        height: 200px;
+      }
+    }
   }
   .myVideo {
     position: absolute;
     z-index: -1;
+    filter: blur(10px);
+    @media screen and (max-width: 950px) {
+      width: 240px;
+      height: 240px;
+      @media (orientation: landscape) {
+        width:  190px;
+        height: 190px;
+      }
+    }
   }
   .mosaicVideo {
     position: absolute;
-    top: 6;
-    left: 6;
+    @media screen and (max-width: 950px) {
+      width: 240px;
+      height: 240px;
+      @media (orientation: landscape) {
+        width:  190px;
+        height: 190px;
+      }
+    }
   }
   .status {
     text-align: center;
     font-weight: bold;
     font-size: 20px;
-    color:#00f143
+    color:#00f143;
+    @media screen and (max-width: 950px) {
+      font-size: 16px;
+    }
   }
 }

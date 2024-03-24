@@ -6,7 +6,7 @@ import MyVideo from "./MyVideo";
 import Score from "./Score";
 import { useVideo } from "@/app/hooks/useVideo";
 import MusicPlayer from "./MusicPlayer";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
 
 export default function SoloRoom() {
@@ -47,6 +47,27 @@ export default function SoloRoom() {
   const closeModal = () => {
     setIsOpen(false);
   }
+
+  useEffect(() => {
+    const handleBackButton = (event: { preventDefault: () => void; }) => {
+      event.preventDefault();
+      alert('Exitから退室しないと、獲得したコインが反映されません。')
+      window.history.forward();
+    };
+
+    const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string; }) => {
+      event.preventDefault();
+      event.returnValue = 'Exitから退室しないと、獲得したコインが反映されません。';
+    };
+
+    window.history.pushState(null, "", window.location.href);
+    window.addEventListener('popstate', handleBackButton);
+    window.addEventListener('beforeunload', handleBeforeUnload);
+    return () => {
+      window.removeEventListener('popstate', handleBackButton); 
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, []);
 
   return (
     <div className={styles.container}>

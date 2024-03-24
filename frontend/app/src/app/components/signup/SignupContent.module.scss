@@ -1,14 +1,16 @@
 .container {
-  width: 350px;
+  width: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
 }
 .head {
-  font-size: 50px;
+  font-size: 40px;
   font-weight: bold;
+  letter-spacing: 0.1em;
   margin-bottom: 70px;
+  max-width: 350px;
 }
 .progressBar {
   height: 2px;
@@ -46,7 +48,8 @@
   }
 }
 .formContent {
-  width: 350px;
+  width: 100%;
+  max-width: 350px;
 }
 .formControl {
   margin-bottom: 30px;

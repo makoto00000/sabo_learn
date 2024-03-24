@@ -1,76 +1,159 @@
 .container {
   position: absolute;
+  display: flex;
+  flex-direction: column;
   bottom: 0;
   width: 100%;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   background: #181818;
   padding: 20px;
-  .musicInfo {
-    display: flex;
-    align-items: center;
-    overflow: hidden;
-    .musicImage {
-      margin-right: 20px;
-    }
-    .titleInfo {
-      width: 110px;
-      white-space: nowrap;
-      overflow: hidden;
-      .title {
-        font-size: 18px;
-        font-weight: bold;
-      }
-      .artist {
-        color: #b3b3b3;
-        font-size: 15px;
-        font-weight: bold;
-      }
-    }
+  @media screen and (max-width: 950px) {
+    padding: 10px;
   }
-  .player {
-    .control {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      margin-bottom: 10px;
-      .shuffleButton {
-        margin-right: 20px;
-      }
-      .playButton {
-        margin: 0 10px;
-      }
-      .repeatButton {
-        margin-left: 20px;
-      }
-    }
-    .seekBarContainer {
-      display: flex;
-      align-items: center;
-      justify-content: center;
-      .currentTime,
-      .totalTime {
-        font-size: 14px;
-        color: #c4c4c4;
-      }
-      .seekBar {
-        width: 511px;
-        height: 5px;
-        border-radius: 2.5px;
-        margin: 0 10px;
-      }
-    }
-  }
-  .volume {
-    display: flex;
+  .spVolume {
+    display: none;
     align-items: center;
     justify-content: center;
+    @media screen and (max-width: 950px) {
+      display: flex;
+      @media (orientation: landscape) {
+        display: none;
+      }
+    }
     .volumeBar {
-      width: 116px;
+      width: 100%;
       height: 5px;
       border-radius: 2.5px;
       margin-left: 10px;
+    }
+  }
+  .pcContainer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    @media screen and (max-width: 950px) {
+      padding: 5px;
+    }
+    @media screen and (max-width: 500px) {
+      flex-direction: column;
+    }
+    .musicInfo {
+      display: flex;
+      align-items: center;
+      overflow: hidden;
+      @media screen and (max-width: 950px) {
+        width: 100%;
+        @media (orientation: landscape) {
+          width: auto;
+        }
+      }
+      .musicImage {
+        margin-right: 20px;
+      }
+      .titleInfo {
+        width: 110px;
+        white-space: nowrap;
+        overflow: hidden;
+        @media screen and (max-width: 500px) {
+          width: 100%;
+        }
+        .title {
+          font-size: 18px;
+          font-weight: bold;
+        }
+        .artist {
+          color: #b3b3b3;
+          font-size: 15px;
+          font-weight: bold;
+        }
+      }
+    }
+    .player {
+      width: 70%;
+      padding: 0 50px;
+      @media screen and (max-width: 950px) {
+        padding: 0 0 0 10px;
+      }
+      .control {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-bottom: 10px;
+        .shuffleButton {
+          margin-right: 20px;
+        }
+        .playButton {
+          margin: 0 10px;
+        }
+        .repeatButton {
+          margin-left: 20px;
+        }
+      }
+      .seekBarContainer {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 100%;
+        @media screen and (max-width: 950px) {
+          display: none;
+          @media (orientation: landscape) {
+            display: flex;
+          }
+        }
+        .currentTime,
+        .totalTime {
+          font-size: 14px;
+          color: #c4c4c4;
+        }
+        .seekBar {
+          width: 100%;
+          height: 5px;
+          border-radius: 2.5px;
+          margin: 0 10px;
+        }
+      }
+    }
+    .volume {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      @media screen and (max-width: 950px) {
+        display: none;
+        @media (orientation: landscape) {
+          display: flex;
+        }
+      }
+      .volumeBar {
+        width: 100%;
+        height: 5px;
+        border-radius: 2.5px;
+        margin-left: 10px;
+      }
+    }
+  }
+  .spSeekBarContainer {
+    display: none;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    @media screen and (max-width: 950px) {
+      display: flex;
+      @media (orientation: landscape) {
+        display: none;
+      }
+    }
+    .currentTime,
+    .totalTime {
+      font-size: 14px;
+      color: #c4c4c4;
+      @media screen and (max-width: 950px) {
+        font-size: 12px;
+      }
+    }
+    .seekBar {
+      width: 100%;
+      height: 5px;
+      border-radius: 2.5px;
+      margin: 0 10px;
     }
   }
 }
