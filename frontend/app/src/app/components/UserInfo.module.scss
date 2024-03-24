@@ -5,6 +5,7 @@
   display: flex;
   flex-direction: column;
   align-items: end;
+  z-index: 5;
   .userInfoContainer {
     background: #000;
     padding: 3px 5px 3px 3px;
@@ -46,6 +47,13 @@
         font-weight: bold;
         line-height: 0.75em;
         margin-bottom: 2px;
+        width: 100px;
+        white-space:nowrap;
+        overflow:hidden;
+        text-overflow:ellipsis;
+        @media screen and (max-width: 768px) {
+          font-size: 16px;
+        }
       }
     }
     .caretDown {

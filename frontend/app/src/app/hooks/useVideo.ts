@@ -33,7 +33,7 @@ export function useVideo() {
     const video = videoRef.current!;
     const mosaicVideo = mosaicVideoRef.current!;
     const canvas = canvasRef.current!;
-    const ctx = canvas.getContext("2d");
+    const ctx = canvas.getContext("2d", {willReadFrequently: true});
 
     const handleMetadataLoad = () => {
       if (video.videoWidth && video.videoHeight) {

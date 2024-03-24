@@ -1,5 +1,5 @@
 * {
-  font-family: "DM Sans";
+  font-family: "DM Sans", sans-serif;
   color: #fff;
 }
 
@@ -16,7 +16,7 @@ a {
   width: 100vw;
   height: 100vh;
   max-width: 1440px;
-  max-height: 1000px;
+  max-height: 1400px;
   margin: 0 auto;
 }
 

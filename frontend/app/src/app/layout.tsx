@@ -1,10 +1,10 @@
 import type { Metadata } from "next";
-import { Inter } from "next/font/google";
+import { DM_Sans } from "next/font/google";
 import "./styles/globals.css";
 import 'ress'
 import NextAuthProvider from "./providers/NextAuth";
 
-const inter = Inter({ subsets: ["latin"] });
+const sans = DM_Sans({ subsets: ["latin"] });
 const title = "SaboLlearn"
 const description = "サボりを減らして生産性を上げる作業部屋"
 const url = "https://app.sabolearn.com"
@@ -40,7 +40,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="ja">
-      <body className={inter.className}>
+      <body className={sans.className}>
         <NextAuthProvider>{children}</NextAuthProvider>
       </body>
     </html>

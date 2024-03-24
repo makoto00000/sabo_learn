@@ -8,6 +8,14 @@
     display: flex;
     justify-content: center;
     width: 100%;
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      align-items: center;
+      @media (orientation: landscape) {
+        flex-direction: row;
+        padding-top: 30px;
+      }
+    }
     .solo,
     .multi {
       width: 100%;
@@ -25,10 +33,42 @@
       display: flex;
       align-items: center;
       justify-content: center;
+      @media screen and (max-width: 950px) {
+        width: 250px;
+        height: 250px;
+        min-width: 250px;
+        min-height: 250px;
+        padding: 30px;
+      }
+    }
+    .solo, .multi {
+      a {
+        display: block;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        img {
+          width: 80%;
+          margin-bottom: 30px;
+        }
+      }
     }
     .solo {
       position: relative;
       margin-right: 10%;
+      @media screen and (max-width: 880px) {
+        margin-right: 20px;
+      }
+      @media screen and (max-width: 768px) {
+        margin-right: 0;
+        margin-bottom: 30px;
+        @media (orientation: landscape) {
+          margin-bottom: 0;
+          margin-right: 20px;
+        }
+      }
     }
     .multi {
       position: relative;

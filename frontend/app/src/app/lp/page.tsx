@@ -68,6 +68,75 @@ export default function Lp() {
           </div>
         </header>
 
+        <header className={styles.spHeader}>
+          <Link href="/">
+            <Image
+              className={styles.logo}
+              src="/logo.png"
+              width={148}
+              height={35}
+              alt="logo"
+            ></Image>
+          </Link>
+          <nav>
+            <input
+              id="menu__toggle"
+              className={styles.menu__toggle}
+              type="checkbox"
+            />
+            <label className={styles.menu__btn} htmlFor="menu__toggle">
+              <span></span>
+            </label>
+            <ul className={styles.menu__box}>
+              <li className={styles.headerNavLi}>
+                <Scroll
+                  to="about"
+                  smooth
+                  offset={-160}
+                  className={styles.menu__item}
+                >
+                  SaboLearnとは
+                </Scroll>
+              </li>
+              <li className={styles.headerNavLi}>
+                <Scroll
+                  to="feature"
+                  smooth
+                  offset={-160}
+                  className={styles.menu__item}
+                >
+                  サービス特徴
+                </Scroll>
+              </li>
+              <li className={styles.headerNavLi}>
+                <Scroll
+                  to="howto"
+                  smooth
+                  offset={-160}
+                  className={styles.menu__item}
+                >
+                  使い方
+                </Scroll>
+              </li>
+              <li className={styles.headerNavLi}>
+                <Scroll
+                  to="faq"
+                  smooth
+                  offset={-160}
+                  className={styles.menu__item}
+                >
+                  よくある質問
+                </Scroll>
+              </li>
+              <li className={styles.headerNavLi}>
+                <Link className={styles.menu__item} href="/login">
+                  ログイン
+                </Link>
+              </li>
+            </ul>
+          </nav>
+        </header>
+
         <main className={styles.mainContainer}>
           {/* アイキャッチ */}
           <section className={styles.sectionContainer}>
@@ -225,6 +294,19 @@ export default function Lp() {
                     <br />
                     自習室を選択
                   </h3>
+                  <Image
+                    className={styles.stepImageSp}
+                    src="/lp/howto_step1.png"
+                    width={400}
+                    height={252}
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                    }}
+                    priority
+                    alt="step1_image"
+                  ></Image>
                   <p className={styles.stepParagraph}>
                     １人でじっくり勉強したい人 →{" "}
                     <span className={styles.accentColor}>Solo Room</span>
@@ -257,6 +339,19 @@ export default function Lp() {
                     <br />
                     学習開始
                   </h3>
+                  <Image
+                    className={styles.stepImageSp}
+                    src="/lp/howto_step1.png"
+                    width={400}
+                    height={252}
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                    }}
+                    priority
+                    alt="step1_image"
+                  ></Image>
                   <p className={styles.stepParagraph}>
                     カメラが起動し、タイマーがスタート
                     <br />
@@ -284,6 +379,19 @@ export default function Lp() {
                     <br />
                     コイン獲得
                   </h3>
+                  <Image
+                    className={styles.stepImageSp}
+                    src="/lp/howto_step3.png"
+                    width={400}
+                    height={252}
+                    sizes="100vw"
+                    style={{
+                      width: "100%",
+                      height: "auto",
+                    }}
+                    priority
+                    alt="step3_image"
+                  ></Image>
                   <p className={styles.stepParagraph}>
                     退室後に学習時間に応じてコインをゲット。
                     <br />
@@ -363,7 +471,7 @@ function FAQ() {
     },
     {
       question: "ポイントは何に使える？",
-      answer: `アプリ内で様々なアイテムや機能拡張に使用することができます`,
+      answer: `アプリ内で様々なアイテムや機能拡張に使用することができます。`,
       isOpen: false,
       triangleRef: React.createRef<HTMLImageElement>(),
       answerRef: React.createRef<HTMLDivElement>(),
