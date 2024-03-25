@@ -6,9 +6,11 @@
 
 ### 画面遷移
 
-- [x] <https://localhost:4000>にアクセスすると、room選択画面が表示される
+- [x] <https://app.sabolearn.com>にアクセスできる
+- [x] <https://app.sabolearn.com/login>にアクセスするとログイン画面が表示される
+- [x] google認証に成功すると、部屋選択画面に遷移する
 - [x] 「Solo Room」を選択すると、Solo Roomの画面が表示される
-- [x] Exitを押すと、room選択画面に戻る
+- [x] Exitを押すと、room選択画面に戻り、作業時間に応じたコインが付与される
 
 ### Solo Room
 
@@ -26,12 +28,11 @@
 
 ### ログイン機能
 
-- [ ] メールアドレス、パスワードで会員登録ができる
-- [ ] googleアカウントでログインができる
-- [ ] メールアドレス、パスワードにバリデーションチェックを行う
-- [ ] パスワードリセット用の処理を追加する
-- [ ] 入力された情報をUsersテーブルに保存する
-- [ ] 保存したUsersテーブルの情報をフロント側で取得する
+- [x] googleアカウントでログインができる
+- [x] 入力された情報をUsersテーブルに保存する
+- [x] 保存したUsersテーブルの情報をフロント側で取得する
+- [x] 非ログイン状態で<https://app.sabolearn.com>にアクセスするとLPページにリダイレクトされる
+- [x] 非ログイン状態で`/room`にアクセスすると、ログインページへリダイレクトされる
 
 ## 非機能要件
 
@@ -47,25 +48,27 @@
 
 ### 業務フロー
 
-![sabolearn_flow](https://github.com/makoto00000/sabo_learn/assets/65654634/28529e8a-60e3-44bc-87d5-f3ae9a6a6e8e)
+![sabolearn_flow](https://github.com/makoto00000/sabo_learn/assets/65654634/8177857f-4d49-45dc-b0c1-8783f353f37e)
 
 ### 画面遷移図 / ワイヤーフレーム
 
-![wire-frame](https://github.com/makoto00000/sabo_learn/assets/65654634/676f2de2-b7da-4033-846c-279dd5144be4)
+![wire-frame](https://github.com/makoto00000/sabo_learn/assets/65654634/9d7d25f0-8946-4e0f-9ba9-627f6f4073cb)
 
 ### テーブル定義書（もしくは ER 図）
 
-| カラム名        | 意味                 | データ型 | PK   | FK   | NOT NULL | INDEX | DEFAULT |
-| :-------------- | :------------------- | :------- | :--- | :--- | :------- | :---- | :------ |
-| id              | ユーザーID           | bigint   | ◯   |      | ◯        | ◯   |         |
-| name            | ユーザー名           | string   |      |      | ◯        |      |         |
-| email           | メールアドレス       | string   |      |      | ◯        | ◯   |         |
-| password_digest | ハッシュ化パスワード | string   |      |      | ◯        |      |         |
-| birthday        | 誕生日               | date     |      |      | ◯        |      |         |
-| point           | ポイント             | int      |      |      | ◯        |      | 0       |
-| created_at      | 作成日時             | datetime |      |      | ◯        |      |         |
-| updated_at      | 更新日時             | datetime |      |      | ◯        |      |         |
+| カラム名        | 意味                  | データ型 | PK   | FK   | NOT NULL | INDEX | DEFAULT |
+| :-------------- | :-------------------- | :------- | :--- | :--- | :------- | :---- | :------ |
+| id              | ユーザーID            | bigint   | ◯   |      | ◯       | ◯    |         |
+| name            | ユーザー名            | string   |      |      | ◯       |       |         |
+| email           | メールアドレス        | string   |      |      | ◯       | ◯    |         |
+| password_digest | ハッシュ化パスワード  | string   |      |      | ◯       |       |         |
+| birthday        | 誕生日                | date     |      |      | ◯       |       |         |
+| coin            | コイン                | int      |      |      | ◯       |       | 0       |
+| provider        | SNS認証プロバイダー名 | string   |      |      |          |       |         |
+| uid             | SNS認証ID             | string   |      |      |          |       |         |
+| created_at      | 作成日時              | datetime |      |      | ◯       |       |         |
+| updated_at      | 更新日時              | datetime |      |      | ◯       |       |         |
 
 ### システム構成図
 
-作成中
+![インフラ構成図](https://github.com/makoto00000/sabo_learn/assets/65654634/2470a976-a153-474b-9948-e513685ec03b)
