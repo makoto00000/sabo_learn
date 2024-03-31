@@ -11,7 +11,7 @@ export default async function RoomSelect() {
       {currentUser && <UserInfo {...currentUser} />}
       <div className={styles.selectContainer}>
         <div className={styles.solo}>
-          <Link href="/room">
+          <Link href="/soloroom">
             <Image
               className={styles.soloImage}
               src="/solo.png"
@@ -31,8 +31,8 @@ export default async function RoomSelect() {
           </Link>
         </div>
         <div className={styles.multi}>
-          <Link href="">
-            <div className={styles.musk}>開 発 中</div>
+          <Link href="/multiroom">
+            {/* <div className={styles.musk}>開 発 中</div> */}
             <Image
               className={styles.multiImage}
               src="/multi.png"

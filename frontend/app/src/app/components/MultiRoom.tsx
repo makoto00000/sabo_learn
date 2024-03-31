@@ -2,14 +2,14 @@
 
 import styles from "./SoloRoom.module.scss";
 import Image from "next/image";
-import MyVideo from "./MyVideo";
 import Score from "./Score";
 import { useVideo } from "@/app/hooks/useVideo";
 import MusicPlayer from "./MusicPlayer";
 import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
+import MultiVideo from "./MultiVideo";
 
-export default function SoloRoom() {
+export default function MultiRoom({userName}:{userName: string}) {
 
   const {
     videoFrameRef,
@@ -32,6 +32,7 @@ export default function SoloRoom() {
     statusRef: statusRef,
     isStudying: isStudying,
     handleIsConnecting: handleIsConnecting,
+    userName,
   };
 
   const ScoreProps = {
@@ -77,9 +78,10 @@ export default function SoloRoom() {
       {isOpen && <ExitConfirmModal {...{closeModal, scoreTime, point}} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
-        <h1 className={styles.roomName}>Solo Room</h1>
+        <h1 className={styles.roomName}>Multi Room</h1>
         <Score {...ScoreProps} />
-        <MyVideo {...MyVideoProps} />
+        <MultiVideo {...MyVideoProps} />
+
         <Image
           className={styles.logo}
           src="/logo.png"
