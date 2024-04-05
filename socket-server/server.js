@@ -1,14 +1,34 @@
 const { Server } = require("socket.io");
 const { createServer } = require("http");
 const crypto = require('crypto')
+require('dotenv').config({ debug: true });
 
-const httpServer = createServer();
+let origin = "https://localhost:4000"
+let port = 3001
+if (process.env.NODE_ENV === 'production') {
+  origin = process.env.ORIGIN_URL
+  port = process.env.PORT
+}
+
+const httpServer = createServer((req, res) => {
+  // リクエストのURLが/healthcheckであるかを確認
+  if (req.url === '/healthcheck') {
+    // /healthcheckにアクセスした場合、ステータスコード200を返す
+    res.writeHead(200, { 'Content-Type': 'text/plain' });
+    res.end('OK');
+  } else {
+    // /healthcheck以外のURLにアクセスした場合、404 Not Foundを返す
+    res.writeHead(404, { 'Content-Type': 'text/plain' });
+    res.end('Not Found');
+  }
+});
 const io = new Server(httpServer, {
   cors: {
-    origin: "https://localhost:4000",
+    origin: origin,
   },
+  // transports: ["websocket"],
 });
-httpServer.listen(3001);
+httpServer.listen(port);
 console.log("サーバーが起動しました");
 
 let roomNames = [];
@@ -49,33 +69,38 @@ io.on("connection", (socket) => {
   const socketIds = Array.from(socket.adapter.rooms.get(connectRoomName))
   console.log("socket ids connected to " + connectRoomName + " : " + socketIds);
   
+  // 部屋に入ったことを通知
   socket.on("notification entered room", (userName) => {
     userNames[socket.id] = userName;
     const socketIds = Array.from(socket.adapter.rooms.get(connectRoomName))
     io.to(socket.roomName).emit("assign room", socket.id, connectRoomName, socketIds);
   })
 
-  // 接続する準備ができたguestが呼び出す
-  socket.on("connection request", () => {
-    const socketIds = Array.from(socket.adapter.rooms.get(socket.roomName));
-    console.log(socketIds);
-    io.to(socket.id).emit("send offers", socketIds, userNames);
-    // socket.broadcast.emit("prepare offer", socket.id);
+  // 部屋に接続している人数を返す
+  socket.on('getRoomSize', (callback) => {
+    const roomSize = io.sockets.adapter.rooms.get(socket.roomName).size;
+    callback(roomSize);
+  });
+
+  // 接続する準備ができたoffer側が呼び出す
+  socket.on("request connection", (offerSocketId, offerUserName) => {
+    io.to(socket.roomName).emit("request connection", offerSocketId, offerUserName);
+    console.log(`request connection to ${socket.roomName} from ${offerSocketId}`)
   });
   
-  // socket.on("complete receive offer", () => {
-  //   const socketIds = Array.from(socket.adapter.rooms.get(socket.roomName));
-  //   socket.broadcast.emit("send offers", socketIds);
-  // })
+  socket.on("allow connection", (offerSocketId, answerUserName) => {
+    io.to(offerSocketId).emit("send offer", socket.id, answerUserName);
+    console.log(`allow connection to ${offerSocketId}`)
+  })
 
-  socket.on("offer", (offer, socketId, userName) => {
-    io.to(socketId).emit("offer", offer, socket.id, userName);
-    console.log("send offer to " + socketId + " name: " + userName);
+  socket.on("offer", (offer, answerSocketId) => {
+    io.to(answerSocketId).emit("offer", offer, socket.id);
+    console.log("send offer to " + answerSocketId);
   });
 
-  socket.on("answer", (answer, socketId) => {
-    io.to(socketId).emit("answer", answer, socket.id);
-    console.log("send answer to " + socketId);
+  socket.on("answer", (answer, offerSocketId) => {
+    io.to(offerSocketId).emit("answer", answer, socket.id);
+    console.log("send answer to " + offerSocketId);
   });
 
   socket.on("candidate", (candidate, socketId) => {
