@@ -31,7 +31,8 @@ export default function Score({
       }
     }
     handleTimer();
-  }, [isStudyingRef.current])
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [isStudyingRef.current!])
 
   return (
     <div className={styles.record}>

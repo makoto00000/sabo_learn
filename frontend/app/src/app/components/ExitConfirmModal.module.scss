@@ -33,6 +33,10 @@
     flex-direction: column;
     align-items: center;
     justify-content: center;
+    @media screen and (max-width: 500px) {
+      width: 95%;
+      font-size: 14px;
+    }
     h2 {
       margin-bottom: 20px;
     }
@@ -41,12 +45,18 @@
       display: flex;
       h3 {
         font-size: 14px;
+        @media screen and (max-width: 500px) {
+          font-size: 12px;
+        }
       }
       .timeContainer {
         margin-right: 50px;
         text-align: center;
         .time {
           font-size: 30px;
+          @media screen and (max-width: 500px) {
+            font-size: 22px;
+          }
         }
       }
       .coinContainer {
@@ -58,6 +68,9 @@
           .coin {
             font-size: 30px;
             margin-right: 5px;
+            @media screen and (max-width: 500px) {
+              font-size: 22px;
+            }
           }
           .unit {
             font-size: 22px;
@@ -83,6 +96,11 @@
         font-size: 12px;
         border-radius: 10px;
         transition: all 0.3s 0s ease;
+        @media screen and (max-width: 500px) {
+          width: 80px;
+          height: 30px;
+          font-size: 10px;
+        }
       }
       .cancelButton {
         background: #C1C1C1;
