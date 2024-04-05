@@ -31,7 +31,7 @@ export function useVideo() {
   }, [isConnecting]);
 
   // サボっていると判定される秒数
-  const saboJudgementTime = 1;
+  const saboJudgementTime = 30;
 
   const {
     scoreTime,
