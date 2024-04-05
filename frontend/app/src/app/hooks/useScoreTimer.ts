@@ -19,6 +19,7 @@ export function useScoreTimer() {
   useEffect(() => {
     startScoreTimer();
     return () => stopScoreTimer();
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   const startScoreTimer = useCallback(() => {

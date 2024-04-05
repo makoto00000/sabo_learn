@@ -20,7 +20,7 @@ export default function ConnectVideo({
       videoRef.current.srcObject = stream;
       // videoRef.current.play();
     }
-  }, [videoRef]);
+  }, [stream, videoRef]);
   return (
     <div className={`${styles.video} ${styles.multiVideo}`}>
       <div className={styles.videoFrame} ref={videoFrameRef}>
