@@ -18,9 +18,9 @@ export default function ConnectVideo({
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.srcObject = stream;
-      videoRef.current.play();
+      // videoRef.current.play();
     }
-  }, [stream, videoRef]);
+  }, [videoRef]);
   return (
     <div className={`${styles.video} ${styles.multiVideo}`}>
       <div className={styles.videoFrame} ref={videoFrameRef}>
@@ -32,6 +32,7 @@ export default function ConnectVideo({
           height={346}
           autoPlay
           playsInline
+          onCanPlay={()=>videoRef.current?.play()}
         ></video>
         <p className={styles.userName}>{userName}</p>
       </div>

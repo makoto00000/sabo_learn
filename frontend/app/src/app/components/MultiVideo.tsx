@@ -14,7 +14,8 @@ type MyVideoProps = {
   canvasRef: RefObject<HTMLCanvasElement>;
   statusRef: RefObject<HTMLParagraphElement>;
   handleIsConnecting: (isConnecting: boolean) => void;
-  isStudying: boolean;
+  // isConnecting: boolean,
+  // isStudying: boolean;
   userName: string
 };
 
@@ -24,14 +25,16 @@ const MultiVideo = ({
   canvasRef,
   statusRef,
   handleIsConnecting,
-  isStudying,
+  // isConnecting,
+  // isStudying,
   userName,
 }: MyVideoProps) => {
 
   const { videoContainerRef, connect } = useWebRTC({
     canvasRef,
     handleIsConnecting,
-    isStudying,
+    // isConnecting,
+    // isStudying,
     userName,
   });
 
@@ -68,23 +71,23 @@ const MultiVideo = ({
   );
 };
 
-function DummyVideo() {
-  return (
-    <div>
-      <div className={`${styles.video} ${styles.multiVideo}`}>
-        <div className={styles.videoFrame}>
-          <video
-            className={styles.connectVideo}
-            width={346}
-            height={346}
-            autoPlay
-            playsInline
-          ></video>
-        </div>
-        <p className={styles.status}>Studying</p>
-      </div>
-    </div>
-  );
-}
+// function DummyVideo() {
+//   return (
+//     <div>
+//       <div className={`${styles.video} ${styles.multiVideo}`}>
+//         <div className={styles.videoFrame}>
+//           <video
+//             className={styles.connectVideo}
+//             width={346}
+//             height={346}
+//             autoPlay
+//             playsInline
+//           ></video>
+//         </div>
+//         <p className={styles.status}>Studying</p>
+//       </div>
+//     </div>
+//   );
+// }
 
 export default React.memo(MultiVideo);

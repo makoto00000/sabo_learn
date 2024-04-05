@@ -9,8 +9,7 @@ import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
 import MultiVideo from "./MultiVideo";
 
-export default function MultiRoom({userName}:{userName: string}) {
-
+export default function MultiRoom({ userName }: { userName: string }) {
   const {
     videoFrameRef,
     videoRef,
@@ -23,6 +22,7 @@ export default function MultiRoom({userName}:{userName: string}) {
     getPointRef,
     showAnimation,
     handleIsConnecting,
+    // isConnecting,
   } = useVideo();
 
   const MyVideoProps = {
@@ -30,8 +30,9 @@ export default function MultiRoom({userName}:{userName: string}) {
     videoRef: videoRef,
     canvasRef: canvasRef,
     statusRef: statusRef,
-    isStudying: isStudying,
+    // isStudying: isStudying,
     handleIsConnecting: handleIsConnecting,
+    // isConnecting: isConnecting,
     userName,
   };
 
@@ -47,35 +48,39 @@ export default function MultiRoom({userName}:{userName: string}) {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const openModal = () => {
     setIsOpen(true);
-  }
+  };
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   useEffect(() => {
-    const handleBackButton = (event: { preventDefault: () => void; }) => {
+    const handleBackButton = (event: { preventDefault: () => void }) => {
       event.preventDefault();
-      alert('Exitから退室しないと、獲得したコインが反映されません。')
+      alert("Exitから退室しないと、獲得したコインが反映されません。");
       window.history.forward();
     };
 
-    const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string; }) => {
+    const handleBeforeUnload = (event: {
+      preventDefault: () => void;
+      returnValue: string;
+    }) => {
       event.preventDefault();
-      event.returnValue = 'Exitから退室しないと、獲得したコインが反映されません。';
+      event.returnValue =
+        "Exitから退室しないと、獲得したコインが反映されません。";
     };
 
     window.history.pushState(null, "", window.location.href);
-    window.addEventListener('popstate', handleBackButton);
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("popstate", handleBackButton);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
-      window.removeEventListener('popstate', handleBackButton); 
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("popstate", handleBackButton);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
   return (
     <div className={styles.container}>
-      {isOpen && <ExitConfirmModal {...{closeModal, scoreTime, point}} />}
+      {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Multi Room</h1>
@@ -88,6 +93,7 @@ export default function MultiRoom({userName}:{userName: string}) {
           width={148}
           height={35}
           alt="logo"
+          priority
         ></Image>
         <nav className={styles.navigation}>
           <ul className={styles.menus}>

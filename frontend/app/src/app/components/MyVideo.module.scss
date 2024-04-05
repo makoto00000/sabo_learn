@@ -62,6 +62,7 @@
     @media screen and (max-width: 950px) {
       width: 60vw;
       height: 60vw;
+      border: 3px solid #00f143;
       @media (orientation: landscape) {
         width: 200px;
         height: 200px;
@@ -105,7 +106,7 @@
     @media screen and (max-width: 950px) {
       width: 30vw;
       height: 30vw;
-      border: 3px solid #00f143;
+      border: 3px solid #999999;
       max-width: 200px;
       max-height: 200px;
       @media (orientation: landscape) {

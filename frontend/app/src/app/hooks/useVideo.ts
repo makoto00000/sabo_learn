@@ -31,7 +31,7 @@ export function useVideo() {
   }, [isConnecting]);
 
   // サボっていると判定される秒数
-  const saboJudgementTime = 30;
+  const saboJudgementTime = 1;
 
   const {
     scoreTime,
@@ -84,17 +84,19 @@ export function useVideo() {
           video: {
             facingMode: "user",
             frameRate: { ideal: 3, max: 5 },
-            width: 346,
-            height: 346,
+            // width: 346,
+            // height: 346,
+            width: { ideal: 346 }, // 望ましい幅
+            height: { ideal: 346 },
           },
         };
         navigator.mediaDevices
           .getUserMedia(medias)
-          .then((stream) => {
+          .then(async (stream) => {
             if (video) {
               video.srcObject = stream;
               video.play();
-              successCallback(stream);
+              await successCallback(stream);
             }
           })
           .catch((error) => {
@@ -208,7 +210,7 @@ export function useVideo() {
     isStudyingRef,
     isStudying,
     handleIsConnecting,
-    isConnecting,
+    // isConnecting,
     scoreTime,
     point,
     getPointRef,

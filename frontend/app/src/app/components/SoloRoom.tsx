@@ -86,6 +86,7 @@ export default function SoloRoom() {
           width={148}
           height={35}
           alt="logo"
+          priority
         ></Image>
         <nav className={styles.navigation}>
           <ul className={styles.menus}>
