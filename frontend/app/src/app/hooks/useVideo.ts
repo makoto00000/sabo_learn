@@ -31,7 +31,7 @@ export function useVideo() {
   }, [isConnecting]);
 
   // サボっていると判定される秒数
-  const saboJudgementTime = 1;
+  const saboJudgementTime = 30;
 
   const {
     scoreTime,
@@ -43,14 +43,8 @@ export function useVideo() {
   } = useScoreTimer();
 
   useEffect(() => {
-    let video = null;
-    let canvas = null;
-    if (videoRef.current) {
-      video = videoRef.current;
-    }
-    if (canvasRef.current) {
-      canvas = canvasRef.current;
-    }
+    const video = videoRef.current;
+    const canvas = canvasRef.current;
 
     if (video && canvas) {
       let ctx: CanvasRenderingContext2D | null = null;
@@ -119,6 +113,7 @@ export function useVideo() {
         });
       }
     };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   async function successCallback(stream: MediaStream) {

@@ -1,4 +1,4 @@
-import { RefObject, useMemo, useRef } from "react";
+import { RefObject, useCallback, useMemo, useRef } from "react";
 import io from "socket.io-client";
 import React from "react";
 import { createRoot } from "react-dom/client";
@@ -238,7 +238,7 @@ export function useWebRTC({
     }
   });
 
-  function connect() {
+  const connect = useCallback(() => {
     if (!isConnectRequested) {
       socket.emit("getRoomSize", (roomSize: number) => {
         // console.log(`Room has ${roomSize} connections.`);
@@ -252,7 +252,7 @@ export function useWebRTC({
         }
       });
     }
-  }
+  }, [userName, handleIsConnecting]);
 
   // function disconnect() {
   //   if (socket.id) {
@@ -272,6 +272,6 @@ export function useWebRTC({
       videoContainerRef,
       connect,
     };
-  }, []);
+  }, [connect]);
   return result;
 }
