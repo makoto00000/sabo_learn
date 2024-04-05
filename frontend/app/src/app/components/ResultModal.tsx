@@ -33,6 +33,7 @@ export default function ResultModal() {
       setEarnCoin(coin);
       setPrevCoin(prevCoin);
     }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   if (!isOpen) return null;
