@@ -175,6 +175,7 @@ export default function MusicPlayer() {
         setIsAudioPlaying(true);
       }
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrack]);
 
   // リピート再生
