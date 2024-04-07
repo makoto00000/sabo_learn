@@ -1,6 +1,14 @@
 # frozen_string_literal: true
 
 class User < ApplicationRecord
+  has_many :musics, through: :music_parchaces
+  has_many :music_parchaces, dependent: :destroy
+  has_many :wallpapers, through: :wallpaper_parchaces
+  has_many :wallpaper_parchaces, dependent: :destroy
+  belongs_to :solo_wallpaper, class_name: 'Wallpaper', optional: true
+  belongs_to :multi_wallpaper, class_name: 'Wallpaper', optional: true
+
+
   before_save :downcase_email
   has_secure_password validations: false
 
