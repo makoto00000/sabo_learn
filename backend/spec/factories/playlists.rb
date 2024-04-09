@@ -1,6 +1,6 @@
 FactoryBot.define do
   factory :playlist do
     user { nil }
-    name { "MyString" }
+    name { 'MyString' }
   end
 end
