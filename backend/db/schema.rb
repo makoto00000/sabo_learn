@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_07_095546) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_07_132556) do
   create_table "music_parchaces", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "music_id", null: false
@@ -27,6 +27,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_095546) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string "image"
+    t.boolean "is_default", default: false
   end
 
   create_table "playlist_musics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -78,6 +80,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_07_095546) do
     t.integer "price"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.boolean "is_default_solo", default: false
+    t.boolean "is_default_multi", default: false
   end
 
   add_foreign_key "music_parchaces", "musics"
