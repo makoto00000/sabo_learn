@@ -87,7 +87,7 @@ class Api::V1::UsersController < ApplicationController
 
   # プレイリストを取得
   def playlist
-    render json: { playlist: @current_user.playlist }
+    render json: { playlist: @current_user.playlist.musics }
   end
 
   # プレイリストを設定
@@ -159,7 +159,7 @@ class Api::V1::UsersController < ApplicationController
         @current_user.multi_wallpaper = wallpaper
       end
 
-      render json: { wallpaper: }, status: :ok if @current_user.save
+      render json: { wallpaper: wallpaper}, status: :ok if @current_user.save
     else
       render json: {error: '不正なリクエスト'}, status: :bad_request
     end
