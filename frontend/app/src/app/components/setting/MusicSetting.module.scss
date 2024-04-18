@@ -1,0 +1,57 @@
+.main {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 50px 20px;
+  border-radius: 0 0 10px 10px;
+  height: 100%;
+  @media screen and (max-width: 768px) {
+    padding: 20px;
+  }
+  .settingTitle {
+    font-size: 32px;
+    font-weight: bold;
+    margin-bottom: 50px;
+    text-align: center;
+    @media screen and (max-width: 768px) {
+      margin-bottom: 20px;
+      font-size: 24px;
+    }
+  }
+  .settingContent {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    width: 100%;
+    .arrow {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      margin: 0 20px;
+      position: absolute;
+      top: 55%;
+      @media screen and (max-width: 1440px) {
+        margin: 0 10px;
+        top: 56%;
+      }
+      .arrowImage {
+        margin-bottom: 10px;
+        @media screen and (max-width: 768px) {
+          transform: rotate(90deg);
+          margin-bottom: 0;
+        }
+      }
+      .arrowText {
+        white-space: nowrap;
+        font-weight: bold;
+        font-size: 12px;
+        @media screen and (max-width: 1440px) {
+          font-size: 10px;
+        }
+      }
+    }
+  }
+}

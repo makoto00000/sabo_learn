@@ -1,0 +1,151 @@
+.container {
+  display: flex;
+  width: 100%;
+  @media screen and (max-width: 768px) {
+    flex-direction: column;
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  .registerButton {
+    width: 100px;
+    color: #000;
+    background: #FFCC02;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    &:disabled {
+      background: #C1C1C1;
+    }
+  }
+  .resetButton {
+    width: 100px;
+    color: #000;
+    background: #B3B3B3;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    margin-right: 50px;
+  }
+}
+
+.musicsContainer {
+  width: 100%;
+  &:first-child {
+    margin-right: 100px;
+    @media screen and (max-width: 768px) {
+      margin-right: 0;
+      margin-bottom: 80px;
+    }
+  }
+  .listTitle {
+    text-align: center;
+    margin-bottom: 10px;
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+    }
+  }
+  .musics {
+    // width: 100%;
+    height: 300px;
+    overflow-y: scroll;
+    overflow-x: hidden;
+    @media screen and (max-width: 768px) {
+      height: 150px;
+    }
+    .musicsTable {
+      background: #9f9f9f;
+      border-radius: 5px;
+      padding: 10px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.music {
+  // width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  background: #212121;
+  border-top: 2px solid #2B2B2B;
+  &:last-child {
+    border-bottom: 2px solid #2B2B2B;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 10px 5px;
+  }
+  .musicData {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .musicInfo {
+      display: flex;
+      align-items: center;
+      .musicImage {
+        border-radius: 10px;
+        margin-right: 20px;
+        @media screen and (max-width: 1024px) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .titleInfo {
+        width: 80px;
+        @media screen and (max-width: 1024px) {
+          width: 50px;
+        }
+        @media screen and (max-width: 768px) {
+          width: 200px;
+        }
+        @media screen and (max-width: 500px) {
+          width: 100px;
+        }
+        .title {
+          font-size: 14px;
+          font-weight: bold;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @media screen and (max-width: 1024px) {
+            font-size: 12px;
+          }
+        }
+        .artist {
+          font-size: 12px;
+          font-weight: bold;
+          color: #B3B3B3;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @media screen and (max-width: 1024px) {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .playButton {
+        margin-right: 20px;
+        cursor: pointer;
+        @media screen and (max-width: 1024px) {
+          width: 15px;
+          height: 15px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}
