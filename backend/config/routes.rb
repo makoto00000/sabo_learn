@@ -1,6 +1,10 @@
 Rails.application.routes.draw do
   namespace :api do
     namespace :v1 do
+      get 'musics/all_musics'
+      get 'wallpapers/all_wallpapers'
+      get '/musics', to: 'musics#all_musics'
+      get '/wallpapers', to: 'wallpapers#all_wallpapers'
       post '/user', to: 'users#create'
       get '/user', to: 'users#current_user'
       put '/user/coin', to: 'users#add_coin'
