@@ -27,6 +27,16 @@ class User < ApplicationRecord
     uid.present?
   end
 
+  def as_json(options = {})
+    super(options.merge({
+                          include: {
+                            musics: {
+                              only: [:ref]
+                            }
+                          }
+                        }))
+  end
+
   private
 
   def downcase_email

@@ -16,6 +16,11 @@ RSpec.describe 'UsersController' do
   describe '#current_user' do
     context '認証成功' do
       it 'ログインユーザーの情報をJSON形式で取得する' do
+        login_user.playlist = Playlist.create(musics: Music.all, music_order: '[1,2,3]')
+        login_user.solo_wallpaper = Wallpaper.find_by(is_default_solo: true)
+        login_user.multi_wallpaper = Wallpaper.find_by(is_default_multi: true)
+        login_user.save
+        login_user.reload
         get(api_v1_user_path, headers: header)
         expect(response).to have_http_status(:ok)
         expect(response.body).to include('user')
@@ -215,8 +220,11 @@ end
   describe '#register_playlist' do
     context '認証成功' do
       it 'プレイリストを更新できる' do
-        Playlist.create(user: login_user, musics: Music.all)
-        body = { musicIds: [1, 2] }
+        login_user.musics = Music.where(is_default: true)
+        login_user.save
+        login_user.reload
+        Playlist.create(user: login_user, musics: Music.where(is_default: true), music_order: '[1,2,3]')
+        body = { musicIds: '[1, 2]' }
         expect { put('/api/v1/user/playlist', headers: header, params: body) }.to change(login_user.playlist.musics, :count).by(-1)
         expect(response).to have_http_status(:ok)
         expect(response.body).to include('playlist')
@@ -225,7 +233,7 @@ end
 
     context '認証失敗' do
       it 'プレイリストを更新できない' do
-        Playlist.create(user: login_user, musics: Music.all)
+        Playlist.create(user: login_user, musics: Music.where(is_default: true))
         body = { musicIds: [1] }
         expect { put('/api/v1/user/playlist', params: body) }.to change(login_user.playlist.musics, :count).by(0)
         expect(response).to have_http_status(:unauthorized)

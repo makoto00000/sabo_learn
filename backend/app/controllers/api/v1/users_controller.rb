@@ -14,7 +14,18 @@ class Api::V1::UsersController < ApplicationController
 
   def current_user
     if @current_user
-      render_user(@current_user, :ok)
+      # render_user(@current_user, :ok)
+      music_order = JSON.parse(@current_user.playlist.music_order)
+      not_set_musics = @current_user.musics.where.not(id: @current_user.playlist.musics.pluck(:id))
+      render json: { user: @current_user.attributes.transform_keys { |k| k.camelize(:lower) }
+                                        .merge({
+                                                 soloWallpaper: @current_user.solo_wallpaper,
+                                                 multiWallpaper: @current_user.multi_wallpaper,
+                                                 wallpapers: @current_user.wallpapers,
+                                                 musics: @current_user.musics,
+                                                 notSetMusics: not_set_musics,
+                                                 playlist: @current_user.playlist.musics.sort_by { |music| music_order.index(music.id) }
+                                               })}
     else
       render json: { errors: { body: @current_user.errors } }, status: :unprocessable_entity
     end
@@ -86,19 +97,22 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # プレイリストを取得
+  # !削除予定
   def playlist
     render json: { playlist: @current_user.playlist.musics }
   end
 
   # プレイリストを設定
   def register_playlist
-    music_ids = params.require(:musicIds)
+    music_ids = params.require(:musicIds).to_s
+    @current_user.playlist.update(music_order: music_ids)
     musics = []
-    music_ids.each do |music_id|
-      musics << Music.find(music_id)
+    music_order = JSON.parse(@current_user.playlist.music_order)
+    @current_user.musics.each do |music|
+      musics << music if music_order.include?(music.id)
     end
-    @current_user.playlist.musics = musics
-    render json: { playlist: @current_user.playlist.musics } if @current_user.save
+    @current_user.playlist.update(musics:)
+    render json: { playlist: musics.sort_by { |music| music_order.index(music.id) } } if @current_user.save!
   end
 
   # solo roomの背景を設定する
@@ -139,6 +153,7 @@ class Api::V1::UsersController < ApplicationController
           return false
       else
         items << item
+        @current_user.coin = new_coin_count
           return true
       end
     else
@@ -159,7 +174,7 @@ class Api::V1::UsersController < ApplicationController
         @current_user.multi_wallpaper = wallpaper
       end
 
-      render json: { wallpaper: wallpaper}, status: :ok if @current_user.save
+      render json: { wallpaper:}, status: :ok if @current_user.save
     else
       render json: {error: '不正なリクエスト'}, status: :bad_request
     end

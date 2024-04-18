@@ -49,7 +49,7 @@ class ApplicationController < ActionController::API
     user.musics = default_musics
 
     # プレイリストにデフォルトの音楽をセット
-    user.playlist = Playlist.new(musics: default_musics)
+    user.playlist = Playlist.create(musics: default_musics, music_order: default_musics.pluck(:id).to_s)
     user.save!
   end
 end
