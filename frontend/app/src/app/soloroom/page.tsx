@@ -1,14 +1,15 @@
-'use client'
+// "use client";
 
 import SoloRoom from "@/app/components/SoloRoom";
-import Loading from "@/app/components/Loading";
-import { Suspense } from "react";
+import { getCurrentUser } from "../utils/UserAPI";
 
-export default function Room() {
+export default async function Room() {
+  const currentUser = await getCurrentUser();
+
   return (
     <main className="main">
       {/* <Suspense fallback={<Loading />}> */}
-        <SoloRoom />
+      {currentUser && <SoloRoom currentUser={currentUser} />}
       {/* </Suspense> */}
     </main>
   );

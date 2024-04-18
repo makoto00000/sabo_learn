@@ -14,7 +14,7 @@ export default async function Room() {
   return (
     <main className="main">
       {/* <Suspense fallback={<Loading />}> */}
-        <MultiRoom userName={userName}/>
+        {currentUser && <MultiRoom currentUser={currentUser} userName={userName}/>}
       {/* </Suspense> */}
     </main>
   );
