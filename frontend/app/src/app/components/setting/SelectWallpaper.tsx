@@ -113,62 +113,6 @@ export default function SelectWallpaper({
             </div>
           </div>
         ))}
-        {wallpapers.map((wallpaper) => (
-          <div key={wallpaper.id} className={styles.imageContainer}>
-            <Image
-              className={styles.wallpaperImage}
-              src={`/wallpapers/${wallpaper.src}`}
-              width={300}
-              height={169}
-              priority
-              alt="wallpaper image"
-            ></Image>
-            {wallpaper.id === soloWallpaper.id && roomType === "Solo" && (
-              <div className={`${styles.muskText} ${styles.filter}`}>
-                選択中
-              </div>
-            )}
-            {wallpaper.id === multiWallpaper.id && roomType === "Multi" && (
-              <div className={`${styles.muskText} ${styles.filter}`}>
-                選択中
-              </div>
-            )}
-            <div
-              className={`${styles.hoverText} ${styles.filter}`}
-              onClick={() => RegisterWallpaperAction(roomType, wallpaper.id)}
-            >
-              この背景を設定
-            </div>
-          </div>
-        ))}
-        {wallpapers.map((wallpaper) => (
-          <div key={wallpaper.id} className={styles.imageContainer}>
-            <Image
-              className={styles.wallpaperImage}
-              src={`/wallpapers/${wallpaper.src}`}
-              width={300}
-              height={169}
-              priority
-              alt="wallpaper image"
-            ></Image>
-            {wallpaper.id === soloWallpaper.id && roomType === "Solo" && (
-              <div className={`${styles.muskText} ${styles.filter}`}>
-                選択中
-              </div>
-            )}
-            {wallpaper.id === multiWallpaper.id && roomType === "Multi" && (
-              <div className={`${styles.muskText} ${styles.filter}`}>
-                選択中
-              </div>
-            )}
-            <div
-              className={`${styles.hoverText} ${styles.filter}`}
-              onClick={() => RegisterWallpaperAction(roomType, wallpaper.id)}
-            >
-              この背景を設定
-            </div>
-          </div>
-        ))}
       </div>
     </div>
   );

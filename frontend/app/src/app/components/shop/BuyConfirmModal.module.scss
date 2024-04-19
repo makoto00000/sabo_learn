@@ -39,8 +39,14 @@
       width: 95%;
       font-size: 14px;
     }
+    @media (orientation: landscape) {
+      padding: 20px 0;
+    }
     h2 {
       margin-bottom: 20px;
+      @media (orientation: landscape) {
+        font-size: 16px;
+      }
     }
     .item {
       display: flex;
@@ -56,6 +62,9 @@
           width: 100%;
           height: auto;
           margin-right: 20px;
+          @media (orientation: landscape) {
+            width: 80%;
+          }
         }
         .musicImage {
           margin-right: 10px;
@@ -84,9 +93,15 @@
     }
     .userCoinContainer {
       margin-bottom: 30px;
+      @media (orientation: landscape) {
+        margin-bottom: 10px;
+      }
       .userCoinHead {
         margin-bottom: 10px;
         text-align: center;
+        @media (orientation: landscape) {
+          font-size: 14px;
+        }
       }
       .userCoin {
         display: flex;
@@ -99,19 +114,33 @@
           align-items: center;
           .coinImage {
             margin-right: 10px;
+            @media (orientation: landscape) {
+              width: 16px;
+              height: 16px;
+            }
           }
         }
         .arrowImage {
           margin: 0 20px;
+          @media (orientation: landscape) {
+            width: 16px;
+            height: 16px;
+          }
         }
         .priceValue {
           font-size: 18px;
           font-weight: bold;
+          @media (orientation: landscape) {
+            font-size: 16px;
+          }
         }
         .afterPriceValue {
           font-size: 20px;
           font-weight: bold;
           color: #ffcc02;
+          @media (orientation: landscape) {
+            font-size: 16px;
+          }
         }
         .warning {
           color: #cc0000;
@@ -119,6 +148,9 @@
       }
       .warning {
         color: #cc0000;
+        @media (orientation: landscape) {
+          font-size: 14px;
+        }
       }
     }
     .buttonContainer {

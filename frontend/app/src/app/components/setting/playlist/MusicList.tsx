@@ -18,6 +18,7 @@ import { registerPlaylist } from "@/app/utils/Actions";
 import { useLoading } from "@/app/hooks/useLoading";
 import Loading from "../../Loading";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 export default function MusicList({
   notSetMusics,
@@ -180,9 +181,13 @@ export default function MusicList({
 
   // アンマウント時に音楽を止める
   useEffect(() => {
+    let audio: HTMLAudioElement;
+    if (audioRef.current) {
+      audio = audioRef.current;
+    }
     return () => {
-      if (audioRef.current) {
-        audioRef.current.pause();
+      if(audio) {
+        audio.pause();
       }
     };
   }, [audioRef]);
@@ -239,6 +244,7 @@ export default function MusicList({
     if (columns[1].musics.map((music) => music.id).length === 0) {
       setIsChangePlaylist(false);
     }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [columns]);
 
   return (
@@ -251,23 +257,38 @@ export default function MusicList({
     >
       {isLoading && <Loading />}
       <div className={styles.container}>
-        {columns.map((column) => (
-          <Column
-            key={column.id}
-            column={column}
-            playMusic={playMusic}
-            isPlaying={isPlaying}
-            currentId={currentId}
-          ></Column>
-        ))}
         <audio ref={audioRef}></audio>
+        <Column
+          key={columns[0].id}
+          column={columns[0]}
+          playMusic={playMusic}
+          isPlaying={isPlaying}
+          currentId={currentId}
+        ></Column>
+        <div className={styles.arrow}>
+          <Image
+            className={styles.arrowImage}
+            src={"/arrow_right.png"}
+            width={50}
+            height={50}
+            alt="arrow image"
+          ></Image>
+          <p className={styles.arrowText}>Drag & Drop</p>
+        </div>
+        <Column
+          key={columns[1].id}
+          column={columns[1]}
+          playMusic={playMusic}
+          isPlaying={isPlaying}
+          currentId={currentId}
+        ></Column>
       </div>
       <div className={styles.buttonContainer}>
-        <button className={styles.resetButton} onClick={() => resetColumns()}>
+        <button className={`${styles.resetButton} ${styles.button}`} onClick={() => resetColumns()}>
           リセット
         </button>
         <button
-          className={styles.registerButton}
+          className={`${styles.registerButton} ${styles.button}`}
           onClick={() =>
             RegisterPlaylistAction(
               columns[1].musics.map((music) => Number(music.id))

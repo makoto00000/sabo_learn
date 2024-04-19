@@ -1,22 +1,29 @@
 .main {
   display: flex;
   flex-direction: column;
-  justify-content: center;
   align-items: center;
-  padding: 50px 20px;
+  padding: 50px;
+  height: calc(100% - 20px);
   border-radius: 0 0 10px 10px;
-  height: 100%;
-  @media screen and (max-width: 768px) {
-    padding: 20px;
+  @media screen and (max-width: 1024px) {
+    padding: 10px;
+    @media screen and (orientation: portrait) {
+      padding: 10px;
+      height: calc(100% - 90px);
+    }
   }
   .settingTitle {
     font-size: 32px;
     font-weight: bold;
     margin-bottom: 50px;
     text-align: center;
-    @media screen and (max-width: 768px) {
+    @media screen and (max-width: 850px) {
       margin-bottom: 20px;
-      font-size: 24px;
+      font-size: 20px;
+      @media (orientation: landscape) {
+        margin-bottom: 10px;
+        font-size: 16px;
+      }
     }
   }
   .settingContent {
@@ -25,33 +32,5 @@
     align-items: center;
     flex-direction: column;
     width: 100%;
-    .arrow {
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      margin: 0 20px;
-      position: absolute;
-      top: 55%;
-      @media screen and (max-width: 1440px) {
-        margin: 0 10px;
-        top: 56%;
-      }
-      .arrowImage {
-        margin-bottom: 10px;
-        @media screen and (max-width: 768px) {
-          transform: rotate(90deg);
-          margin-bottom: 0;
-        }
-      }
-      .arrowText {
-        white-space: nowrap;
-        font-weight: bold;
-        font-size: 12px;
-        @media screen and (max-width: 1440px) {
-          font-size: 10px;
-        }
-      }
-    }
   }
 }

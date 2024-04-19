@@ -1,8 +1,11 @@
 .main {
-  height: 600px;
   overflow-y: scroll;
   overflow-x:hidden;
   position: relative;
+  height: calc(100% - 60px);
+  // @media (orientation: landscape) {
+  //   height: 300px;
+  // }
   .itemTable {
     width: 100%;
     padding: 50px;
@@ -28,8 +31,8 @@
         @media screen and (max-width: 1440px) {
           padding: 30px 20px;
         }
-        @media screen and (max-width: 1440px) {
-          padding: 20px 5px;
+        @media screen and (max-width: 768px) {
+          padding: 20px 10px;
         }
         .musicInfoData {
           width: 40%;

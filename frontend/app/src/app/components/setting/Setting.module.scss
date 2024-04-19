@@ -2,12 +2,9 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 100px;
+  height: calc(100% - 110px);
   .content {
-    width: 80%;
-    @media screen and (max-width: 600px) {
-      width: 95%;
-    }
+    width: 100%;
     .tabContainer {
       display: flex;
       .tab {
@@ -19,10 +16,9 @@
         background: #313131;
         font-weight: bold;
         font-size: 22px;
-        transition: .3s ease-in-out;
+        transition: 0.3s ease-in-out;
         cursor: pointer;
         &:first-child {
-          // border-right: 2px solid #6D6D6D;
           border-radius: 10px 10px 0 0;
         }
         &:last-child {
@@ -30,6 +26,10 @@
         }
         @media screen and (max-width: 768px) {
           font-size: 14px;
+        }
+        @media (orientation: landscape) {
+          font-size: 14px;
+          height: 30px;
         }
       }
     }

@@ -30,10 +30,14 @@ export default function HomeContent({
     return (
       <div className={`${styles.container} background`}>
         <Sidebar handleComponent={handleComponent} />
-        {currentUser && <UserInfo {...currentUser} />}
-        {componentName === "select" && <RoomSelect />}
-        {componentName === "shop" && <Shop currentUser={currentUser} wallpapers={wallpapers} musics={musics}/>}
-        {componentName === "setting" && <Setting currentUser={currentUser} />}
+        <div className={styles.mainContent}>
+          <div className={styles.userInfoContainer}>
+            {currentUser && <UserInfo {...currentUser} />}
+          </div>
+          {componentName === "select" && <RoomSelect />}
+          {componentName === "shop" && <Shop currentUser={currentUser} wallpapers={wallpapers} musics={musics}/>}
+          {componentName === "setting" && <Setting currentUser={currentUser} />}
+        </div>
       </div>
     );
   }

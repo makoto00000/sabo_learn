@@ -20,7 +20,9 @@ export default function WallpaperShop({
   const {isLoading, handleIsLoading} = useLoading();
   useEffect(() => {
     handleIsLoading(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   const handleImageLoad = ()=> {
     handleIsLoading(false)
   }

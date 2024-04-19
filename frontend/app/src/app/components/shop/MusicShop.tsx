@@ -113,6 +113,7 @@ export default function MusicShop({
   const {isLoading, handleIsLoading} = useLoading();
   useEffect(() => {
     handleIsLoading(true)
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
 
   // シークバーの入力値を反映させる処理

@@ -3,13 +3,10 @@
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
-  padding: 50px 50px 0 50px;
+  padding: 50px;
   border-radius: 0 0 10px 10px;
-  height: 600px;
+  height: calc(100% - 60px);
   overflow: scroll;
-  @media screen and (max-width: 600px) {
-    padding: 30px;
-  }
   .item {
     display: flex;
     flex-direction: column;
@@ -26,6 +23,10 @@
       width: 100%;
       margin-right: 0;
     }
+    @media (orientation: landscape) {
+      width: calc((100% - 60px) / 2);
+      margin-right: 20px;
+    }
     .imageContainer {
       position: relative;
       width: 100%;
@@ -35,12 +36,12 @@
         width: 100%;
         height: auto;
         box-sizing: border-box;
-        transition: .2s all;
+        transition: 0.2s all;
         border-radius: 3px;
         border: 5px solid rgba($color: #000000, $alpha: 0);
         position: relative;
         &:hover {
-          border: 5px solid #FFCC02;
+          border: 5px solid #ffcc02;
         }
       }
       .filter {
@@ -53,7 +54,7 @@
         align-items: center;
         justify-content: center;
         color: #fff;
-        background-color: rgba(0,0,0,0.65);
+        background-color: rgba(0, 0, 0, 0.65);
         font-weight: bold;
         font-size: 22px;
       }
@@ -72,6 +73,14 @@
           width: 22px;
           height: 22px;
         }
+        @media (orientation: landscape) {
+          width: 22px;
+          height: 22px;
+        }
+        @media screen and (max-height: 950px) {
+          width: 22px;
+          height: 22px;
+        }
       }
       .priceValue {
         margin-left: 10px;
@@ -79,6 +88,9 @@
         font-weight: bold;
         @media screen and (max-width: 600px) {
           font-size: 18px;
+        }
+        @media (orientation: landscape) {
+          font-size: 14px;
         }
       }
     }

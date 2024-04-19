@@ -2,12 +2,9 @@
   display: flex;
   justify-content: center;
   width: 100%;
-  margin-top: 100px;
+  height: calc(100% - 110px);
   .content {
-    width: 80%;
-    @media screen and (max-width: 600px) {
-      width: 95%;
-    }
+    width: 100%;
     .tabContainer {
       display: flex;
       .tab {
@@ -29,6 +26,7 @@
         }
         @media screen and (max-width: 768px) {
           font-size: 14px;
+          height: 40px;
         }
       }
     }
