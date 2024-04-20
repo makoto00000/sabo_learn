@@ -8,8 +8,9 @@ import MusicPlayer from "./MusicPlayer";
 import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
 import MultiVideo from "./MultiVideo";
+import { User } from "../types/User";
 
-export default function MultiRoom({ userName }: { userName: string }) {
+export default function MultiRoom({ currentUser, userName }: { currentUser: User, userName: string }) {
   const {
     videoFrameRef,
     videoRef,
@@ -78,8 +79,15 @@ export default function MultiRoom({ userName }: { userName: string }) {
     };
   }, []);
 
+  const wallpapersPath = "/wallpapers/"
+
   return (
-    <div className={styles.container}>
+    <div
+      className={styles.container}
+      style={{
+        backgroundImage: `url("${wallpapersPath}${currentUser.multiWallpaper.src}")`,
+      }}
+    >
       {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
@@ -120,7 +128,7 @@ export default function MultiRoom({ userName }: { userName: string }) {
           </ul>
         </nav>
       </div>
-      <MusicPlayer />
+      <MusicPlayer playlist={currentUser.playlist}/>
     </div>
   );
 }

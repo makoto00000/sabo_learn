@@ -1,0 +1,208 @@
+.container {
+  display: flex;
+  width: 100%;
+  @media screen and (max-width: 1024px) {
+    flex-direction: column;
+    @media (orientation: landscape) {
+      flex-direction: row;
+    }
+  }
+}
+
+.arrow {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto;
+  @media screen and (max-width: 1024px) {
+    @media (orientation: portrait) {
+      flex-direction: row;
+    }
+  }
+  .arrowImage {
+    margin-bottom: 10px;
+    @media screen and (max-width: 1024px) {
+      transform: rotate(90deg);
+      margin-bottom: 0;
+      @media (orientation: landscape) {
+        transform: rotate(0);
+        margin-bottom: 10px;
+      }
+    }
+  }
+  .arrowText {
+    white-space: nowrap;
+    font-weight: bold;
+    font-size: 12px;
+    @media screen and (max-width: 1440px) {
+      font-size: 10px;
+    }
+  }
+}
+
+.buttonContainer {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: 30px;
+  @media screen and (max-width: 1024px) {
+    @media (orientation: landscape) {
+      margin-top: 10px;
+    }
+  }
+  .button {
+    width: 100px;
+    color: #000;
+    font-size: 12px;
+    font-weight: bold;
+    padding: 10px;
+    border-radius: 10px;
+    @media screen and (max-width: 1024px) {
+      width: 50px;
+      font-size: 8px;
+      padding: 5px;
+      @media (orientation: landscape) {
+      }
+    }
+
+  }
+  .registerButton {
+    background: #ffcc02;
+    &:disabled {
+      background: #c1c1c1;
+    }
+  }
+  .resetButton {
+    background: #b3b3b3;
+    margin-right: 50px;
+    @media screen and (max-width: 1024px) {
+      margin-right: 20px;
+      @media (orientation: landscape) {
+      }
+    }
+  }
+}
+
+.musicsContainer {
+  width: 40%;
+  height: 100%;
+  @media screen and (max-width: 1024px) {
+    margin-right: 0;
+    width: 100%;
+    @media (orientation: landscape) {
+      width: 40%;
+    }
+  }
+  .listTitle {
+    text-align: center;
+    margin-bottom: 10px;
+    @media screen and (max-width: 768px) {
+      font-size: 18px;
+    }
+    @media screen and (max-width: 1024px) {
+      @media (orientation: landscape) {
+        font-size: 14px;
+      }
+    }
+  }
+  .musics {
+    width: 100%;
+    height: calc(100% - 36px);
+    overflow-y: scroll;
+    overflow-x: hidden;
+    @media screen and (max-width: 1024px) {
+      height: 200px;
+      @media (orientation: landscape) {
+        height: 130px;
+      }
+    }
+    .musicsTable {
+      background: #9f9f9f;
+      border-radius: 5px;
+      padding: 10px;
+      width: 100%;
+      height: 100%;
+    }
+  }
+}
+
+.music {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 10px;
+  background: #212121;
+  border-top: 2px solid #2b2b2b;
+  &:last-child {
+    border-bottom: 2px solid #2b2b2b;
+  }
+  @media screen and (max-width: 1024px) {
+    padding: 10px 5px;
+  }
+  .musicData {
+    width: 100%;
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+    .musicInfo {
+      display: flex;
+      align-items: center;
+      .musicImage {
+        border-radius: 10px;
+        margin-right: 20px;
+        @media screen and (max-width: 1024px) {
+          width: 30px;
+          height: 30px;
+        }
+      }
+      .titleInfo {
+        width: 120px;
+        @media screen and (max-width: 1024px) {
+          width: 200px;
+          @media (orientation: landscape) {
+            width: 40px;
+          }
+        }
+        @media screen and (max-width: 500px) {
+          width: 40px;
+        }
+        .title {
+          font-size: 14px;
+          font-weight: bold;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @media screen and (max-width: 1024px) {
+            font-size: 12px;
+          }
+        }
+        .artist {
+          font-size: 12px;
+          font-weight: bold;
+          color: #b3b3b3;
+          white-space: nowrap;
+          overflow: hidden;
+          text-overflow: ellipsis;
+          @media screen and (max-width: 1024px) {
+            font-size: 10px;
+          }
+        }
+      }
+    }
+    .control {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      .playButton {
+        margin-right: 20px;
+        cursor: pointer;
+        @media screen and (max-width: 1024px) {
+          width: 15px;
+          height: 15px;
+          margin-right: 10px;
+        }
+      }
+    }
+  }
+}

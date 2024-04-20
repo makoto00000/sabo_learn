@@ -1,8 +1,11 @@
 class Api::V1::GoogleController < ApplicationController
   def callback
-    @user = User.find_or_create_by!(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
-    token = create_token(@user.id)
+    @user = User.find_or_initialize_by(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
+
+    default(@user) if @user.new_record? && @user.save!
+
     if @user
+      token = create_token(@user.id)
       render_user_include_token(@user, token, :ok)
     else
       render json: { error: 'ログインに失敗しました' }, status: :unprocessable_entity

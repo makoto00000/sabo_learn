@@ -2,7 +2,8 @@ import Link from "next/link";
 import Image from "next/image";
 import styles from "./Sidebar.module.scss";
 
-export default function Sidebar() {
+type ComponentType = "select" | "shop" | "setting";
+export default function Sidebar({handleComponent}: {handleComponent: (componentName: ComponentType) => void}) {
   return (
     <nav className={styles.container}>
       <Link href="/">
@@ -22,7 +23,7 @@ export default function Sidebar() {
         ></Image>
       </Link>
       <ul className={styles.menus}>
-        <li>
+        <li onClick={()=>handleComponent("select")}>
           <Image
             className={styles.listIcon}
             src="/room_icon.png"
@@ -30,12 +31,18 @@ export default function Sidebar() {
             height={30}
             alt="roomIcon"
           ></Image>
-          <Link href="/">Room</Link>
+          <a>Room</a>
         </li>
-        {/* <li>
-          <Image className={styles.listIcon} src="/store_icon.png" width={27} height={30} alt="roomIcon"></Image>
-          <Link href="/">Shop</Link>
+        <li onClick={()=>handleComponent("shop")}>
+          <Image className={styles.listIcon} src="/store_icon.png" width={27} height={30} alt="storeIcon"></Image>
+          <a>Shop</a>
+          {/* <Link href="/">Shop</Link> */}
         </li>
+        <li onClick={()=>handleComponent("setting")}>
+          <Image className={styles.listIcon} src="/setting_icon.png" width={27} height={27} alt="settingIcon"></Image>
+          <a>Setting</a>
+        </li>
+        {/*
         <li>
           <Image className={styles.listIcon} src="/record_icon.png" width={27} height={30} alt="roomIcon"></Image>
           <Link href="/">Record</Link>

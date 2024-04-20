@@ -4,43 +4,15 @@ import styles from "@/app/components/MusicPlayer.module.scss";
 import Image from "next/image";
 import { ChangeEvent, useEffect, useRef, useState } from "react";
 import { useWindowSize } from "../hooks/useWindowSize";
+import { Music } from "../types/User";
 
-type tracks = {
-  title: string;
-  artist: string;
-  image: string;
-  source: string;
-};
-
-const userTracksData = [
-  {
-    title: "Summer Walk",
-    artist: "Olexy",
-    image: "music-image.png",
-    source: "summer-walk.mp3",
-  },
-  {
-    title: "Relaxed Vlog (Night Street)",
-    artist: "Ashot-Danielyan-Composer",
-    image: "relaxed-vlog-night-street.webp",
-    source: "relaxed-vlog-night-street.mp3",
-  },
-  {
-    title: "Ambient Piano and Strings",
-    artist: "Daddy_s_Music",
-    image: "ambient-piano-and-strings.png",
-    source: "ambient-piano-and-strings.mp3",
-  },
-];
-
-export default function MusicPlayer() {
+export default function MusicPlayer({ playlist }: { playlist: Music[] }) {
   const imagePath = "/player/";
   const trackPath = "/tracks/";
 
-  // TODO バックエンドができたらDBから取得する。
-  const [userTracks, setUserTracks] = useState<tracks[]>(userTracksData);
+  const [userTracks, setUserTracks] = useState<Music[]>(playlist);
 
-  const [currentTrack, setCurrentTrack] = useState<tracks>(userTracksData[0]);
+  const [currentTrack, setCurrentTrack] = useState<Music>(playlist[0]);
   const [trackIndex, setTrackIndex] = useState<number>(0);
 
   const audioRef = useRef<HTMLAudioElement>(null);
@@ -167,7 +139,7 @@ export default function MusicPlayer() {
   // ! 1曲しか持っていない場合、次の曲になっても再生されない。（ユーザーには初期状態で複数曲をもたせるので問題なし）
   // ! play()を実行しないと、durationが反映されない。
   useEffect(() => {
-    audioRef.current!.src = `${trackPath}${currentTrack.source}`;
+    audioRef.current!.src = `${trackPath}${currentTrack.src}`;
     if (isAudioPlaying !== null) {
       if (audioRef.current) {
         setDuration(audioRef.current.duration);
@@ -175,7 +147,7 @@ export default function MusicPlayer() {
         setIsAudioPlaying(true);
       }
     }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [currentTrack]);
 
   // リピート再生
@@ -214,9 +186,9 @@ export default function MusicPlayer() {
         const artistLength = currentTrack.artist.length;
 
         if (titleLength > 9 || artistLength > 15) {
-            container.scrollTo(0, 0);
-            title.classList.add(styles.animate);
-            artist.classList.add(styles.animate);
+          container.scrollTo(0, 0);
+          title.classList.add(styles.animate);
+          artist.classList.add(styles.animate);
         } else {
           title.classList.remove(styles.animate);
           artist.classList.remove(styles.animate);
@@ -327,7 +299,7 @@ export default function MusicPlayer() {
             ></Image>
           </div>
           <audio
-            src={`${trackPath}${currentTrack.source}`}
+            src={`${trackPath}${currentTrack.src}`}
             ref={audioRef}
             onTimeUpdate={handleTimeUpdate}
             onEnded={handleEnded}
@@ -371,21 +343,21 @@ export default function MusicPlayer() {
         </div>
       </div>
       <div className={styles.spSeekBarContainer}>
-            <span className={styles.currentTime}>
-              {getTimeStringFromSeconds(timePosition)}
-            </span>
-            <input
-              type="range"
-              min={0}
-              max={duration ? duration : 0}
-              value={timePosition}
-              onChange={handleChangeTimePosition}
-              className={`${styles.seekBar} ${styles.controller}`}
-              style={seekBarBackground}
-            ></input>
-            <span className={styles.totalTime}>
-              {duration ? getTimeStringFromSeconds(duration) : "00:00:00"}
-            </span>
+        <span className={styles.currentTime}>
+          {getTimeStringFromSeconds(timePosition)}
+        </span>
+        <input
+          type="range"
+          min={0}
+          max={duration ? duration : 0}
+          value={timePosition}
+          onChange={handleChangeTimePosition}
+          className={`${styles.seekBar} ${styles.controller}`}
+          style={seekBarBackground}
+        ></input>
+        <span className={styles.totalTime}>
+          {duration ? getTimeStringFromSeconds(duration) : "00:00:00"}
+        </span>
       </div>
     </div>
   );

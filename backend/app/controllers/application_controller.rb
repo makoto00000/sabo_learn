@@ -26,6 +26,30 @@ class ApplicationController < ActionController::API
   end
 
   def render_unauthorized
-    render json: { errors: 'Unauthorized' }, status: :unauthorized
+    render json: { error: 'Unauthorized' }, status: :unauthorized
+  end
+
+  def current_user
+
+  end
+
+  # ユーザー作成時にデフォルトの背景とプレイリストを作成する
+  def default(user)
+    # 購入済み壁紙にデフォルトのものをセット
+    solo_wallpaper = Wallpaper.find_by(is_default_solo: true)
+    multi_wallpaper = Wallpaper.find_by(is_default_multi: true)
+    user.wallpapers = [solo_wallpaper, multi_wallpaper]
+
+    # 初期壁紙をセット
+    user.solo_wallpaper = solo_wallpaper
+    user.multi_wallpaper = multi_wallpaper
+
+    # 購入済み音楽にデフォルトのものをセット
+    default_musics = Music.where(is_default: true).to_a
+    user.musics = default_musics
+
+    # プレイリストにデフォルトの音楽をセット
+    user.playlist = Playlist.create(musics: default_musics, music_order: default_musics.pluck(:id).to_s)
+    user.save!
   end
 end

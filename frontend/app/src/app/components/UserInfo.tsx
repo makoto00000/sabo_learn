@@ -42,7 +42,7 @@ export default function UserInfo({ name, coin }: User) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.userInfoContainer}>
+      <div className={styles.userInfoContainer} onClick={() => toggleOpen()}>
         <div className={styles.userImageBg}>
           <Image
             className={styles.userImage}
@@ -73,7 +73,6 @@ export default function UserInfo({ name, coin }: User) {
           width={21}
           height={24}
           alt="caret-down"
-          onClick={() => toggleOpen()}
         ></Image>
       </div>
       <div className={`${styles.modal} ${styles.close}`} ref={modalRef}>
