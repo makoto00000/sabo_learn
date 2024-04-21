@@ -101,7 +101,6 @@ export default function MusicShop({
     index: number,
     e: SyntheticEvent<HTMLAudioElement, Event>
   ) => {
-    console.log("読み込み完了")
     handleIsLoading(false)
     setMusicStates((prevState) => {
       const newState = [...prevState];
