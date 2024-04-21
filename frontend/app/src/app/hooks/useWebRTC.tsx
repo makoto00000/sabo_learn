@@ -30,8 +30,6 @@ export function useWebRTC({
     };
   }>({});
 
-  console.log("レンダリングされました");
-
   // useEffect(() => {
   //   if (!isConnecting) {
   //     socket.emit("isStudying", isStudying);

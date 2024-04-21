@@ -185,6 +185,7 @@ export default function Lp() {
                 autoPlay
                 muted
                 loop
+                playsInline
               ></video>
               <div className={styles.aboutFilter}></div>
               <div className={styles.aboutText}>
@@ -277,7 +278,7 @@ export default function Lp() {
                   alt="card_image"
                 ></Image>
                 <p className={styles.cardText}>
-                  作業時間に応じてポイントを付与され、アイテムや機能拡張などに使用できます。*交換機能は実装中
+                  作業時間に応じてポイントを付与され、アイテムや機能拡張などに使用できます。
                 </p>
               </div>
             </div>
@@ -314,9 +315,6 @@ export default function Lp() {
                     誰かと一緒に頑張りたい人 →{" "}
                     <span className={styles.accentColor}>Multi Room</span>
                   </p>
-                  <span className={styles.attention}>
-                    *Multi Roomは現在開発中
-                  </span>
                 </div>
                 <Image
                   className={styles.stepImage}
@@ -426,8 +424,8 @@ export default function Lp() {
             <h2 className={styles.sectionTitle}>今後のアップデート予定</h2>
             <div className={styles.update}>
               <ul className={styles.updateList}>
-                <li className={styles.updateListItem}>マルチルーム</li>
-                <li className={styles.updateListItem}>アイテム交換機能</li>
+                <li className={styles.updateListItem}>フレンド機能</li>
+                <li className={styles.updateListItem}>ランキング機能</li>
                 <li className={styles.updateListItem}>学習結果をグラフ化</li>
                 <span className={styles.subText}>...and more!</span>
               </ul>

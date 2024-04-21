@@ -50,7 +50,9 @@ const MultiVideo = ({
               width={346}
               height={346}
               autoPlay
+              muted
               playsInline
+              style={{filter: "blur(10px)"}}
               onPlay={() => connect()}
             ></video>
             <canvas
@@ -58,6 +60,7 @@ const MultiVideo = ({
               className={styles.mosaicVideo}
               width={348}
               height={348}
+              style={{filter: "blur(10px)"}}
             ></canvas>
             <p className={styles.userName}>{userName}</p>
           </div>

@@ -45,8 +45,11 @@ export function useVideo() {
   useEffect(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
-
+    
     if (video && canvas) {
+      video.autoplay = true;
+      video.muted = true;
+      video.playsInline = true;
       let ctx: CanvasRenderingContext2D | null = null;
       ctx = canvas.getContext("2d", { willReadFrequently: true });
       const handleMetadataLoad = () => {
@@ -77,11 +80,11 @@ export function useVideo() {
           audio: false,
           video: {
             facingMode: "user",
-            frameRate: { ideal: 3, max: 5 },
-            // width: 346,
-            // height: 346,
-            width: { ideal: 346 }, // 望ましい幅
-            height: { ideal: 346 },
+            frameRate: 3,
+            width: 346,
+            height: 346,
+            // width: { ideal: 320 },
+            // height: { ideal: 346 },
           },
         };
         navigator.mediaDevices
