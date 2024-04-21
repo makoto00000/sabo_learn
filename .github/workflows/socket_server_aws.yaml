@@ -3,8 +3,8 @@ name: Deploy socket server to Amazon ECS
 on:
   push:
     branches: ["main"]
-    # paths:
-    #   - "socket-server/*"
+    paths:
+      - "socket-server/*"
 
 env:
   AWS_REGION: ap-northeast-1
