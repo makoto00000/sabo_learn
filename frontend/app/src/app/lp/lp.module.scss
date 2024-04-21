@@ -236,7 +236,8 @@
           opacity: 0;
           transform: translateY(100px);
           width: calc((100% - 50px) / 3);
-          height: 500px;
+          // height: 500px;
+          height: 100%;
           color: #333;
           background: #fff;
           padding: 30px 50px;
@@ -245,13 +246,6 @@
           margin-right: 10px;
           @media screen and (max-width: 1440px) {
             padding: 30px 30px;
-            height: 450px;
-          }
-          @media screen and (max-width: 1024px) {
-            height: 350px;
-          }
-          @media screen and (max-width: 830px) {
-            height: 300px;
           }
           @media screen and (max-width: 768px) {
             padding: 30px 10px;
@@ -259,7 +253,6 @@
           @media screen and (max-width: 540px) {
             width: 90%;
             margin-bottom: 60px;
-            height: 400px;
           }
           &:last-child {
             margin-right: 0;
