@@ -11,7 +11,7 @@ env:
   ECR_REPOSITORY: sabolearn-api-ecs
   ECS_SERVICE: sabolearn-service
   ECS_CLUSTER: sabolearn-cluster
-  ECS_TASK_DEFINITION: ./.aws/backend-task-definition.json
+  ECS_TASK_DEFINITION: .aws/backend-task-definition.json
 
   CONTAINER_NAME: sabolearn-api-ecs
 
