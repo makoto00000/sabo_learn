@@ -10,6 +10,10 @@
     border-radius: 20px;
     padding: 30px;
     text-align: center;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
     .title {
       margin-bottom: 30px;
       letter-spacing: 0.2rem;
@@ -19,9 +23,11 @@
       font-size: 12px;
       line-height: 1.2rem;
       text-align: left;
+      max-width: 300px;
     }
     .link {
       display: block;
+      width: 100%;
       max-width: 300px;
       transition: 0.2s all;
       background: #fff;

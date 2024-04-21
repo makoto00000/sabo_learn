@@ -1,5 +1,5 @@
 import { getCurrentUser } from "@/app/utils/UserAPI";
-import { NextRequest, NextResponse, userAgent } from "next/server";
+import { NextRequest, NextResponse } from "next/server";
 
 // 必要なときだけgetCurrentUserを実行することで読み込み速度向上
 export async function middleware(request: NextRequest) {
@@ -23,8 +23,8 @@ export async function middleware(request: NextRequest) {
     return NextResponse.redirect(new URL("/login", request.url));
   }
   
-  const { browser } = userAgent(request);
-  if (browser.name !== "Chrome" && request.nextUrl.pathname === "/multiroom") {
+
+  if (!String(request.headers.get('sec-ch-ua')).includes("Google Chrome") && request.nextUrl.pathname === "/multiroom") {
     return NextResponse.redirect(new URL("/unsupported", request.url));
   }
 
