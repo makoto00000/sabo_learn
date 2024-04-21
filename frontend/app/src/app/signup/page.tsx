@@ -2,7 +2,6 @@
 
 import styles from "@/app/signup/signup.module.scss";
 import Image from "next/image";
-import Link from "next/link";
 import SignupContent from "@/app/components/signup/SignupContent";
 import SignupStep1 from "../components/signup/SignupStep1";
 import SignupStep2 from "../components/signup/SignupStep2";
@@ -16,29 +15,31 @@ export default function Signup() {
     setCurrentPage(page);
   };
 
-  const [userData, setUserData] = useState<User>({
-    name: undefined,
-    email: undefined,
-    password: undefined,
-    birthday: undefined,
-    coin: undefined,
-  });
+  const [userData, setUserData] = useState<User | null>(null);
 
   const [year, setYear] = useState<number>();
   const [month, setMonth] = useState<number>();
   const [day, setDay] = useState<number>();
 
   const handleChangeEmail = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, email: e.target.value });
+    if (userData) {
+      setUserData({ ...userData, email: e.target.value });
+    }
   };
   const handleChangePassword = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, password: e.target.value });
+    if (userData) {
+      setUserData({ ...userData, password: e.target.value });
+    }
   };
   const handleChangeUsername = (e: ChangeEvent<HTMLInputElement>) => {
-    setUserData({ ...userData, name: e.target.value });
+    if (userData) {
+      setUserData({ ...userData, name: e.target.value });
+    }
   };
   const handleChangeBirthday = (birthday: string) => {
-    setUserData({ ...userData, birthday: new Date(birthday) });
+    if (userData) {
+      setUserData({ ...userData, birthday: new Date(birthday) });
+    }
   };
   const handleChangeYear = (e: ChangeEvent<HTMLInputElement>) => {
     const integerPattern = /^[1-9]\d*$/;
@@ -74,13 +75,13 @@ export default function Signup() {
           ></Image>
         </header>
         <div className={`${styles.content} content`}>
-          {currentPage === 0 && (
+          {currentPage === 0 && userData && (
             <SignupContent {...{ handlePage, handleChangeEmail, userData }} />
           )}
-          {currentPage === 1 && (
+          {currentPage === 1 && userData && (
             <SignupStep1 {...{ handlePage, handleChangePassword, userData }} />
           )}
-          {currentPage === 2 && (
+          {currentPage === 2 && userData && (
             <SignupStep2
               {...{
                 handlePage,
@@ -95,7 +96,9 @@ export default function Signup() {
               }}
             />
           )}
-          {currentPage === 3 && <SignupStep3 {...{ handlePage, userData }} />}
+          {currentPage === 3 && userData && (
+            <SignupStep3 {...{ handlePage, userData }} />
+          )}
         </div>
         <footer className={styles.footer}>
           {/* このサイトはreCAPTCHAによって保護されており、Googleの

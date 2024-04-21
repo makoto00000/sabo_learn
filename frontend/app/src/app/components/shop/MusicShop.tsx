@@ -39,7 +39,7 @@ export default function MusicShop({
 
   // アンマウント時に音楽を止める
   useEffect(() => {
-    let audioRef = null;
+    let audioRef: React.RefObject<HTMLAudioElement> | null = null;
     if (currentIndex) {
       audioRef = musics[currentIndex].ref;
     }
