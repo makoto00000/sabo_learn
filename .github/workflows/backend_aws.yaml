@@ -9,11 +9,11 @@ on:
 env:
   AWS_REGION: ap-northeast-1
   ECR_REPOSITORY: sabolearn-api-ecs
-  ECS_SERVICE: sabolearn-service
-  ECS_CLUSTER: sabolearn-cluster
+  ECS_SERVICE: sabolearn-api-service
+  ECS_CLUSTER: sabolearn-api-cluster
   ECS_TASK_DEFINITION: .aws/backend-task-definition.json
 
-  CONTAINER_NAME: sabolearn-api-ecs
+  CONTAINER_NAME: sabolearn-api-container
 
 permissions:
   contents: read
