@@ -13,7 +13,7 @@ env:
   ECS_CLUSTER: sabolearn-api-cluster
   ECS_TASK_DEFINITION: .aws/backend-task-definition.json
 
-  CONTAINER_NAME: sabolearn-api-container
+  CONTAINER_NAME: rails
 
 permissions:
   contents: read
