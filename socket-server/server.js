@@ -1,15 +1,14 @@
-const fs = require('fs');
+// const fs = require('fs');
 const { Server } = require("socket.io");
 // const { createServer } = require("https");
 const { createServer } = require("http");
 const crypto = require('crypto')
-require('dotenv').config({ debug: true });
 
 let origin = "https://localhost:4000"
 let port = 3001
 if (process.env.NODE_ENV === 'production') {
-  origin = process.env.ORIGIN_URL
-  port = process.env.PORT
+  origin = "https://app.sabolearn.com"
+  port = 3001
 }
 
 // const options = {
