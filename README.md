@@ -63,6 +63,7 @@
 - `Route53`: サイトの独自ドメイン化に使用。アプリケーション、API、Socketサーバー用にそれぞれサブドメインを作成。
 - `ACM`: サイトの https 化に使用。
 - `Amplify`: FrontのNext.jsをデプロイするために使用。簡易的にデプロイが可能で、githubと連携した自動デプロイも導入。
+- `CloudWatch`: エラーを監視し、`SNS`,`ChatBot`経由でSlackへ通知。
 
 ## ER 図
 
@@ -70,7 +71,7 @@
 
 ## インフラ構成図
 
-![インフラ構成図](https://github.com/makoto00000/sabo_learn/assets/65654634/bf91110f-7f6c-4eab-87d2-f21050a86434)
+![インフラ構成図](https://github.com/makoto00000/sabo_learn/assets/65654634/de75ef3c-dbcb-40e3-8c32-14eed87d46a6)
 
 ## 機能一覧
 
@@ -114,8 +115,10 @@
 
 - 開発環境はDockerによりコンテナ化
 - Socket Serverを使用してリアルタイムにsdp / candidateを交換
-- backendは、github actionsで自動テスト（Rspec、rubocop） -> ECR,ECSへの自動デプロイも実装予定
+- github actionsで自動テスト実行（Rspec、rubocop, ESLint）
 - frontendは、Amplifyによる自動デプロイ
+- backend, socket serverは、github actionsで自動デプロイ（それぞれのディレクトリで差分を検知したとき）
+- CloudWatchでエラーを監視し、Slackへ通知
 
 ## アップデート予定（追加したい機能）
 
