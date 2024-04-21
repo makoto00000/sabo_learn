@@ -1,7 +1,7 @@
 import { getCookie } from "@/app/utils/Cookie";
 import { User } from "@/app/types/User";
 
-export const getCurrentUser: () => Promise<User> = async () => {
+export const getCurrentUser: () => Promise<User | null> = async () => {
   const token = getCookie("token");
 
   try {
@@ -10,7 +10,7 @@ export const getCurrentUser: () => Promise<User> = async () => {
       headers: { Authorization: `Bearer ${token}` },
     });
     if (res.ok) {
-      const currentUser = await res.json();
+      const currentUser: {user: User} = await res.json();
       return currentUser.user;
     } else {
       return null;

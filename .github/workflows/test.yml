@@ -52,3 +52,9 @@ jobs:
         run: |
           cd backend
           bundle exec rspec
+
+      - name: eslint
+        run: |
+          cd frontend/app
+          npm install
+          npm run lint

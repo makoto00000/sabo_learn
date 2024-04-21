@@ -1,4 +1,6 @@
+const fs = require('fs');
 const { Server } = require("socket.io");
+// const { createServer } = require("https");
 const { createServer } = require("http");
 const crypto = require('crypto')
 require('dotenv').config({ debug: true });
@@ -10,6 +12,12 @@ if (process.env.NODE_ENV === 'production') {
   port = process.env.PORT
 }
 
+// const options = {
+//   key: fs.readFileSync('./localhost+2-key.pem'),
+//   cert: fs.readFileSync('./localhost+2.pem'),
+// }
+
+// const httpServer = createServer(options, (req, res) => {
 const httpServer = createServer((req, res) => {
   // リクエストのURLが/healthcheckであるかを確認
   if (req.url === '/healthcheck') {
@@ -25,6 +33,7 @@ const httpServer = createServer((req, res) => {
 const io = new Server(httpServer, {
   cors: {
     origin: origin,
+    credentials: true,
   },
   // transports: ["websocket"],
 });

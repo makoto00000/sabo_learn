@@ -23,20 +23,33 @@
           .headerNavLi {
             font-weight: bold;
             margin-right: 20px;
+            cursor: pointer;
             @media screen and (max-width: 1000px) {
               font-size: 14px;
             }
-            cursor: pointer;
             &:last-child {
               margin-right: 0;
+            }
+            a {
+              transition: 0.2s all;
+              &:hover {
+                color: #FFCC02;
+              }
             }
           }
         }
       }
       .loginButton {
         background: #ffcc02;
-        padding: 12px 36px;
+        padding: 12px 25px;
         border-radius: 20px;
+        width: 140px;
+        cursor: pointer;
+        transition: all 0.5s ease;
+        &:hover {
+          letter-spacing: 0.15em;
+          background: #ffe476;
+        }
         .loginButtonLink {
           color: #333;
           font-weight: bold;
@@ -48,6 +61,12 @@
     width: 100%;
     .sectionContainer {
       margin-bottom: 100px;
+      @media screen and (max-width: 1024px) {
+        margin-bottom: 80px;
+      }
+      @media screen and (max-width: 540px) {
+        margin-bottom: 50px;
+      }
       .sectionTitle {
         font-size: 50px;
         font-weight: bold;
@@ -56,9 +75,11 @@
         margin-bottom: 50px;
         @media screen and (max-width: 1024px) {
           font-size: 38px;
+          margin-bottom: 30px;
         }
         @media screen and (max-width: 540px) {
-          font-size: 30px;
+          font-size: 24px;
+          margin-bottom: 20px;
         }
       }
       .mainVisual {
@@ -215,7 +236,8 @@
           opacity: 0;
           transform: translateY(100px);
           width: calc((100% - 50px) / 3);
-          height: 500px;
+          // height: 500px;
+          height: 100%;
           color: #333;
           background: #fff;
           padding: 30px 50px;
@@ -224,13 +246,6 @@
           margin-right: 10px;
           @media screen and (max-width: 1440px) {
             padding: 30px 30px;
-            height: 450px;
-          }
-          @media screen and (max-width: 1024px) {
-            height: 350px;
-          }
-          @media screen and (max-width: 830px) {
-            height: 300px;
           }
           @media screen and (max-width: 768px) {
             padding: 30px 10px;
@@ -238,7 +253,6 @@
           @media screen and (max-width: 540px) {
             width: 90%;
             margin-bottom: 60px;
-            height: 400px;
           }
           &:last-child {
             margin-right: 0;
@@ -418,6 +432,10 @@
             display: flex;
             align-items: center;
             justify-content: space-between;
+            cursor: pointer;
+            &:hover .questionText {
+              color: #ffcc02;
+            }
             @media screen and (max-width: 768px) {
               padding-bottom: 10px;
             }
@@ -426,16 +444,12 @@
               font-weight: bold;
               display: flex;
               align-items: center;
-              cursor: pointer;
               transition: all 0.3s ease;
               @media screen and (max-width: 1000px) {
                 font-size: 18px;
               }
               @media screen and (max-width: 768px) {
                 font-size: 16px;
-              }
-              &:hover {
-                color: #ffcc02;
               }
               &:before {
                 content: "Q";

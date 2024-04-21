@@ -39,10 +39,7 @@ export default function ResultModal() {
   if (!isOpen) return null;
   if (isOpen)
     return (
-      <div
-        className={styles.container}
-        onClick={() => closeModal()}
-      >
+      <div className={styles.container} onClick={() => closeModal()}>
         <div className={styles.modal}>
           <h2>お疲れさまでした！</h2>
           <div className={styles.score}>
@@ -72,7 +69,8 @@ export default function ResultModal() {
                 </div>
                 <span className={styles.unit}></span>
                 <div className={styles.addCoin}>
-                  + <CountUp start={earnCoin!} end={0} delay={2} duration={1.5} />
+                  +{" "}
+                  <CountUp start={earnCoin!} end={0} delay={2} duration={1.5} />
                 </div>
               </div>
             </div>

@@ -8,9 +8,9 @@ import { useVideo } from "@/app/hooks/useVideo";
 import MusicPlayer from "./MusicPlayer";
 import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
+import { User } from "../types/User";
 
-export default function SoloRoom() {
-
+export default function SoloRoom({ currentUser }: { currentUser: User }) {
   const {
     videoFrameRef,
     videoRef,
@@ -46,35 +46,44 @@ export default function SoloRoom() {
   const [isOpen, setIsOpen] = useState<boolean>(false);
   const openModal = () => {
     setIsOpen(true);
-  }
+  };
   const closeModal = () => {
     setIsOpen(false);
-  }
+  };
 
   useEffect(() => {
-    const handleBackButton = (event: { preventDefault: () => void; }) => {
+    const handleBackButton = (event: { preventDefault: () => void }) => {
       event.preventDefault();
-      alert('Exitから退室しないと、獲得したコインが反映されません。')
+      alert("Exitから退室しないと、獲得したコインが反映されません。");
       window.history.forward();
     };
 
-    const handleBeforeUnload = (event: { preventDefault: () => void; returnValue: string; }) => {
+    const handleBeforeUnload = (event: {
+      preventDefault: () => void;
+      returnValue: string;
+    }) => {
       event.preventDefault();
-      event.returnValue = 'Exitから退室しないと、獲得したコインが反映されません。';
+      event.returnValue =
+        "Exitから退室しないと、獲得したコインが反映されません。";
     };
 
     window.history.pushState(null, "", window.location.href);
-    window.addEventListener('popstate', handleBackButton);
-    window.addEventListener('beforeunload', handleBeforeUnload);
+    window.addEventListener("popstate", handleBackButton);
+    window.addEventListener("beforeunload", handleBeforeUnload);
     return () => {
-      window.removeEventListener('popstate', handleBackButton); 
-      window.removeEventListener('beforeunload', handleBeforeUnload);
+      window.removeEventListener("popstate", handleBackButton);
+      window.removeEventListener("beforeunload", handleBeforeUnload);
     };
   }, []);
 
+  const wallpapersPath = "/wallpapers/"
+
   return (
-    <div className={styles.container}>
-      {isOpen && <ExitConfirmModal {...{closeModal, scoreTime, point}} />}
+    <div 
+    className={styles.container}
+    style={{backgroundImage: `url("${wallpapersPath}${currentUser.soloWallpaper.src}")`}}
+    >
+      {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Solo Room</h1>
@@ -113,7 +122,7 @@ export default function SoloRoom() {
           </ul>
         </nav>
       </div>
-      <MusicPlayer />
+      <MusicPlayer playlist={currentUser.playlist}/>
     </div>
   );
 }

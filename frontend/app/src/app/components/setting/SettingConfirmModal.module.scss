@@ -1,0 +1,89 @@
+.container {
+  // position: absolute;
+  width: 100vw;
+  height: 100vh;
+  max-width: 1440px;
+  max-height: 1000px;
+  z-index: 9999;
+  background: rgba($color: #000000, $alpha: 0.5);
+  font-size: 18px;
+  font-weight: bold;
+  top: 0;
+  left: 0;
+  .modal {
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    // width: 500px;
+    padding: 35px 35px;
+    border-radius: 5px;
+    background: linear-gradient(
+      180deg,
+      #121212 0%,
+      #121212 14.55%,
+      #121212 24.66%,
+      #121212 44.78%,
+      #131313 55.11%,
+      #151515 64.02%,
+      #161616 67.06%,
+      #171717 74.34%,
+      #1f1f1f 88.36%,
+      #222222 100%
+    );
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    @media screen and (max-width: 500px) {
+      width: 95%;
+      font-size: 14px;
+    }
+    h2 {
+      margin-bottom: 20px;
+    }
+    .item {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-bottom: 20px;
+      .wallpaperImage {
+        width: 100%;
+        height: auto;
+      }
+    }
+
+    .buttonContainer {
+      .cancelButton, .applyButton {
+        width: 100px;
+        height: 40px;
+        font-size: 12px;
+        border-radius: 10px;
+        transition: all 0.3s 0s ease;
+        @media screen and (max-width: 500px) {
+          width: 80px;
+          height: 30px;
+          font-size: 10px;
+        }
+      }
+      .cancelButton {
+        background: #C1C1C1;
+        color: #7D7D7D;
+      }
+      .cancelButton:hover {
+        background: #FDFDFD;
+      }
+      .applyButton {
+        margin-left: 70px;
+        background: #FFCC02;
+        color: #333333;
+        &:hover {
+          background: #FFE016;
+        }
+        &:disabled {
+          background: #C1C1C1;
+        }
+      }
+    }
+  }
+}

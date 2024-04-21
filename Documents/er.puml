@@ -1,0 +1,90 @@
+@startuml sabolearn
+' テーマ
+!theme toy
+
+' 設定
+title "Sabo Learn"
+skinparam titleBorderRoundCorner 10
+skinparam titleBorderThickness 0
+skinparam titleFontSize 22
+skinparam titleFontColor #3F3D56
+
+
+' エンティティ
+
+entity users {
++ id [PK]
+--
+  name
+  email
+  password_digest
+  birthday
+  coin
+  provider
+  uid
+# solo_wallpaper_id [FK]
+# multi_wallpaper_id [FK]
+  created_at
+  updated_at
+}
+
+entity musics {
++ id [PK]
+--
+  title
+  created_at
+  updated_at
+}
+
+entity wallpapers {
++ id [PK]
+--
+  title
+  created_at
+  updated_at
+}
+
+entity music_parchaces {
++ id [PK]
+--
+# music_id[FK]
+# user_id[FK]
+  created_at
+  updated_at
+}
+
+entity wallpaper_parchaces {
++ id [PK]
+--
+# wallpaper_id[FK]
+# user_id[FK]
+  created_at
+  updated_at
+}
+
+entity playlists {
++ id [PK]
+--
+# user_id[FK]
+  name
+  created_at
+  updated_at
+}
+
+entity playlists_musics {
++ id [PK]
+--
+# playlist_id[FK]
+# music_id[FK]
+  created_at
+  updated_at
+}
+
+' リレーション
+users ||-r-{ music_parchaces
+music_parchaces }-r-|| musics
+users ||-l-{ wallpaper_parchaces
+wallpaper_parchaces }-d-|| wallpapers
+users ||-r-{ playlists
+playlists ||-r-{ playlists_musics
+playlists_musics }-d-|| musics
