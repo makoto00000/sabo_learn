@@ -3,8 +3,8 @@ name: Deploy backend to Amazon ECS
 on:
   push:
     branches: ["main"]
-    paths:
-      - "backend/*"
+    # paths:
+    #   - "backend/*"
 
 env:
   AWS_REGION: ap-northeast-1
