@@ -1,9 +1,7 @@
 .container {
   // position: absolute;
-  width: 100vw;
-  height: 100vh;
-  max-width: 1440px;
-  max-height: 1000px;
+  width: 100%;
+  height: 100%;
   z-index: 9999;
   background: rgba($color: #000000, $alpha: 0.5);
   font-size: 18px;
@@ -11,11 +9,10 @@
   top: 0;
   left: 0;
   .modal {
-    position: absolute;
+    position: fixed;
     left: 50%;
     top: 50%;
     transform: translate(-50%, -50%);
-    // width: 500px;
     padding: 35px 35px;
     border-radius: 5px;
     background: linear-gradient(
