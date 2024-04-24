@@ -6,8 +6,8 @@ import Link from "next/link";
 import { ChangeEvent, Suspense, useState } from "react";
 import { User } from "@/app/types/User";
 import { signIn } from "next-auth/react";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading";
+import Footer from "../components/layouts/footer/Footer";
+import Loading from "../components/elements/loading/Loading";
 
 export default function Login() {
   // const [email, setEmail] = useState<User["email"]>();

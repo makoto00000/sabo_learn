@@ -1,0 +1,1 @@
+export type SideNav = "select" | "shop" | "setting";
