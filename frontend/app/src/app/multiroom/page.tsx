@@ -1,7 +1,6 @@
-
-import MultiRoom from "@/app/components/MultiRoom";
+import MultiRoom from "@/app/features/room/components/MultiRoom";
 import { getCurrentUser } from "@/app/utils/UserAPI";
-import Loading from "@/app/components/Loading";
+import Loading from "@/app/components/elements/loading/Loading";
 import { Suspense } from "react";
 
 export default async function Room() {
@@ -10,11 +9,13 @@ export default async function Room() {
   if (currentUser !== null) {
     userName = currentUser.name as string;
   }
-  
+
   return (
     <main className="main">
       {/* <Suspense fallback={<Loading />}> */}
-        {currentUser && <MultiRoom currentUser={currentUser} userName={userName}/>}
+      {currentUser && (
+        <MultiRoom currentUser={currentUser} userName={userName} />
+      )}
       {/* </Suspense> */}
     </main>
   );

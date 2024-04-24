@@ -1,22 +1,11 @@
-import Link from "next/link";
-import Image from "next/image";
 import styles from "@/app/privacy/privacy.module.scss";
-import Footer from "../components/Footer";
+import Header from "@/app/components/layouts/header/Header";
+import Footer from "@/app/components/layouts/footer/Footer";
 
 export default function Terms() {
   return (
     <div className={styles.container}>
-      <header className={styles.header}>
-        <Link href="/">
-          <Image
-            className={styles.logo}
-            src="/logo.png"
-            width={148}
-            height={35}
-            alt="logo"
-          ></Image>
-        </Link>
-      </header>
+      <Header />
       <main className={styles.mainContainer}>
         <h1 className={styles.title}>プライバシーポリシー</h1>
         <p className={styles.paragraph}>

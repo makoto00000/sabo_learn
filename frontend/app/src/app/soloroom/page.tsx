@@ -1,6 +1,6 @@
 // "use client";
 
-import SoloRoom from "@/app/components/SoloRoom";
+import SoloRoom from "@/app/features/room/components/SoloRoom";
 import { getCurrentUser } from "../utils/UserAPI";
 
 export default async function Room() {

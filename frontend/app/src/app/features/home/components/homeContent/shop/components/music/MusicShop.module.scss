@@ -1,0 +1,221 @@
+.main {
+  // overflow-y: scroll;
+  // overflow-x:hidden;
+  position: relative;
+  height: calc(100% - 60px);
+  // @media (orientation: landscape) {
+  //   height: 300px;
+  // }
+  .itemTable {
+    width: 100%;
+    padding: 50px;
+    @media screen and (max-width: 1440px) {
+      padding: 0;
+    }
+    .tableBody {
+      .item {
+        position: relative;
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        padding: 30px 50px;
+        border-top: 2px solid #2B2B2B;
+        transition: 0.2s all;
+        &:hover {
+          background: #434343;
+        }
+        &:last-child {
+          border-bottom: 2px solid #2B2B2B;
+        }
+        @media screen and (max-width: 1440px) {
+          padding: 30px 20px;
+        }
+        @media screen and (max-width: 768px) {
+          padding: 20px 10px;
+        }
+        .musicInfoData {
+          width: 40%;
+          @media screen and (max-width: 900px) {
+            width: 50%;
+          }
+          .musicInfo {
+            display: flex;
+            align-items: center;
+            .musicImage {
+              border-radius: 10px;
+              margin-right: 20px;
+              @media screen and (max-width: 900px) {
+                width: 40px;
+                height: auto;
+                margin-right: 10px;
+              }
+              @media screen and (max-width: 600px) {
+                margin-right: 5px;
+              }
+            }
+            .titleInfo {
+              .title {
+                font-size: 14px;
+                font-weight: bold;
+                @media screen and (max-width: 1440px) {
+                  font-size: 12px;
+                }
+                @media screen and (max-width: 900px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 500px) {
+                  font-size: 8px;
+                }
+              }
+              .artist {
+                font-size: 12px;
+                font-weight: bold;
+                color: #B3B3B3;
+                @media screen and (max-width: 1440px) {
+                  font-size: 10px;
+                }
+                @media screen and (max-width: 900px) {
+                  font-size: 8px;
+                }
+                @media screen and (max-width: 500px) {
+                  font-size: 6px;
+                }
+              }
+            }
+          }
+        }
+        .controlData {
+          margin-right: 10px;
+          .control {
+            display: flex;
+            align-items: center;
+            justify-self: start;
+            .playButton {
+              @media screen and (max-width: 900px) {
+                width: 15px;
+                height: auto;
+              }
+            }
+          }
+        }
+        .seekBarContainer {
+          display: flex;
+          justify-content: center;
+          align-items: center;
+          height: 15px;
+          @media screen and (max-width: 1440px) {
+            margin-right: 10px;
+          }
+          @media screen and (max-width: 900px) {
+            flex-direction: column-reverse;
+          }
+          @media screen and (max-width: 600px) {
+            display: none;
+            margin-right: 5px;
+          }
+          .time {
+            margin-right: 10px;
+            text-wrap: nowrap;
+            @media screen and (max-width: 1440px) {
+              font-size: 12px;
+            }
+            @media screen and (max-width: 900px) {
+              margin-right: 0;
+              margin-top: 5px;
+              font-size: 10px;
+            }
+          }
+          .seekBar {
+            border-radius: 2.5px;
+          }
+        }
+        .priceData {
+          .price {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            @media screen and (max-width: 1440px) {
+              font-size: 12px;
+              margin-right: 10px;
+            }
+            @media screen and (max-width: 900px) {
+              font-size: 10px;
+            }
+            .coinImage {
+              margin-right: 10px;
+              @media screen and (max-width: 1440px) {
+                width: 18px;
+                height: auto;
+              }
+              @media screen and (max-width: 900px) {
+                width: 12px;
+                height: auto;
+              }
+              @media screen and (max-width: 600px) {
+                margin-right: 5px;
+              }
+            }
+          }
+        }
+        .buyButtonData {
+          .buyButtonContainer {
+            .button {
+              padding: 10px 20px;
+              color: #000;
+              font-weight: bold;
+              font-size: 12px;
+              border-radius: 10px;
+              cursor: pointer;
+              @media screen and (max-width: 1440px) {
+                padding: 10px 5px;
+                width: 50px;
+                font-size: 10px;
+              }
+              @media screen and (max-width: 900px) {
+                width: 30px;
+                padding: 5px 0;
+                border-radius: 5px;
+                font-size: 8px;
+              }
+            }
+            .buyButton {
+              background: #FFCC02;
+              }
+            .boughtButton {
+              background: #B3B3B3;
+
+            }
+          }
+        }
+      }
+    }
+  }
+}
+
+.controller {
+  cursor: pointer;
+}
+.seekBar {
+  // 選択表示の枠を消す
+  outline: 0;
+  // ブラウザによる描画を外す
+  appearance: none;
+  -webkit-appearance: none;
+  // ボタンの設定
+  &::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none;
+    width: 20px;
+    height: 20px;
+  }
+  @media screen and (max-width: 1440px) {
+    width: 80px;
+  }
+  @media screen and (max-width: 1024px) {
+    width: 60px;
+  }
+  @media screen and (max-width: 900px) {
+    width: 100%;
+  }
+}
