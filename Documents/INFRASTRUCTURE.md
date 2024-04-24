@@ -2,7 +2,7 @@
 
 ## 構成図
 
-![インフラ構成図](https://github.com/makoto00000/sabo_learn/assets/65654634/bf91110f-7f6c-4eab-87d2-f21050a86434)
+![インフラ構成図](https://github.com/makoto00000/sabo_learn/assets/65654634/de75ef3c-dbcb-40e3-8c32-14eed87d46a6)
 
 ## 選定理由
 
@@ -35,7 +35,7 @@ Amplifyをgithubと連携しており、mainブランチにマージすると自
 ### バックエンド
 
 Github Actionsを導入しており、プルリクエスト時にテストが実行されます。テストにはRspecを導入しており、基本的なバックエンドの単体テスト、結合テストを記述しました。またRubocopも実行されるようになっており、コードの品質を担保しています。
-現在は、ECRへのpush、ECSへのデプロイが手動なので、Github Actionsを使って全て自動化させるところまで実装します。
+Backend（Rails）とSocket Serverは、それぞれのディレクトリの変更を検知し、Github Actionsで、ECRへのpushおよび、ECSへのデプロイまで自動化させました。
 
 ### シグナリングサーバー
 
@@ -43,4 +43,4 @@ WebRTCのSDP交換のためのシグナリングサーバを、Node.js × Socket
 
 ## 監視
 
-現在未実装。エラー監視ツールを導入し、いち早く不具合に対応できるようにする。
+Next.jsにsentryを導入し、エラー発生時はメール通知としました。（Slack通知は有料プランへの登録が必要だったため）backend、socket server、RDSはそれぞれCloudWatchでエラーを監視し、Slackに通知されるよう設定しました。
