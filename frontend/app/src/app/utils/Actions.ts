@@ -43,7 +43,7 @@ export async function registerPlaylist(musicIds: number[]) {
 export async function registerWallpaper(roomType: "solo" | "multi",wallpaperId: number) {
   const token = getCookie("token");
 
-  const res = await fetch(`${process.env.API_URL}/api/v1//user/wallpaper/${roomType}`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/user/wallpaper/${roomType}`, {
     method: "PUT",
     headers: {
       "Content-Type": "application/json",
@@ -62,7 +62,7 @@ export async function registerWallpaper(roomType: "solo" | "multi",wallpaperId: 
 export async function buyMusic(musicId: number) {
   const token = getCookie("token");
 
-  const res = await fetch(`${process.env.API_URL}/api/v1//user/wallpaper/${musicId}`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/user/music/${musicId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
@@ -71,6 +71,7 @@ export async function buyMusic(musicId: number) {
   });
   if (res.status === 200) {
     const data: Promise<Music> = await res.json();
+    console.log(data)
     return data;
   }
 }
@@ -78,7 +79,7 @@ export async function buyMusic(musicId: number) {
 export async function buyWallpaper(wallpaperId: number) {
   const token = getCookie("token");
 
-  const res = await fetch(`${process.env.API_URL}/api/v1//user/wallpaper/${wallpaperId}`, {
+  const res = await fetch(`${process.env.API_URL}/api/v1/user/wallpaper/${wallpaperId}`, {
     method: "POST",
     headers: {
       "Content-Type": "application/json",
