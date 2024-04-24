@@ -6,8 +6,8 @@ import { useState, useEffect, Suspense } from "react";
 import styles from "@/app/lp/lp.module.scss";
 import React from "react";
 import { useInView } from "react-intersection-observer";
-import Footer from "../components/Footer";
-import Loading from "../components/Loading";
+import Footer from "../components/layouts/footer/Footer";
+import Loading from "../components/elements/loading/Loading";
 
 export default function Lp() {
   const [feature1Ref, feature1InView] = useInView({
