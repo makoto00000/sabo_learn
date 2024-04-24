@@ -4,11 +4,13 @@ import "./styles/globals.css";
 import "ress";
 import NextAuthProvider from "./providers/NextAuth";
 import Script from "next/script";
+import { GoogleAnalytics } from '@next/third-parties/google'
 
 const sans = DM_Sans({ subsets: ["latin"] });
 const title = "SaboLlearn";
 const description = "サボりを減らして生産性を上げる作業部屋";
 const url = "https://app.sabolearn.com";
+const gaId = process.env.NEXT_PUBLIC_GA_ID || "";
 
 export const metadata: Metadata = {
   title: "SaboLearn",
@@ -49,6 +51,7 @@ export default function RootLayout({
           async={true}
         />
       </body>
+      <GoogleAnalytics gaId={gaId}/>
     </html>
   );
 }
