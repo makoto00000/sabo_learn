@@ -50,3 +50,43 @@ a {
     #222222 100%
   );
 }
+
+.popover-custom * {
+  color: #333 !important;
+}
+.popover-custom {
+  padding: 20px !important;
+}
+
+.popover-custom .driver-popover-title {
+  margin-bottom: 20px;
+}
+
+.popover-custom .driver-popover-description {
+  margin-bottom: 20px;
+}
+
+.popover-custom .driver-popover-prev-btn, .popover-custom .driver-popover-next-btn {
+  flex: 1;
+  text-align: center;
+  text-shadow: none;
+  font-size: 14px;
+  padding: 10px 8px;
+  border-radius: 6px;
+  border: 2px solid #868686;
+  transition: .2s all;
+  font-weight: bold;
+}
+
+.popover-custom .driver-popover-prev-btn {
+  margin-right: 10px;
+  background: #d3d3d3;
+}
+
+.popover-custom .driver-popover-prev-btn:hover {
+  background: #868686;
+}
+
+.popover-custom .driver-popover-next-btn:hover {
+  background: #FFCC02;
+}

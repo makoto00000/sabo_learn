@@ -8,6 +8,8 @@ import Sidebar from "@/app/features/home/components/sideNav/Sidebar";
 import Shop from "@/app/features/home/components/homeContent/shop/Shop";
 import Setting from "./setting/Setting";
 import useSideNav from "../sideNav/hooks/useSideNav";
+import "driver.js/dist/driver.css";
+import WelcomeModal from "@/app/features/home/components/homeContent/welcomeModal/WelcomeModal";
 
 export default function HomeContent({
   currentUser,
@@ -23,6 +25,7 @@ export default function HomeContent({
   if (currentUser !== null && wallpapers !== null && musics !== null) {
     return (
       <div className={`${styles.container} background`}>
+        <WelcomeModal />
         <Sidebar handleComponent={sideNavProps.handleComponent} />
         <div className={styles.mainContent}>
           <div className={styles.userInfoContainer}>
