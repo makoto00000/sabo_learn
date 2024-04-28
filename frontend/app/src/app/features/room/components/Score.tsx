@@ -6,38 +6,38 @@ import Image from "next/image";
 import { getTimeStringFromSeconds } from "@/app/utils/Format";
 
 type ScoreProps = {
-  scoreTime: number,
-  point: number,
-  getPointRef: LegacyRef<HTMLSpanElement>,
-  showAnimation: boolean,
-  isStudyingRef: MutableRefObject<boolean>,
-}
+  scoreTime: number;
+  point: number;
+  getPointRef: LegacyRef<HTMLSpanElement>;
+  showAnimation: boolean;
+  isStudying: boolean;
+  // isStudyingRef: MutableRefObject<boolean>,
+};
 
 export default function Score({
   scoreTime,
   point,
   getPointRef,
   showAnimation,
-  isStudyingRef,
-}: ScoreProps) {
-
+  isStudying,
+}: // isStudyingRef,
+ScoreProps) {
   const scoreTimeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
-    const handleTimer = ()=> {
-      if (isStudyingRef.current) {
-        scoreTimeRef.current!.style.color = "#ffffff"
+    const handleTimer = () => {
+      if (isStudying) {
+        scoreTimeRef.current!.style.color = "#ffffff";
       } else {
-        scoreTimeRef.current!.style.color = "#C00000"
+        scoreTimeRef.current!.style.color = "#C00000";
       }
-    }
+    };
     handleTimer();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [isStudyingRef.current!])
+  }, [isStudying]);
 
   return (
     <div className={styles.record}>
       <div className={styles.time} ref={scoreTimeRef}>
-        Time{" "}{getTimeStringFromSeconds(scoreTime)}
+        Time {getTimeStringFromSeconds(scoreTime)}
       </div>
       <div className={styles.point}>
         <Image

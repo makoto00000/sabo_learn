@@ -1,0 +1,35 @@
+.container {
+  width: 100%;
+  max-width: 400px;
+  .loginButton {
+    margin: 0 auto;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #ffcc02;
+    color: #333;
+    padding: 8px 0;
+    width: 200px;
+    border-radius: 100px;
+    font-size: 18px;
+    font-weight: bold;
+    transition: all 0.5s ease;
+    animation: button 1s ease infinite alternate-reverse;
+    @media screen and (max-width: 768px) {
+      font-size: 14px;
+      padding: 6px 0;
+    }
+    &:hover {
+      background: #ffe476;
+    }
+    .doorIcon {
+      margin-left: 8px;
+    }
+  }
+}
+
+@keyframes button{
+  100%{
+    letter-spacing: 0.10em;
+  }
+}

@@ -20,6 +20,8 @@ export function useVideo() {
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const isConnectingRef = useRef<boolean>(false);
 
+  const [isPlayVideo, setIsPlayVideo] = useState<boolean | null>(null);
+
   // onMove onStop の中でisConnectingを反映させるため、stateとrefを組み合わせる
   const handleIsConnecting = useCallback((isConnecting: boolean) => {
     setIsConnecting(isConnecting);
@@ -31,7 +33,7 @@ export function useVideo() {
   }, [isConnecting]);
 
   // サボっていると判定される秒数
-  const saboJudgementTime = 30;
+  const saboJudgementTime = 1;
 
   const {
     scoreTime,
@@ -93,11 +95,14 @@ export function useVideo() {
             if (video) {
               video.srcObject = stream;
               video.play();
+              setIsPlayVideo(true);
               await successCallback(stream);
             }
           })
           .catch((error) => {
             errorCallback(error);
+            console.log("ユーザーに拒否されました")
+            setIsPlayVideo(false);
           });
       }
     }
@@ -206,7 +211,7 @@ export function useVideo() {
     canvasRef,
     statusRef,
     time,
-    isStudyingRef,
+    // isStudyingRef,
     isStudying,
     handleIsConnecting,
     isConnecting,
@@ -215,5 +220,6 @@ export function useVideo() {
     getPointRef,
     showAnimation,
     stopTimer,
+    isPlayVideo,
   };
 }

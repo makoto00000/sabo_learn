@@ -4,6 +4,7 @@ import { getCurrentUser } from "@/app/utils/UserAPI";
 import { getWallpapers } from "./utils/wallpaperAPI";
 import { getMusics } from "./utils/MusicAPI";
 import React from "react";
+import Loading from "./features/room/components/Loading";
 
 export default async function Home() {
   const currentUser = await getCurrentUser();

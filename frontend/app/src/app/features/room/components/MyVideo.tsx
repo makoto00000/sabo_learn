@@ -8,7 +8,7 @@ type MyVideoProps = {
   videoRef: RefObject<HTMLVideoElement>;
   canvasRef: RefObject<HTMLCanvasElement>;
   statusRef: RefObject<HTMLParagraphElement>;
-  time: number;
+  // time: number;
 };
 
 export default function MyVideo({
@@ -16,7 +16,7 @@ export default function MyVideo({
   videoRef,
   canvasRef,
   statusRef,
-  time,
+  // time,
 }:MyVideoProps) {
 
   return (

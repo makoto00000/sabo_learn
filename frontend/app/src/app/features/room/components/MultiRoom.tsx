@@ -9,6 +9,7 @@ import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
 import MultiVideo from "./MultiVideo";
 import { User } from "../../../types/User";
+import Loading from "./Loading";
 
 export default function MultiRoom({
   currentUser,
@@ -22,7 +23,7 @@ export default function MultiRoom({
     videoRef,
     canvasRef,
     statusRef,
-    isStudyingRef,
+    // isStudyingRef,
     isStudying,
     scoreTime,
     point,
@@ -30,6 +31,7 @@ export default function MultiRoom({
     showAnimation,
     handleIsConnecting,
     // isConnecting,
+    isPlayVideo,
   } = useVideo();
 
   const MyVideoProps = {
@@ -49,7 +51,7 @@ export default function MultiRoom({
     getPointRef: getPointRef,
     showAnimation: showAnimation,
     isStudying: isStudying,
-    isStudyingRef: isStudyingRef,
+    // isStudyingRef: isStudyingRef,
   };
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -94,6 +96,7 @@ export default function MultiRoom({
         backgroundImage: `url("${wallpapersPath}${currentUser.multiWallpaper.src}")`,
       }}
     >
+      <Loading isPlayVideo={isPlayVideo}/>
       {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
