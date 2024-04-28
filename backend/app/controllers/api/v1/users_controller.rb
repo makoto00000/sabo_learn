@@ -127,6 +127,7 @@ class Api::V1::UsersController < ApplicationController
     register_wallpaper('multi')
   end
 
+  # 新規登録者のフラグを外す
   def change_false_is_new_user
     @current_user.update(is_new_user: false)
     render json: { user: @current_user }, status: :ok if @current_user.save!
