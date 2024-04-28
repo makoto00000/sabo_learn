@@ -42,7 +42,7 @@ export default function UserInfo({ name, coin }: User) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.userInfoContainer} onClick={() => toggleOpen()}>
+      <div className={styles.userInfoContainer} onClick={() => toggleOpen()} id={"userInfo"}>
         <div className={styles.userImageBg}>
           <Image
             className={styles.userImage}

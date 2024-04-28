@@ -44,7 +44,7 @@ entity wallpapers {
   updated_at
 }
 
-entity music_parchaces {
+entity music_purchases {
 + id [PK]
 --
 # music_id[FK]
@@ -53,7 +53,7 @@ entity music_parchaces {
   updated_at
 }
 
-entity wallpaper_parchaces {
+entity wallpaper_purchases {
 + id [PK]
 --
 # wallpaper_id[FK]
@@ -81,10 +81,10 @@ entity playlists_musics {
 }
 
 ' リレーション
-users ||-r-{ music_parchaces
-music_parchaces }-r-|| musics
-users ||-l-{ wallpaper_parchaces
-wallpaper_parchaces }-d-|| wallpapers
+users ||-r-{ music_purchases
+music_purchases }-r-|| musics
+users ||-l-{ wallpaper_purchases
+wallpaper_purchases }-d-|| wallpapers
 users ||-r-{ playlists
 playlists ||-r-{ playlists_musics
 playlists_musics }-d-|| musics

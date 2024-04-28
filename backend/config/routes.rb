@@ -9,14 +9,15 @@ Rails.application.routes.draw do
       get '/user', to: 'users#current_user'
       put '/user/coin', to: 'users#add_coin'
       post '/login', to: 'authentication#login'
-      get '/user/musics', to: 'users#parchace_musics'
-      get '/user/wallpapers', to: 'users#parchace_wallpapers'
+      get '/user/musics', to: 'users#purchase_musics'
+      get '/user/wallpapers', to: 'users#purchase_wallpapers'
       post '/user/music/:id', to: 'users#buy_music'
       post '/user/wallpaper/:id', to: 'users#buy_wallpaper'
       get '/user/playlist', to: 'users#playlist'
       put '/user/playlist', to: 'users#register_playlist'
       put '/user/wallpaper/solo', to: 'users#register_solo_wallpaper'
       put '/user/wallpaper/multi', to: 'users#register_multi_wallpaper'
+      put '/user/isNewUser', to: 'users#change_false_is_new_user'
 
     end
   end

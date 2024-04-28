@@ -13,12 +13,16 @@ export function useWebRTC({
   // isStudying,
   handleIsConnecting,
   userName,
+  enterRoomSoundRef,
+  exitRoomSoundRef,
 }: {
   canvasRef: RefObject<HTMLCanvasElement>;
   handleIsConnecting: (isConnecting: boolean) => void;
   // isConnecting: boolean;
   // isStudying: boolean;
   userName: string;
+  enterRoomSoundRef: RefObject<HTMLAudioElement>,
+  exitRoomSoundRef: RefObject<HTMLAudioElement>,
 }) {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const peerConnections = useRef<{
@@ -64,6 +68,9 @@ export function useWebRTC({
               // isStudying={isStudying}
             />
           );
+          if (enterRoomSoundRef.current) {
+            enterRoomSoundRef.current.play();
+          }
         }
       }
     };
@@ -233,6 +240,9 @@ export function useWebRTC({
       const elementToRemove = document.getElementById(socketId);
       if (elementToRemove) {
         elementToRemove.remove();
+        if (exitRoomSoundRef.current) {
+          exitRoomSoundRef.current.play();
+        }
       }
     }
   });
@@ -240,7 +250,6 @@ export function useWebRTC({
   const connect = useCallback(() => {
     if (!isConnectRequested) {
       socket.emit("getRoomSize", (roomSize: number) => {
-        // console.log(`Room has ${roomSize} connections.`);
         if (roomSize === 1) {
           return;
         } else {

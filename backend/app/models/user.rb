@@ -2,10 +2,10 @@
 
 class User < ApplicationRecord
 
-  has_many :music_parchaces, dependent: :destroy
-  has_many :musics, through: :music_parchaces
-  has_many :wallpaper_parchaces, dependent: :destroy
-  has_many :wallpapers, through: :wallpaper_parchaces
+  has_many :music_purchases, dependent: :destroy
+  has_many :musics, through: :music_purchases
+  has_many :wallpaper_purchases, dependent: :destroy
+  has_many :wallpapers, through: :wallpaper_purchases
   has_one :playlist, dependent: :destroy
   belongs_to :solo_wallpaper, class_name: 'Wallpaper', optional: true
   belongs_to :multi_wallpaper, class_name: 'Wallpaper', optional: true

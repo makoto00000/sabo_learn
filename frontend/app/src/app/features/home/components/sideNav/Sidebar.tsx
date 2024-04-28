@@ -33,7 +33,7 @@ export default function Sidebar({
           ></Image>
           <a>Room</a>
         </li>
-        <li onClick={() => handleComponent("shop")}>
+        <li onClick={() => handleComponent("shop")} id={"shop"}>
           <Image
             className={styles.listIcon}
             src="/store_icon.png"
@@ -43,7 +43,7 @@ export default function Sidebar({
           ></Image>
           <a>Shop</a>
         </li>
-        <li onClick={() => handleComponent("setting")}>
+        <li onClick={() => handleComponent("setting")} id={"setting"}>
           <Image
             className={styles.listIcon}
             src="/setting_icon.png"

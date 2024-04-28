@@ -8,7 +8,6 @@ type MyVideoProps = {
   videoRef: RefObject<HTMLVideoElement>;
   canvasRef: RefObject<HTMLCanvasElement>;
   statusRef: RefObject<HTMLParagraphElement>;
-  time: number;
 };
 
 export default function MyVideo({
@@ -16,7 +15,6 @@ export default function MyVideo({
   videoRef,
   canvasRef,
   statusRef,
-  time,
 }:MyVideoProps) {
 
   return (
@@ -30,8 +28,6 @@ export default function MyVideo({
               className={styles.myVideo}
               width={346}
               height={346}
-              // width={320}
-              // height={346}
               autoPlay
               muted
               playsInline
@@ -40,10 +36,8 @@ export default function MyVideo({
             <canvas
               ref={canvasRef}
               className={styles.mosaicVideo}
-              // width={320}
-              // height={348}
-              width={348}
-              height={348}
+              width={346}
+              height={346}
               style={{filter: "blur(10px)"}}
             ></canvas>
           </div>

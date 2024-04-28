@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :wallpaper_parchace do
+  factory :wallpaper_purchase do
     user { nil }
     wallpaper { nil }
   end

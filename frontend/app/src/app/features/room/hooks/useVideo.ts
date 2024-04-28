@@ -20,6 +20,8 @@ export function useVideo() {
   const [isConnecting, setIsConnecting] = useState<boolean>(false);
   const isConnectingRef = useRef<boolean>(false);
 
+  const [isPlayVideo, setIsPlayVideo] = useState<boolean | null>(null);
+
   // onMove onStop の中でisConnectingを反映させるため、stateとrefを組み合わせる
   const handleIsConnecting = useCallback((isConnecting: boolean) => {
     setIsConnecting(isConnecting);
@@ -31,7 +33,7 @@ export function useVideo() {
   }, [isConnecting]);
 
   // サボっていると判定される秒数
-  const saboJudgementTime = 30;
+  const saboJudgementTime = 1;
 
   const {
     scoreTime,
@@ -83,7 +85,7 @@ export function useVideo() {
             frameRate: 3,
             width: 346,
             height: 346,
-            // width: { ideal: 320 },
+            // width: { ideal: 346 },
             // height: { ideal: 346 },
           },
         };
@@ -93,19 +95,17 @@ export function useVideo() {
             if (video) {
               video.srcObject = stream;
               video.play();
-              await successCallback(stream);
+              setIsPlayVideo(true);
+              await successCallback();
             }
           })
           .catch((error) => {
             errorCallback(error);
+            console.log("ユーザーに拒否されました")
+            setIsPlayVideo(false);
           });
       }
     }
-
-    // const script = document.createElement("script");
-    // script.src = "https://docs.opencv.org/3.4.0/opencv.js";
-    // script.async = true;
-    // document.body.appendChild(script);
 
     return () => {
       if (video && video.srcObject) {
@@ -119,9 +119,8 @@ export function useVideo() {
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  async function successCallback(stream: MediaStream) {
+  async function successCallback() {
     const video = videoRef.current;
-    const status = statusRef.current;
     const fps = 1;
     if (video) {
       video.oncanplay = () => {
@@ -154,7 +153,7 @@ export function useVideo() {
   }
 
   const stopTimer = useCallback(() => {
-    // isRunningRef.current = false;
+    isRunningRef.current = false;
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -173,7 +172,7 @@ export function useVideo() {
             setIsStudying(false);
             statusRef.current.innerText = "Sabo?";
             statusRef.current.style.color = "#D00000";
-            videoFrameRef.current.style.border = "6px solid #D00000";
+            videoFrameRef.current.style.borderColor = "#D00000";
             stopScoreTimer();
             stopTimer();
           }
@@ -190,7 +189,7 @@ export function useVideo() {
     if (statusRef.current && videoFrameRef.current) {
       statusRef.current.innerText = "Studying";
       statusRef.current.style.color = "#00F143";
-      videoFrameRef.current.style.border = "6px solid #00F143";
+      videoFrameRef.current.style.borderColor = "#00F143";
     }
     if (!isStudyingRef.current) {
       startScoreTimer();
@@ -206,7 +205,6 @@ export function useVideo() {
     canvasRef,
     statusRef,
     time,
-    isStudyingRef,
     isStudying,
     handleIsConnecting,
     isConnecting,
@@ -215,5 +213,6 @@ export function useVideo() {
     getPointRef,
     showAnimation,
     stopTimer,
+    isPlayVideo,
   };
 }

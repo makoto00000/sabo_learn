@@ -7,7 +7,7 @@ export function useScoreTimer() {
   const [point, setPoint] = useState<number>(0);
   const getPointRef = useRef<HTMLSpanElement>(null);
   const [showAnimation, setShowAnimation] = useState<boolean>(false);
-  const isRunningRef = useRef<boolean>(false);
+  // const isRunningRef = useRef<boolean>(false);
   const intervalRef = useRef<NodeJS.Timeout | null>(null);
 
   // 60秒ごとにポイント獲得
@@ -23,7 +23,7 @@ export function useScoreTimer() {
   }, []);
 
   const startScoreTimer = useCallback(() => {
-    isRunningRef.current = true;
+    // isRunningRef.current = true;
     if (intervalRef) {
       intervalRef.current = setInterval(() => {
         setScoreTime((prevTime) => prevTime + 1);
@@ -39,7 +39,7 @@ export function useScoreTimer() {
   }, []);
 
   const stopScoreTimer = useCallback(() => {
-    isRunningRef.current = false;
+    // isRunningRef.current = false;
     if (intervalRef.current) {
       clearInterval(intervalRef.current);
       intervalRef.current = null;
@@ -56,12 +56,10 @@ export function useScoreTimer() {
 
   return {
     scoreTime,
-    startScoreTimer,
-    stopScoreTimer,
     point,
     getPointRef,
     showAnimation,
-    isRunningRef,
-    intervalRef,
+    startScoreTimer,
+    stopScoreTimer,
   };
 }
