@@ -23,6 +23,12 @@ const cards = [
     image: "/lp/feature_card3.png",
     text: "作業時間に応じてポイントを付与します。このポイントは、音楽や壁紙の購入に使用できます。",
   },
+  {
+    id: 4,
+    title: "自動マッチング",
+    image: "/lp/feature_card4.png",
+    text: "Multi Roomでは、どこかの誰かと自動的にマッチング。入室/退室時には音でお知らせします。",
+  },
 ];
 
 const Carousel = () => {
