@@ -1,5 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate, only: %i[current_user add_coin parchace_musics parchace_wallpapers buy_music buy_wallpaper playlist register_playlist register_solo_wallpaper register_multi_wallpaper]
+  before_action :authenticate, only: %i[current_user add_coin purchase_musics purchase_wallpapers buy_music buy_wallpaper playlist register_playlist register_solo_wallpaper register_multi_wallpaper]
 
   def create
     @user = User.new(user_params)
@@ -47,7 +47,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # ユーザーが購入済みの音楽一覧を返す
-  def parchace_musics
+  def purchase_musics
     if @current_user
       render json: { musics: @current_user.musics }
     else
@@ -56,7 +56,7 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # ユーザーが購入済みの背景一覧を返す
-  def parchace_wallpapers
+  def purchase_wallpapers
     if @current_user
       render json: { wallpapers: @current_user.wallpapers }
     else

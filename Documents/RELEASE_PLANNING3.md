@@ -39,7 +39,7 @@
 ### テーブル定義書
 
 - usersテーブルに`solo_wallpaper_id`,`multi_wallpaper_id`を追加
-- テーブル `musics`,`walpapers`,`music_parchaces`,`wallpaper_parchaces`,`playlists`,`playlists_musics`を追加
+- テーブル `musics`,`walpapers`,`music_purchases`,`wallpaper_purchases`,`playlists`,`playlists_musics`を追加
 
 #### users
 
@@ -81,21 +81,21 @@
 | created_at | 作成日時       | datetime |      |      | ◯       |       |         |
 | updated_at | 更新日時       | datetime |      |      | ◯       |       |         |
 
-#### music_parchaces
+#### music_purchases
 
 | カラム名   | 意味              | データ型 | PK   | FK   | NOT NULL | INDEX | DEFAULT |
 | :--------- | :---------------- | :------- | :--- | :--- | :------- | :---- | :------ |
-| id         | music_parchace ID | bigint   | ◯   |      | ◯       | ◯    |         |
+| id         | music_purchase ID | bigint   | ◯   |      | ◯       | ◯    |         |
 | music_id   | music ID          | bigint   |      | ◯   | ◯       | ◯    |         |
 | user_id    | user ID           | bigint   |      | ◯   | ◯       | ◯    |         |
 | created_at | 作成日時          | datetime |      |      | ◯       |       |         |
 | updated_at | 更新日時          | datetime |      |      | ◯       |       |         |
 
-#### wallpaper_parchaces
+#### wallpaper_purchases
 
 | カラム名     | 意味                  | データ型 | PK   | FK   | NOT NULL | INDEX | DEFAULT |
 | :----------- | :-------------------- | :------- | :--- | :--- | :------- | :---- | :------ |
-| id           | wallpaper_parchace ID | bigint   | ◯   |      | ◯       | ◯    |         |
+| id           | wallpaper_purchase ID | bigint   | ◯   |      | ◯       | ◯    |         |
 | wallpaper_id | wallpaper ID          | bigint   |      | ◯   | ◯       | ◯    |         |
 | user_id      | user ID               | bigint   |      | ◯   | ◯       | ◯    |         |
 | created_at   | 作成日時              | datetime |      |      | ◯       |       |         |

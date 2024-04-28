@@ -1,4 +1,4 @@
-class MusicParchace < ApplicationRecord
+class MusicPurchase < ApplicationRecord
   belongs_to :user
   belongs_to :music
 end

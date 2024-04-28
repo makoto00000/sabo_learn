@@ -1,5 +1,5 @@
 FactoryBot.define do
-  factory :music_parchace do
+  factory :music_purchase do
     user { nil }
     music { nil }
   end

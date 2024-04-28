@@ -85,7 +85,7 @@ RSpec.describe 'UsersController' do
     end
   end
 
-  describe '#parchace_musics' do
+  describe '#purchase_musics' do
     context '認証成功' do
       it 'ユーザーが購入した音楽の一覧が返される' do
         get(api_v1_user_musics_path, headers: header)
@@ -103,7 +103,7 @@ RSpec.describe 'UsersController' do
     end
   end
 
-  describe '#parchace_wallpapers' do
+  describe '#purchase_wallpapers' do
     context '認証成功' do
       it 'ユーザーが購入した壁紙の一覧が返される' do
         get(api_v1_user_wallpapers_path, headers: header)

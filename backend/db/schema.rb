@@ -10,14 +10,14 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_15_050408) do
-  create_table "music_parchaces", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+ActiveRecord::Schema[7.1].define(version: 2024_04_28_081156) do
+  create_table "music_purchases", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "music_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["music_id"], name: "index_music_parchaces_on_music_id"
-    t.index ["user_id"], name: "index_music_parchaces_on_user_id"
+    t.index ["music_id"], name: "index_music_purchases_on_music_id"
+    t.index ["user_id"], name: "index_music_purchases_on_user_id"
   end
 
   create_table "musics", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -61,18 +61,19 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_050408) do
     t.string "uid"
     t.bigint "solo_wallpaper_id"
     t.bigint "multi_wallpaper_id"
+    t.boolean "is_new_user", default: false, null: false
     t.index ["multi_wallpaper_id"], name: "index_users_on_multi_wallpaper_id"
     t.index ["name", "email"], name: "index_users_on_name_and_email", unique: true
     t.index ["solo_wallpaper_id"], name: "index_users_on_solo_wallpaper_id"
   end
 
-  create_table "wallpaper_parchaces", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
+  create_table "wallpaper_purchases", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "wallpaper_id", null: false
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
-    t.index ["user_id"], name: "index_wallpaper_parchaces_on_user_id"
-    t.index ["wallpaper_id"], name: "index_wallpaper_parchaces_on_wallpaper_id"
+    t.index ["user_id"], name: "index_wallpaper_purchases_on_user_id"
+    t.index ["wallpaper_id"], name: "index_wallpaper_purchases_on_wallpaper_id"
   end
 
   create_table "wallpapers", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
@@ -85,13 +86,13 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_15_050408) do
     t.boolean "is_default_multi", default: false
   end
 
-  add_foreign_key "music_parchaces", "musics"
-  add_foreign_key "music_parchaces", "users"
+  add_foreign_key "music_purchases", "musics"
+  add_foreign_key "music_purchases", "users"
   add_foreign_key "playlist_musics", "musics"
   add_foreign_key "playlist_musics", "playlists"
   add_foreign_key "playlists", "users"
   add_foreign_key "users", "wallpapers", column: "multi_wallpaper_id"
   add_foreign_key "users", "wallpapers", column: "solo_wallpaper_id"
-  add_foreign_key "wallpaper_parchaces", "users"
-  add_foreign_key "wallpaper_parchaces", "wallpapers"
+  add_foreign_key "wallpaper_purchases", "users"
+  add_foreign_key "wallpaper_purchases", "wallpapers"
 end
