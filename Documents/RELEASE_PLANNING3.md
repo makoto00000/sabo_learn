@@ -53,6 +53,7 @@
 | coin               | コイン                | int      |      |      | ◯       |       | 0       |
 | provider           | SNS認証プロバイダー名 | string   |      |      |          |       |         |
 | uid                | SNS認証ID             | string   |      |      |          |       |         |
+| is_new_user        | 新規登録者か          | boolean  |      |      | ◯       |       | true    |
 | solo_wallpaper_id  | solo room背景画像     | bigint   |      | ◯   | ◯       | ◯    | 1       |
 | multi_wallpaper_id | multi room背景画像    | bigint   |      | ◯   | ◯       | ◯    | 2       |
 | created_at         | 作成日時              | datetime |      |      | ◯       |       |         |
