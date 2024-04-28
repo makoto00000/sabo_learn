@@ -240,7 +240,6 @@ export function useWebRTC({
   const connect = useCallback(() => {
     if (!isConnectRequested) {
       socket.emit("getRoomSize", (roomSize: number) => {
-        // console.log(`Room has ${roomSize} connections.`);
         if (roomSize === 1) {
           return;
         } else {

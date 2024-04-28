@@ -17,14 +17,12 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
     videoRef,
     canvasRef,
     statusRef,
-    // isStudyingRef,
     isStudying,
     scoreTime,
     point,
     getPointRef,
     showAnimation,
     handleIsConnecting,
-    // time,
     isPlayVideo,
   } = useVideo();
 
@@ -35,7 +33,6 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
     statusRef: statusRef,
     isStudying: isStudying,
     handleIsConnecting: handleIsConnecting,
-    // time: time,
   };
 
   const ScoreProps = {
@@ -44,7 +41,6 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
     getPointRef: getPointRef,
     showAnimation: showAnimation,
     isStudying: isStudying,
-    // isStudyingRef: isStudyingRef,
   };
 
   const [isOpen, setIsOpen] = useState<boolean>(false);

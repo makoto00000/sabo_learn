@@ -11,7 +11,6 @@ type ScoreProps = {
   getPointRef: LegacyRef<HTMLSpanElement>;
   showAnimation: boolean;
   isStudying: boolean;
-  // isStudyingRef: MutableRefObject<boolean>,
 };
 
 export default function Score({
@@ -20,7 +19,7 @@ export default function Score({
   getPointRef,
   showAnimation,
   isStudying,
-}: // isStudyingRef,
+}:
 ScoreProps) {
   const scoreTimeRef = useRef<HTMLDivElement>(null);
   useEffect(() => {
@@ -48,7 +47,6 @@ ScoreProps) {
           alt="coinIcon"
         ></Image>
         <span className={styles.coinCount}>{point}</span>
-        {/* <span className={styles.coinUnit}>sp</span> */}
         {showAnimation && (
           <span className={styles.plusCoin} ref={getPointRef}>
             +100
