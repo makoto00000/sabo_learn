@@ -3,6 +3,7 @@
 import styles from "@/app/features/home/components/homeContent/welcomeModal/WelcomeModal.module.scss";
 import { useState } from "react";
 import { driver } from "driver.js";
+import { changeFalseIsNewUser } from "@/app/utils/Actions";
 
 const driverObj = driver({
   allowClose: false,
@@ -71,20 +72,30 @@ const driverObj = driver({
   ],
 });
 
-export default function WelcomeModal() {
+export default function WelcomeModal({isNewUser}:{isNewUser: boolean}) {
   const [isOpen, setIsOpen] = useState(true);
 
   const closeModal = () => {
     setIsOpen(false);
+    handleChangeFalseIsNewUserAction();
   };
 
   const startDrive = () => {
     closeModal();
     driverObj.drive();
+    handleChangeFalseIsNewUserAction();
   };
 
-  if (!isOpen) return null;
-  if (isOpen)
+  const handleChangeFalseIsNewUserAction = async () => {
+    try {
+      await changeFalseIsNewUser();
+    } catch (error) {
+      console.log(error)
+    }
+  }
+
+  if (!isOpen || !isNewUser) return null;
+  if (isOpen && isNewUser)
     return (
       <div className={styles.container}>
         <div className={styles.modal}>

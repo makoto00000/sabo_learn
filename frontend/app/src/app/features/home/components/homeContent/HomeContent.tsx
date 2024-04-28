@@ -25,7 +25,7 @@ export default function HomeContent({
   if (currentUser !== null && wallpapers !== null && musics !== null) {
     return (
       <div className={`${styles.container} background`}>
-        <WelcomeModal />
+        <WelcomeModal isNewUser={currentUser.isNewUser} />
         <Sidebar handleComponent={sideNavProps.handleComponent} />
         <div className={styles.mainContent}>
           <div className={styles.userInfoContainer}>

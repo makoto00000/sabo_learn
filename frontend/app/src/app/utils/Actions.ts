@@ -2,7 +2,7 @@
 
 import { redirect } from "next/navigation";
 import { getCookie } from "./Cookie";
-import { Music, Wallpaper } from "../types/User";
+import { Music, User, Wallpaper } from "../types/User";
 
 export async function addCoinAction(time: number, coin: number) {
   const token = getCookie("token");
@@ -88,6 +88,22 @@ export async function buyWallpaper(wallpaperId: number) {
   });
   if (res.status === 200) {
     const data: Promise<Wallpaper> = await res.json();
+    return data;
+  }
+}
+
+export async function changeFalseIsNewUser() {
+  const token = getCookie("token");
+
+  const res = await fetch(`${process.env.API_URL}/api/v1/user/isNewUser`, {
+    method: "PUT",
+    headers: {
+      "Content-Type": "application/json",
+      Authorization: `Bearer ${token}`,
+    },
+  });
+  if (res.status === 200) {
+    const data: Promise<User> = await res.json();
     return data;
   }
 }
