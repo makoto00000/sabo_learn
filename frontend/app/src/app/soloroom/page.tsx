@@ -8,9 +8,7 @@ export default async function Room() {
 
   return (
     <main className="main">
-      {/* <Suspense fallback={<Loading />}> */}
       {currentUser && <SoloRoom currentUser={currentUser} />}
-      {/* </Suspense> */}
     </main>
   );
 }

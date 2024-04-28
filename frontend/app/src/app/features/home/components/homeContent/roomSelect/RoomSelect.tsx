@@ -6,7 +6,7 @@ export default function RoomSelect() {
 
   return (
     <div className={styles.selectContainer}>
-      <div className={styles.solo}>
+      <div className={styles.solo} id={"solo"}>
         <Link href="/soloroom">
           <Image
             className={styles.soloImage}
@@ -26,7 +26,7 @@ export default function RoomSelect() {
           </p>
         </Link>
       </div>
-      <div className={styles.multi}>
+      <div className={styles.multi} id={"multi"}>
         <Link href="/multiroom">
           {/* <div className={styles.musk}>開 発 中</div> */}
           <Image

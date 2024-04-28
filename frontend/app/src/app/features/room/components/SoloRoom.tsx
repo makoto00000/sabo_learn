@@ -8,7 +8,8 @@ import { useVideo } from "@/app/features/room/hooks/useVideo";
 import MusicPlayer from "./MusicPlayer";
 import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
-import { User } from "../../../types/User";
+import { User } from "@/app/types/User";
+import Loading from "./Loading";
 
 export default function SoloRoom({ currentUser }: { currentUser: User }) {
   const {
@@ -16,14 +17,13 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
     videoRef,
     canvasRef,
     statusRef,
-    isStudyingRef,
     isStudying,
     scoreTime,
     point,
     getPointRef,
     showAnimation,
     handleIsConnecting,
-    time,
+    isPlayVideo,
   } = useVideo();
 
   const MyVideoProps = {
@@ -33,7 +33,6 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
     statusRef: statusRef,
     isStudying: isStudying,
     handleIsConnecting: handleIsConnecting,
-    time: time,
   };
 
   const ScoreProps = {
@@ -42,7 +41,6 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
     getPointRef: getPointRef,
     showAnimation: showAnimation,
     isStudying: isStudying,
-    isStudyingRef: isStudyingRef,
   };
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -88,6 +86,7 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
       }}
     >
       {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
+      <Loading isPlayVideo={isPlayVideo}/>
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Solo Room</h1>

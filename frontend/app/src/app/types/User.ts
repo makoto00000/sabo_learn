@@ -12,6 +12,7 @@ export type User = {
   multiWallpaper: Wallpaper;
   notSetMusics: Music[];
   playlist: Music[];
+  isNewUser: boolean;
 };
 
 export type Wallpaper = {

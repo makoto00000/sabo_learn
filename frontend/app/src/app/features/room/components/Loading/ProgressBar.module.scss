@@ -1,0 +1,37 @@
+.progressbar{
+  height: 26px;
+  width: 300px;
+  background: #CFCFCF;
+  border-radius: 10px;
+  padding: 2px;
+  position: relative;
+}
+.loading{
+  transition: all 500ms ease;
+  height: 20px;
+  width: calc(100% - 10px);
+  border-radius: 8px;
+  background: #474747;
+  margin: 3px;
+  display: inline-block;
+  animation: load 10s;
+  position: absolute;
+  top: 0;
+  left: 0;
+}
+
+.load{
+  font-family: Arial;
+  font-weight: bold;
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+@keyframes load{
+  0%{
+    width: 2%;
+  }
+  10%{
+    width: 10%;
+  }
+}
