@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject } from "react";
+import { RefObject, useRef } from "react";
 import styles from "./MyVideo.module.scss";
 import React from "react";
 import { getTimeStringFromSeconds } from "@/app/utils/Format";
@@ -27,13 +27,20 @@ const MultiVideo = ({
   // isStudying, 
   userName,
 }: MyVideoProps) => {
+
+  const enterRoomSoundRef = useRef<HTMLAudioElement>(null);
+  const exitRoomSoundRef = useRef<HTMLAudioElement>(null);
+
   const { videoContainerRef, connect } = useWebRTC({
     canvasRef,
     handleIsConnecting,
     // isConnecting,
     // isStudying,
     userName,
+    enterRoomSoundRef,
+    exitRoomSoundRef,
   });
+
 
   return (
     <div className={styles.videoContainer} ref={videoContainerRef}>
@@ -67,6 +74,8 @@ const MultiVideo = ({
           {/* {getTimeStringFromSeconds(time)} */}
         </div>
       </div>
+      <audio src="/multiroom/enter_room.mp3" ref={enterRoomSoundRef}></audio>
+      <audio src="/multiroom/exit_room.mp3" ref={exitRoomSoundRef}></audio>
     </div>
   );
 };
