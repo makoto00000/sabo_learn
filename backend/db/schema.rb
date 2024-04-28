@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_04_28_081156) do
+ActiveRecord::Schema[7.1].define(version: 2024_04_28_085640) do
   create_table "music_purchases", charset: "utf8mb4", collation: "utf8mb4_0900_ai_ci", force: :cascade do |t|
     t.bigint "user_id", null: false
     t.bigint "music_id", null: false
@@ -61,7 +61,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_04_28_081156) do
     t.string "uid"
     t.bigint "solo_wallpaper_id"
     t.bigint "multi_wallpaper_id"
-    t.boolean "is_new_user", default: false, null: false
+    t.boolean "is_new_user", default: true, null: false
     t.index ["multi_wallpaper_id"], name: "index_users_on_multi_wallpaper_id"
     t.index ["name", "email"], name: "index_users_on_name_and_email", unique: true
     t.index ["solo_wallpaper_id"], name: "index_users_on_solo_wallpaper_id"

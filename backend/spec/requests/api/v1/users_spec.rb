@@ -298,4 +298,26 @@ end
       end
     end
   end
+
+  describe '#change_false_is_new_user' do
+    context '認証成功' do
+      it 'is_new_userを更新できる' do
+        put(api_v1_user_isNewUser_path, headers: header)
+        login_user.reload
+        expect(response).to have_http_status(:ok)
+        expect(response.body).to include('user')
+        expect(login_user.is_new_user).to be(false)
+      end
+    end
+
+    context '認証失敗' do
+      it 'is_new_userを更新できない' do
+        put(api_v1_user_isNewUser_path)
+        login_user.reload
+        expect(response).to have_http_status(:unauthorized)
+        expect(response.body).to include('error')
+        expect(login_user.is_new_user).to be(true)
+      end
+    end
+  end
 end

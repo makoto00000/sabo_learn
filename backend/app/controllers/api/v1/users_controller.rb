@@ -1,5 +1,7 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate, only: %i[current_user add_coin purchase_musics purchase_wallpapers buy_music buy_wallpaper playlist register_playlist register_solo_wallpaper register_multi_wallpaper]
+  before_action :authenticate,
+                only: %i[current_user add_coin purchase_musics purchase_wallpapers buy_music buy_wallpaper playlist register_playlist register_solo_wallpaper register_multi_wallpaper
+                         change_false_is_new_user]
 
   def create
     @user = User.new(user_params)
@@ -123,6 +125,11 @@ class Api::V1::UsersController < ApplicationController
   # multi roomの背景を設定する
   def register_multi_wallpaper
     register_wallpaper('multi')
+  end
+
+  def change_false_is_new_user
+    @current_user.update(is_new_user: false)
+    render json: { user: @current_user }, status: :ok if @current_user.save!
   end
 
   private

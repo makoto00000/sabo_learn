@@ -17,6 +17,7 @@ Rails.application.routes.draw do
       put '/user/playlist', to: 'users#register_playlist'
       put '/user/wallpaper/solo', to: 'users#register_solo_wallpaper'
       put '/user/wallpaper/multi', to: 'users#register_multi_wallpaper'
+      put '/user/isNewUser', to: 'users#change_false_is_new_user'
 
     end
   end
