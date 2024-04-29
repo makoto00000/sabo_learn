@@ -11,6 +11,12 @@
 リンク: [Sabo Learn（サボラーン）](https://app.sabolearn.com)
 ![sabolearn_eyecatch](https://github.com/makoto00000/sabo_learn/assets/65654634/be9f8710-4915-4636-9d13-c1295802646a)
 
+### 解説記事（Zenn）
+
+開発の背景についても紹介しています。
+
+URL: <https://zenn.dev/makoto00000/articles/c951f56eeff777>
+
 ## 使用技術
 
 - Backend: Rails ( API mode / Rspec / rubocop ) + Nginx
@@ -46,7 +52,7 @@
 - `nodemon`: コードの変更時に自動でサーバーを再起動してくれる。
 - `socket.io`: サーバーとクライアントの間のリアルタイム通信を行うため。WebRTCでsdp/candidateを交換する目的で導入。
 
-### Infra
+### インフラ
 
 `Docker/docker-compose`
 
@@ -67,7 +73,7 @@
 
 ## ER 図
 
-![ER図](https://github.com/makoto00000/sabo_learn/assets/65654634/d3c3aa17-a9dc-4334-8e45-ab1aa7709412)
+![ER図](https://github.com/makoto00000/sabo_learn/assets/65654634/2fd45679-c030-4d0d-8908-7be1fe8dada4)
 
 ## インフラ構成図
 
