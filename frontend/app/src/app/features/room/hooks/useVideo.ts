@@ -25,7 +25,6 @@ export function useVideo() {
   // onMove onStop の中でisConnectingを反映させるため、stateとrefを組み合わせる
   const handleIsConnecting = useCallback((isConnecting: boolean) => {
     setIsConnecting(isConnecting);
-    // console.log(`isConnecting: ${isConnecting}`);
   }, []);
 
   useEffect(() => {
@@ -33,7 +32,7 @@ export function useVideo() {
   }, [isConnecting]);
 
   // サボっていると判定される秒数
-  const saboJudgementTime = 1;
+  const saboJudgementTime = 30;
 
   const {
     scoreTime,
