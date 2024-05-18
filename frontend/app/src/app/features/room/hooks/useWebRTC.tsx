@@ -40,6 +40,17 @@ export function useWebRTC({
   //   }
   // }, [isStudying]);
 
+  useEffect(() => {
+    socket.connect()
+    return () => {
+      socket.disconnect();
+      peerConnections.current = {};
+      isConnectRequested = false;
+    }
+  }, [])
+
+  console.log(peerConnections)
+
   const configPeerConnection = (socketId: string, userName: string) => {
     const config = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
     peerConnections.current[socketId] = {
@@ -200,6 +211,7 @@ export function useWebRTC({
         await pc.setRemoteDescription(answer);
         console.log("answer from " + offerSocketId);
         socket.emit("getRoomSize", (roomSize: number) => {
+          console.log(roomSize)
           if (roomSize - socketIds.length === 1) {
             handleIsConnecting(false);
             console.log("接続を終了します");
@@ -232,10 +244,11 @@ export function useWebRTC({
   });
 
   // ユーザーが退室したとき
-  socket.on("user disconnected", (socketId) => {
+  socket.on("user disconnected", (socketId: string) => {
     console.log("====user disconnected==== id:", socketId);
     if (peerConnections.current[socketId]) {
       delete peerConnections.current[socketId];
+      console.log(peerConnections)
 
       const elementToRemove = document.getElementById(socketId);
       if (elementToRemove) {
