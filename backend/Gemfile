@@ -20,16 +20,14 @@ gem 'bootsnap', require: false
 
 gem 'rack-cors'
 
-gem 'faker'
-
 gem 'dotenv-rails'
 
 gem 'pry-rails'
 
 group :development, :test do
-  gem 'database_cleaner'
   gem 'debug', platforms: %i[mri windows]
   gem 'factory_bot_rails'
+  gem 'faker'
   gem 'rspec-rails'
   gem 'rubocop', require: false
   gem 'rubocop-performance', require: false
