@@ -1,7 +1,5 @@
 class Api::V1::UsersController < ApplicationController
-  before_action :authenticate,
-                only: %i[current_user add_coin purchase_musics purchase_wallpapers buy_music buy_wallpaper playlist register_playlist register_solo_wallpaper register_multi_wallpaper
-                         change_false_is_new_user]
+  before_action :authenticate, except: %i[create]
 
   def create
     @user = User.new(user_params)
@@ -16,7 +14,6 @@ class Api::V1::UsersController < ApplicationController
 
   def current_user
     if @current_user
-      # render_user(@current_user, :ok)
       music_order = JSON.parse(@current_user.playlist.music_order)
       not_set_musics = @current_user.musics.where.not(id: @current_user.playlist.musics.pluck(:id))
       render json: { user: @current_user.attributes.transform_keys { |k| k.camelize(:lower) }
@@ -49,22 +46,22 @@ class Api::V1::UsersController < ApplicationController
   end
 
   # ユーザーが購入済みの音楽一覧を返す
-  def purchase_musics
-    if @current_user
-      render json: { musics: @current_user.musics }
-    else
-      render json: { error: 'ログインしてください' }, status: :unauthorized
-    end
-  end
+  # def purchase_musics
+  #   if @current_user
+  #     render json: { musics: @current_user.musics }
+  #   else
+  #     render json: { error: 'ログインしてください' }, status: :unauthorized
+  #   end
+  # end
 
   # ユーザーが購入済みの背景一覧を返す
-  def purchase_wallpapers
-    if @current_user
-      render json: { wallpapers: @current_user.wallpapers }
-    else
-      render json: { error: 'ログインしてください'}, status: :unauthorized
-    end
-  end
+  # def purchase_wallpapers
+  #   if @current_user
+  #     render json: { wallpapers: @current_user.wallpapers }
+  #   else
+  #     render json: { error: 'ログインしてください'}, status: :unauthorized
+  #   end
+  # end
 
   # ユーザーが音楽を購入
   def buy_music
@@ -100,9 +97,9 @@ class Api::V1::UsersController < ApplicationController
 
   # プレイリストを取得
   # !削除予定
-  def playlist
-    render json: { playlist: @current_user.playlist.musics }
-  end
+  # def playlist
+  #   render json: { playlist: @current_user.playlist.musics }
+  # end
 
   # プレイリストを設定
   def register_playlist
