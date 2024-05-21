@@ -29,10 +29,6 @@ class ApplicationController < ActionController::API
     render json: { error: 'Unauthorized' }, status: :unauthorized
   end
 
-  def current_user
-
-  end
-
   # ユーザー作成時にデフォルトの背景とプレイリストを作成する
   def default(user)
     # 購入済み壁紙にデフォルトのものをセット

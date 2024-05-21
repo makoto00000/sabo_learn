@@ -7,20 +7,17 @@ export default function ConnectVideo({
   videoFrameRef,
   statusRef,
   userName,
-  // isStudying,
 }: {
   socketId: string;
   stream: MediaStream;
   videoFrameRef: RefObject<HTMLDivElement>;
   statusRef: RefObject<HTMLParagraphElement>;
   userName: string;
-  // isStudying: boolean;
 }) {
   const videoRef = useRef<HTMLVideoElement>(null);
   useEffect(() => {
     if (videoRef.current) {
       videoRef.current.srcObject = stream;
-      // videoRef.current.play();
     }
   }, [stream, videoRef]);
 

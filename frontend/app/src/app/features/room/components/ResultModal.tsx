@@ -13,11 +13,19 @@ export default function ResultModal() {
   const [scoreTime, setScoreTime] = useState<number | null>(null);
   const [earnCoin, setEarnCoin] = useState<number | null>(null);
   const [prevCoin, setPrevCoin] = useState<number | null>(null);
+  const [isReload, setIsReload] = useState(false);
 
-  const closeModal = () => {
+  const closeModal = async () => {
     setIsOpen(false);
     router.replace("/");
+    setIsReload(true);
   };
+
+  useEffect(() => {
+    if(isReload && !searchParams.toString()) {
+      window.location.reload();
+    }
+  }, [isReload, router, searchParams])
 
   useEffect(() => {
     if (
@@ -43,12 +51,6 @@ export default function ResultModal() {
         <div className={styles.modal}>
           <h2>お疲れさまでした！</h2>
           <div className={styles.score}>
-            {/* <div className={styles.timeContainer}>
-            <h3>現在の作業時間</h3>
-            <div className={styles.time}>
-              {getTimeStringFromSeconds(scoreTime)}
-            </div>
-          </div> */}
             <div className={styles.coinContainer}>
               <h3>所持コイン</h3>
               <div className={styles.coinScore}>
@@ -82,11 +84,6 @@ export default function ResultModal() {
             >
               閉じる
             </button>
-            {/* <button
-            className={styles.applyButton}
-            >
-              記録を確認
-            </button> */}
           </div>
         </div>
       </div>

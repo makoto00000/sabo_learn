@@ -16,9 +16,9 @@ export default function ExitConfirmModal({
     try {
       await addCoinAction(time, coin);
     } catch (error) {
-      console.log(error)
+      console.log(error);
     }
-  }
+  };
 
   return (
     <div className={styles.container} onClick={() => closeModal()}>
@@ -47,20 +47,20 @@ export default function ExitConfirmModal({
           </div>
         </div>
         <div className={styles.message}>
-          あと<span className={styles.accent}>{60-scoreTime%60}秒</span>でさらに
+          あと<span className={styles.accent}>{60 - (scoreTime % 60)}秒</span>
+          でさらに
           <span className={styles.accent}>100コイン</span>獲得できます。
         </div>
         <div className={styles.buttonContainer}>
           <button className={styles.cancelButton} onClick={() => closeModal()}>
             キャンセル
           </button>
-          {/* <form action={formAction}>
-            <input type="hidden" name="time" value={scoreTime}/>
-            <input type="hidden" name="point" value={point} /> */}
-            <button className={styles.applyButton} onClick={()=>handleAddCoinAction(scoreTime, point)}>
-              退室
-            </button>
-          {/* </form> */}
+          <button
+            className={styles.applyButton}
+            onClick={() => handleAddCoinAction(scoreTime, point)}
+          >
+            退室
+          </button>
         </div>
       </div>
     </div>

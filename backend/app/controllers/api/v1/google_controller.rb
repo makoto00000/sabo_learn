@@ -1,6 +1,6 @@
 class Api::V1::GoogleController < ApplicationController
   def callback
-    @user = User.find_or_initialize_by(provider: params[:provider], uid: params[:uid], name: params[:name], email: params[:email])
+    @user = User.find_or_initialize_by(user_params)
 
     default(@user) if @user.new_record? && @user.save!
 
@@ -15,6 +15,11 @@ class Api::V1::GoogleController < ApplicationController
   end
 
   private
+
+  def user_params
+    params.permit(:provider, :uid, :name, :email)
+  end
+
   def render_user_include_token(user, jwt_token, status_code)
     render json: { user: { name: user.name, email: user.email, birthday: user.birthday, coin: user.coin, token: jwt_token } }, status: status_code
   end

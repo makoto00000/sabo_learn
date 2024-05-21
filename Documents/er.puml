@@ -24,6 +24,7 @@ entity users {
   uid
 # solo_wallpaper_id [FK]
 # multi_wallpaper_id [FK]
+  is_new_user
   created_at
   updated_at
 }
@@ -32,6 +33,10 @@ entity musics {
 + id [PK]
 --
   title
+  artist
+  src
+  price
+  is_default
   created_at
   updated_at
 }
@@ -40,6 +45,10 @@ entity wallpapers {
 + id [PK]
 --
   title
+  src
+  price
+  is_default_solo
+  is_default_multi
   created_at
   updated_at
 }
@@ -67,6 +76,7 @@ entity playlists {
 --
 # user_id[FK]
   name
+  music_order
   created_at
   updated_at
 }
@@ -85,6 +95,6 @@ users ||-r-{ music_purchases
 music_purchases }-r-|| musics
 users ||-l-{ wallpaper_purchases
 wallpaper_purchases }-d-|| wallpapers
-users ||-r-{ playlists
+users ||-r-|| playlists
 playlists ||-r-{ playlists_musics
 playlists_musics }-d-|| musics

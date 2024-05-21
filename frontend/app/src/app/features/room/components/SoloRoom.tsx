@@ -86,7 +86,7 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
       }}
     >
       {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
-      <Loading isPlayVideo={isPlayVideo}/>
+      <Loading isPlayVideo={isPlayVideo} />
       <div className={styles.layer}></div>
       <div className={styles.contents}>
         <h1 className={styles.roomName}>Solo Room</h1>
@@ -102,16 +102,6 @@ export default function SoloRoom({ currentUser }: { currentUser: User }) {
         ></Image>
         <nav className={styles.navigation}>
           <ul className={styles.menus}>
-            {/* <li>
-              <Image
-                className={styles.listIcon}
-                src="/restroom_icon.png"
-                width={30}
-                height={30}
-                alt="roomIcon"
-              ></Image>
-              <Link href="/">Rest Room</Link>
-            </li> */}
             <li onClick={() => openModal()}>
               <Image
                 className={styles.listIcon}
