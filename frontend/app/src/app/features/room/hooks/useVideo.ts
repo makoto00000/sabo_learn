@@ -3,6 +3,7 @@
 import { useCallback, useEffect, useRef, useState } from "react";
 import { MotionDetection } from "@/app/features/room/utils/MotionDetection";
 import { useScoreTimer } from "./useScoreTimer";
+import { useRouter } from "next/navigation";
 
 export function useVideo() {
   const videoRef = useRef<HTMLVideoElement>(null);
@@ -21,6 +22,8 @@ export function useVideo() {
   const isConnectingRef = useRef<boolean>(false);
 
   const [isPlayVideo, setIsPlayVideo] = useState<boolean | null>(null);
+
+  const router = useRouter();
 
   // onMove onStop の中でisConnectingを反映させるため、stateとrefを組み合わせる
   const handleIsConnecting = useCallback((isConnecting: boolean) => {
@@ -84,8 +87,6 @@ export function useVideo() {
             frameRate: 3,
             width: 346,
             height: 346,
-            // width: { ideal: 346 },
-            // height: { ideal: 346 },
           },
         };
         navigator.mediaDevices
@@ -99,9 +100,9 @@ export function useVideo() {
             }
           })
           .catch((error) => {
-            errorCallback(error);
-            console.log("ユーザーに拒否されました")
+            errorCallback("カメラが有効になっていません。\nブラウザの設定からカメラの使用を許可してください。");
             setIsPlayVideo(false);
+            router.push('/');
           });
       }
     }

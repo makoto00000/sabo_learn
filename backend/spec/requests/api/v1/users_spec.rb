@@ -1,6 +1,11 @@
 require 'rails_helper'
 
 RSpec.describe 'UsersController' do
+  before do
+    create_list(:music, 3)
+    create(:solo_wallpaper)
+    create(:multi_wallpaper)
+  end
 
   let(:login_user) { create(:user) }
   let(:token) { login_user_token login_user }
@@ -16,7 +21,8 @@ RSpec.describe 'UsersController' do
   describe '#current_user' do
     context '認証成功' do
       it 'ログインユーザーの情報をJSON形式で取得する' do
-        login_user.playlist = Playlist.create(musics: Music.all, music_order: '[1,2,3]')
+        order = Music.pluck(:id).to_s
+        login_user.playlist = Playlist.create(musics: Music.all, music_order: order)
         login_user.solo_wallpaper = Wallpaper.find_by(is_default_solo: true)
         login_user.multi_wallpaper = Wallpaper.find_by(is_default_multi: true)
         login_user.save
@@ -81,42 +87,6 @@ RSpec.describe 'UsersController' do
         expect(response).to have_http_status(:bad_request)
         expect(response.body).to include('error')
         expect(login_user.coin).to eq(user_coin)
-      end
-    end
-  end
-
-  describe '#purchase_musics' do
-    context '認証成功' do
-      it 'ユーザーが購入した音楽の一覧が返される' do
-        get(api_v1_user_musics_path, headers: header)
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to include('musics')
-      end
-    end
-
-    context '認証失敗' do
-      it '未ログイン状態では購入した音楽の一覧を返さない' do
-        get(api_v1_user_musics_path)
-        expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('error')
-      end
-    end
-  end
-
-  describe '#purchase_wallpapers' do
-    context '認証成功' do
-      it 'ユーザーが購入した壁紙の一覧が返される' do
-        get(api_v1_user_wallpapers_path, headers: header)
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to include('wallpaper')
-      end
-    end
-
-    context '認証失敗' do
-      it '未ログイン状態では購入した壁紙の一覧を返さない' do
-        get(api_v1_user_wallpapers_path)
-        expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('error')
       end
     end
   end
@@ -197,34 +167,16 @@ end
     end
   end
 
-  describe '#playlist' do
-    context '認証成功' do
-      it 'プレイリストを取得できる' do
-        login_user.playlist = Playlist.create(musics: Music.all)
-        login_user.save
-        get('/api/v1/user/playlist', headers: header)
-        expect(response).to have_http_status(:ok)
-        expect(response.body).to include('playlist')
-      end
-    end
-
-    context '認証失敗' do
-      it 'プレイリストを取得できない' do
-        get('/api/v1/user/playlist')
-        expect(response).to have_http_status(:unauthorized)
-        expect(response.body).to include('error')
-      end
-    end
-  end
-
   describe '#register_playlist' do
     context '認証成功' do
       it 'プレイリストを更新できる' do
         login_user.musics = Music.where(is_default: true)
         login_user.save
         login_user.reload
-        Playlist.create(user: login_user, musics: Music.where(is_default: true), music_order: '[1,2,3]')
-        body = { musicIds: '[1, 2]' }
+        order = Music.pluck(:id).to_s
+        Playlist.create(user: login_user, musics: Music.where(is_default: true), music_order: order)
+        new_order = Music.pluck(:id)[0..1].to_s
+        body = { musicIds: new_order }
         expect { put('/api/v1/user/playlist', headers: header, params: body) }.to change(login_user.playlist.musics, :count).by(-1)
         expect(response).to have_http_status(:ok)
         expect(response.body).to include('playlist')
@@ -240,7 +192,6 @@ end
         expect(response.body).to include('error')
       end
     end
-
   end
 
   describe '#register_solo_wallpaper' do

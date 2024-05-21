@@ -8,7 +8,7 @@ import MusicPlayer from "./MusicPlayer";
 import { useEffect, useState } from "react";
 import ExitConfirmModal from "./ExitConfirmModal";
 import MultiVideo from "./MultiVideo";
-import { User } from "../../../types/User";
+import { User } from "@/app/types/User";
 import Loading from "./Loading";
 
 export default function MultiRoom({
@@ -23,14 +23,12 @@ export default function MultiRoom({
     videoRef,
     canvasRef,
     statusRef,
-    // isStudyingRef,
     isStudying,
     scoreTime,
     point,
     getPointRef,
     showAnimation,
     handleIsConnecting,
-    // isConnecting,
     isPlayVideo,
   } = useVideo();
 
@@ -39,9 +37,7 @@ export default function MultiRoom({
     videoRef: videoRef,
     canvasRef: canvasRef,
     statusRef: statusRef,
-    // isStudying: isStudying,
     handleIsConnecting: handleIsConnecting,
-    // isConnecting: isConnecting,
     userName,
   };
 
@@ -51,7 +47,6 @@ export default function MultiRoom({
     getPointRef: getPointRef,
     showAnimation: showAnimation,
     isStudying: isStudying,
-    // isStudyingRef: isStudyingRef,
   };
 
   const [isOpen, setIsOpen] = useState<boolean>(false);
@@ -96,7 +91,7 @@ export default function MultiRoom({
         backgroundImage: `url("${wallpapersPath}${currentUser.multiWallpaper.src}")`,
       }}
     >
-      <Loading isPlayVideo={isPlayVideo}/>
+      <Loading isPlayVideo={isPlayVideo} />
       {isOpen && <ExitConfirmModal {...{ closeModal, scoreTime, point }} />}
       <div className={styles.layer}></div>
       <div className={styles.contents}>
@@ -114,16 +109,6 @@ export default function MultiRoom({
         ></Image>
         <nav className={styles.navigation}>
           <ul className={styles.menus}>
-            {/* <li>
-              <Image
-                className={styles.listIcon}
-                src="/restroom_icon.png"
-                width={30}
-                height={30}
-                alt="roomIcon"
-              ></Image>
-              <Link href="/">Rest Room</Link>
-            </li> */}
             <li onClick={() => openModal()}>
               <Image
                 className={styles.listIcon}

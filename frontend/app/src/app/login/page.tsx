@@ -24,7 +24,7 @@ export default function Login() {
   // };
   return (
     <Suspense fallback={<Loading />}>
-      <main>
+      <main className="main">
         <div className={`${styles.container} background`}>
           <header className={styles.header}>
             <Link href="/">

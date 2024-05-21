@@ -9,20 +9,16 @@ let isConnectRequested = false;
 
 export function useWebRTC({
   canvasRef,
-  // isConnecting,
-  // isStudying,
-  handleIsConnecting,
+  // handleIsConnecting,
   userName,
   enterRoomSoundRef,
   exitRoomSoundRef,
 }: {
   canvasRef: RefObject<HTMLCanvasElement>;
-  handleIsConnecting: (isConnecting: boolean) => void;
-  // isConnecting: boolean;
-  // isStudying: boolean;
+  // handleIsConnecting: (isConnecting: boolean) => void;
   userName: string;
-  enterRoomSoundRef: RefObject<HTMLAudioElement>,
-  exitRoomSoundRef: RefObject<HTMLAudioElement>,
+  enterRoomSoundRef: RefObject<HTMLAudioElement>;
+  exitRoomSoundRef: RefObject<HTMLAudioElement>;
 }) {
   const videoContainerRef = useRef<HTMLDivElement>(null);
   const peerConnections = useRef<{
@@ -31,37 +27,38 @@ export function useWebRTC({
       videoFrameRef: RefObject<HTMLDivElement>;
       statusRef: RefObject<HTMLDivElement>;
       userName: string;
+      connectionCounter: number;
+      iceCandidateQueue: RTCIceCandidateInit[];
     };
   }>({});
 
-  // useEffect(() => {
-  //   if (!isConnecting) {
-  //     socket.emit("isStudying", isStudying);
-  //   }
-  // }, [isStudying]);
-
   useEffect(() => {
-    socket.connect()
+    socket.connect();
     return () => {
       socket.disconnect();
       peerConnections.current = {};
       isConnectRequested = false;
-    }
-  }, [])
+    };
+  }, []);
 
-  console.log(peerConnections)
-
-  const configPeerConnection = (socketId: string, userName: string) => {
+  const configPeerConnection = (
+    socketId: string,
+    userName: string,
+    isOffer: boolean
+  ) => {
     const config = { iceServers: [{ urls: "stun:stun.l.google.com:19302" }] };
     peerConnections.current[socketId] = {
       peerConnection: new RTCPeerConnection(config),
       videoFrameRef: React.createRef<HTMLDivElement>(),
       statusRef: React.createRef<HTMLParagraphElement>(),
       userName: userName,
+      connectionCounter: 0,
+      iceCandidateQueue: [],
     };
 
     const pcRef = peerConnections.current[socketId];
     const pc = pcRef.peerConnection;
+    console.log(peerConnections.current);
 
     pc.ontrack = (e: RTCTrackEvent) => {
       let stream = e.streams[0];
@@ -76,7 +73,6 @@ export function useWebRTC({
               videoFrameRef={pcRef.videoFrameRef}
               statusRef={pcRef.statusRef}
               userName={userName}
-              // isStudying={isStudying}
             />
           );
           if (enterRoomSoundRef.current) {
@@ -92,6 +88,41 @@ export function useWebRTC({
       }
     };
 
+    pc.oniceconnectionstatechange = function () {
+      if (
+        pc.iceConnectionState === "failed" ||
+        pc.iceConnectionState === "disconnected"
+      ) {
+        console.log("接続に失敗しました。");
+        if (isOffer && pcRef.connectionCounter < 3) {
+          pcRef.connectionCounter += 1;
+          socket.disconnect();
+          isConnectRequested = false;
+          if (peerConnections.current[socketId]) {
+            delete peerConnections.current[socketId];
+            const elementToRemove = document.getElementById(socketId);
+            if (elementToRemove) {
+              elementToRemove.remove();
+              if (exitRoomSoundRef.current) {
+                exitRoomSoundRef.current.play();
+              }
+            }
+          }
+
+          socket.connect();
+          connect();
+          console.log("再接続を開始します");
+        } else if (isOffer && pcRef.connectionCounter >= 3) {
+          socket.disconnect();
+          console.log("現在のネットワークでは接続できません");
+        }
+      } else if (pc.iceConnectionState === "completed") {
+        console.log("接続しました。");
+        pcRef.connectionCounter = 0;
+      }
+      console.log(pc.iceConnectionState);
+    };
+
     if (canvasRef.current) {
       const stream = canvasRef.current.captureStream();
       stream.getTracks().forEach((track: MediaStreamTrack) => {
@@ -101,7 +132,6 @@ export function useWebRTC({
   };
 
   socket.on("isStudying", (isStudying: boolean, socketId: string) => {
-    // if (!isConnecting) {
     if (peerConnections.current[socketId]) {
       const videoFrameRef = peerConnections.current[socketId].videoFrameRef;
       const statusRef = peerConnections.current[socketId].statusRef;
@@ -117,7 +147,6 @@ export function useWebRTC({
         }
       }
     }
-    // }
   });
 
   // websocketに繋がったとき(answer側に接続準備してもらう)
@@ -140,19 +169,19 @@ export function useWebRTC({
   // answer側
   socket.on("request connection", (offerSocketId, offerUserName) => {
     if (socket.id === offerSocketId) return;
+    // handleIsConnecting(true);
     console.log(`${offerSocketId}:${offerUserName} からリクエスト`);
 
-    configPeerConnection(offerSocketId, offerUserName);
+    configPeerConnection(offerSocketId, offerUserName, false);
 
     socket.emit("allow connection", offerSocketId, userName);
-    // handleIsConnecting(true);
   });
 
   // offer側
   socket.on(
     "send offer",
     async (answerSocketId: string, answerUserName: string) => {
-      configPeerConnection(answerSocketId, answerUserName);
+      configPeerConnection(answerSocketId, answerUserName, true);
 
       const pcRef = peerConnections.current[answerSocketId];
       const pc = pcRef.peerConnection;
@@ -176,7 +205,8 @@ export function useWebRTC({
     async (offer: RTCSessionDescriptionInit, offerSocketId: string) => {
       console.log("offer from " + offerSocketId);
 
-      const pc = peerConnections.current[offerSocketId].peerConnection;
+      const pcRef = peerConnections.current[offerSocketId]
+      const pc = pcRef.peerConnection;
 
       try {
         if (pc.signalingState === "stable") {
@@ -192,6 +222,10 @@ export function useWebRTC({
           await pc.setLocalDescription(answer);
           console.log("send answer to " + offerSocketId);
           socket.emit("answer", answer, offerSocketId);
+          for (const candidate of pcRef.iceCandidateQueue) {
+            await pc.addIceCandidate(candidate);
+          }
+          pcRef.iceCandidateQueue = [];
         }
       } catch (error) {
         console.error(error);
@@ -204,19 +238,21 @@ export function useWebRTC({
   socket.on(
     "answer",
     async (answer: RTCSessionDescriptionInit, offerSocketId: string) => {
-      const pcRef = peerConnections.current;
-      const pc = pcRef[offerSocketId].peerConnection;
+      const pcRef = peerConnections.current[offerSocketId];
+      const pc = pcRef.peerConnection;
       const socketIds = Object.keys(pcRef);
       try {
         await pc.setRemoteDescription(answer);
         console.log("answer from " + offerSocketId);
         socket.emit("getRoomSize", (roomSize: number) => {
-          console.log(roomSize)
           if (roomSize - socketIds.length === 1) {
-            handleIsConnecting(false);
-            console.log("接続を終了します");
+            // handleIsConnecting(false);
           }
         });
+        for (const candidate of pcRef.iceCandidateQueue) {
+          await pc.addIceCandidate(candidate);
+        }
+        pcRef.iceCandidateQueue = [];
       } catch (error) {
         console.error(error);
       }
@@ -224,23 +260,16 @@ export function useWebRTC({
   );
 
   // candidateが来たとき
-  socket.on("candidate", (candidate: RTCIceCandidateInit, socketId: string) => {
-    const pcRef = peerConnections.current;
-    const pc = pcRef[socketId].peerConnection;
-    const socketIds = Object.keys(pcRef);
-    if (pc.connectionState !== "connected") {
-      if (pc.localDescription !== null && pc.remoteDescription !== null) {
-        const iceCandidate = new RTCIceCandidate(candidate);
-        pc.addIceCandidate(iceCandidate);
-        console.log("set candidate to id = " + socketId);
-        socket.emit("getRoomSize", (roomSize: number) => {
-          if (roomSize - socketIds.length === 1) {
-            handleIsConnecting(false);
-            console.log("接続を終了します");
-          }
-        });
-      }
-    }
+  socket.on("candidate", async (candidate: RTCIceCandidateInit, socketId: string) => {
+    const pcRef = peerConnections.current[socketId];
+    const pc = pcRef.peerConnection;
+    if (pc.remoteDescription && pc.remoteDescription.type) {
+      await pc.addIceCandidate(candidate).catch(error => {
+          console.error('Error adding received ICE candidate', error);
+      });
+  } else {
+    pcRef.iceCandidateQueue.push(candidate);
+  }
   });
 
   // ユーザーが退室したとき
@@ -248,8 +277,6 @@ export function useWebRTC({
     console.log("====user disconnected==== id:", socketId);
     if (peerConnections.current[socketId]) {
       delete peerConnections.current[socketId];
-      console.log(peerConnections)
-
       const elementToRemove = document.getElementById(socketId);
       if (elementToRemove) {
         elementToRemove.remove();
@@ -267,26 +294,13 @@ export function useWebRTC({
           return;
         } else {
           console.log("接続を開始します");
-          handleIsConnecting(true);
+          // handleIsConnecting(true);
           socket.emit("request connection", socket.id, userName);
           isConnectRequested = true;
         }
       });
     }
-  }, [userName, handleIsConnecting]);
-
-  // function disconnect() {
-  //   if (socket.id) {
-  //     socket.disconnect();
-  //     delete peerConnections.current[socket.id];
-  //     while (videoContainerRef.current?.firstChild) {
-  //       videoContainerRef.current?.removeChild(
-  //         videoContainerRef.current?.firstChild
-  //       );
-  //     }
-  //     console.log("disconnected room");
-  //   }
-  // }
+  }, [userName]);
 
   const result = useMemo(() => {
     return {
