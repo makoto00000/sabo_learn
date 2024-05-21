@@ -1,6 +1,6 @@
 "use client";
 
-import { LegacyRef, MutableRefObject, useEffect, useRef } from "react";
+import { LegacyRef, useEffect, useRef } from "react";
 import styles from "./Score.module.scss";
 import Image from "next/image";
 import { getTimeStringFromSeconds } from "@/app/utils/Format";

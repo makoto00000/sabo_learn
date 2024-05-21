@@ -1,6 +1,6 @@
 "use client";
 
-import { RefObject } from "react";
+import { RefObject, useEffect, useState } from "react";
 import styles from "./MyVideo.module.scss";
 
 type MyVideoProps = {
@@ -15,8 +15,7 @@ export default function MyVideo({
   videoRef,
   canvasRef,
   statusRef,
-}:MyVideoProps) {
-
+}: MyVideoProps) {
   return (
     <div className={styles.videoContainer}>
       <div>
@@ -31,14 +30,12 @@ export default function MyVideo({
               autoPlay
               muted
               playsInline
-              style={{filter: "blur(10px)"}}
-              ></video>
+            ></video>
             <canvas
               ref={canvasRef}
               className={styles.mosaicVideo}
               width={346}
               height={346}
-              style={{filter: "blur(10px)"}}
             ></canvas>
           </div>
           <p ref={statusRef} className={styles.status}>
