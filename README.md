@@ -32,7 +32,6 @@ URL: <https://zenn.dev/makoto00000/articles/c951f56eeff777>
 - `rubocop`: Rubyの静的コード解析。
 - `rspec-rails`: テスト用フレームワーク。
 - `factory_bot_rails`: テスト用のダミーデータを作成。
-- `database_cleaner`: テスト実行時にデータベースを初期化する。
 - `pry-rails`: デバッグツール。
 
 ### Frontend (Next.js)
@@ -73,7 +72,7 @@ URL: <https://zenn.dev/makoto00000/articles/c951f56eeff777>
 
 ## ER 図
 
-![ER図](https://github.com/makoto00000/sabo_learn/assets/65654634/2fd45679-c030-4d0d-8908-7be1fe8dada4)
+![ER図](https://github.com/makoto00000/sabo_learn/assets/65654634/630dfd45-275d-4bb7-b97a-274508efaefe)
 
 ## インフラ構成図
 
@@ -107,6 +106,7 @@ URL: <https://zenn.dev/makoto00000/articles/c951f56eeff777>
 
 - プレイリストはドラッグ&ドロップで作成。曲順も設定可能
 - スマホ（縦横両方）、タブレットへのレスポンシブ対応
+- 初めてのユーザーに対してログイン後にコーチマークを表示
 
 #### セキュリティ
 

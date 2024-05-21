@@ -68,19 +68,22 @@
 | artist     | アーティスト名 | string   |      |      | ◯       |       |         |
 | src        | 保存先のパス   | string   |      |      | ◯       |       |         |
 | price      | 価格           | int      |      |      | ◯       |       |         |
+| is_default | default音楽    | boolean  |      |      | ◯       |       | false   |
 | created_at | 作成日時       | datetime |      |      | ◯       |       |         |
 | updated_at | 更新日時       | datetime |      |      | ◯       |       |         |
 
 #### walpapers
 
-| カラム名   | 意味           | データ型 | PK   | FK   | NOT NULL | INDEX | DEFAULT |
-| :--------- | :------------- | :------- | :--- | :--- | :------- | :---- | :------ |
-| id         | wallpaper ID   | bigint   | ◯   |      | ◯       | ◯    |         |
-| title      | タイトル       | string   |      |      | ◯       |       |         |
-| src        | 保存先のパス   | string   |      |      | ◯       |       |         |
-| price      | 価格           | int      |      |      | ◯       |       |         |
-| created_at | 作成日時       | datetime |      |      | ◯       |       |         |
-| updated_at | 更新日時       | datetime |      |      | ◯       |       |         |
+| カラム名         | 意味         | データ型 | PK   | FK   | NOT NULL | INDEX | DEFAULT |
+| :--------------- | :----------- | :------- | :--- | :--- | :------- | :---- | :------ |
+| id               | wallpaper ID | bigint   | ◯   |      | ◯       | ◯    |         |
+| title            | タイトル     | string   |      |      | ◯       |       |         |
+| src              | 保存先のパス | string   |      |      | ◯       |       |         |
+| price            | 価格         | int      |      |      | ◯       |       |         |
+| is_default_solo  | default背景  | boolean  |      |      | ◯       |       | false   |
+| is_default_multi | default背景  | boolean  |      |      | ◯       |       | false   |
+| created_at       | 作成日時     | datetime |      |      | ◯       |       |         |
+| updated_at       | 更新日時     | datetime |      |      | ◯       |       |         |
 
 #### music_purchases
 
@@ -125,7 +128,7 @@
 
 ### ER図
 
-![ER図](https://github.com/makoto00000/sabo_learn/assets/65654634/d3c3aa17-a9dc-4334-8e45-ab1aa7709412)
+![ER図](https://github.com/makoto00000/sabo_learn/assets/65654634/630dfd45-275d-4bb7-b97a-274508efaefe)
 
 ### システム構成図
 
