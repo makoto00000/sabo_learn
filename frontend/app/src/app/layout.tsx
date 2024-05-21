@@ -51,7 +51,7 @@ export default function RootLayout({
           async={true}
         />
       </body>
-      <GoogleAnalytics gaId={gaId}/>
+      {process.env.NODE_ENV === 'production' && <GoogleAnalytics gaId={gaId}/>}
     </html>
   );
 }
