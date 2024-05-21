@@ -5,11 +5,10 @@
   padding: 40px 0 40px 60px;
 }
 .container {
-  min-height: 800px;
-  max-height: 100vh;
   display: flex;
   flex-direction: column;
-  justify-content: space-around;
+  justify-content: space-between;
+  width: 100%;
 }
 .content {
   width: 80%;
