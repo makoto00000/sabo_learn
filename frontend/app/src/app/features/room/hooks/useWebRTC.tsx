@@ -33,7 +33,6 @@ export function useWebRTC({
   }>({});
 
   useEffect(() => {
-    socket.connect();
     return () => {
       socket.disconnect();
       peerConnections.current = {};
@@ -205,7 +204,7 @@ export function useWebRTC({
     async (offer: RTCSessionDescriptionInit, offerSocketId: string) => {
       console.log("offer from " + offerSocketId);
 
-      const pcRef = peerConnections.current[offerSocketId]
+      const pcRef = peerConnections.current[offerSocketId];
       const pc = pcRef.peerConnection;
 
       try {
@@ -260,17 +259,20 @@ export function useWebRTC({
   );
 
   // candidateが来たとき
-  socket.on("candidate", async (candidate: RTCIceCandidateInit, socketId: string) => {
-    const pcRef = peerConnections.current[socketId];
-    const pc = pcRef.peerConnection;
-    if (pc.remoteDescription && pc.remoteDescription.type) {
-      await pc.addIceCandidate(candidate).catch(error => {
-          console.error('Error adding received ICE candidate', error);
-      });
-  } else {
-    pcRef.iceCandidateQueue.push(candidate);
-  }
-  });
+  socket.on(
+    "candidate",
+    async (candidate: RTCIceCandidateInit, socketId: string) => {
+      const pcRef = peerConnections.current[socketId];
+      const pc = pcRef.peerConnection;
+      if (pc.remoteDescription && pc.remoteDescription.type) {
+        await pc.addIceCandidate(candidate).catch((error) => {
+          console.error("Error adding received ICE candidate", error);
+        });
+      } else {
+        pcRef.iceCandidateQueue.push(candidate);
+      }
+    }
+  );
 
   // ユーザーが退室したとき
   socket.on("user disconnected", (socketId: string) => {
