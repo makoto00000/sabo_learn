@@ -49,7 +49,7 @@ export function useVideo() {
   useEffect(() => {
     const video = videoRef.current;
     const canvas = canvasRef.current;
-    
+
     if (video && canvas) {
       video.autoplay = true;
       video.muted = true;
@@ -91,18 +91,28 @@ export function useVideo() {
         };
         navigator.mediaDevices
           .getUserMedia(medias)
-          .then(async (stream) => {
-            if (video) {
-              video.srcObject = stream;
-              video.play();
-              setIsPlayVideo(true);
-              await successCallback();
-            }
+          .then((stream) => {
+            video.srcObject = stream;
+            video.onloadeddata = async () => {
+              try {
+                await video.play();
+                setIsPlayVideo(true);
+                successCallback();
+              } catch (error) {
+                errorCallback(
+                  "カメラが有効になっていません。\nブラウザの設定からカメラの使用を許可してください。"
+                );
+                setIsPlayVideo(false);
+                router.push("/");
+              }
+            };
           })
           .catch((error) => {
-            errorCallback("カメラが有効になっていません。\nブラウザの設定からカメラの使用を許可してください。");
+            errorCallback(
+              "カメラが有効になっていません。\nブラウザの設定からカメラの使用を許可してください。"
+            );
             setIsPlayVideo(false);
-            router.push('/');
+            router.push("/");
           });
       }
     }
@@ -197,7 +207,6 @@ export function useVideo() {
       setIsStudying(true);
     }
   };
-
 
   return {
     videoFrameRef,
