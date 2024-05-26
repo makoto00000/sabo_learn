@@ -3,6 +3,10 @@ name: Test
 on:
   pull_request:
     branches: [ develop ]
+    paths:
+      - "frontend/**"
+      - "backend/**"
+      - "socket-server/**"
 
 jobs:
   test:
