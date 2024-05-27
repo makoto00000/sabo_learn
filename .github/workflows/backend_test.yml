@@ -1,12 +1,10 @@
-name: Test
+name: Backend Test
 
 on:
   pull_request:
     branches: [ develop ]
     paths:
-      - "frontend/**"
       - "backend/**"
-      - "socket-server/**"
 
 jobs:
   test:
@@ -54,9 +52,3 @@ jobs:
         run: |
           cd backend
           bundle exec rspec
-
-      - name: eslint
-        run: |
-          cd frontend/app
-          npm install
-          npm run lint
