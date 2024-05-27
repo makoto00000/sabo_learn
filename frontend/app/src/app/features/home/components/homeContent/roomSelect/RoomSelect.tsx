@@ -28,7 +28,6 @@ export default function RoomSelect() {
       </div>
       <div className={styles.multi} id={"multi"}>
         <Link href="/multiroom">
-          {/* <div className={styles.musk}>開 発 中</div> */}
           <Image
             className={styles.multiImage}
             src="/multi.png"
