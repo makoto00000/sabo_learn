@@ -4,9 +4,15 @@ import styles from "./UserInfo.module.scss";
 import { useState, useRef, useEffect } from "react";
 import { signOut } from "next-auth/react";
 import { useRouter } from "next/navigation";
-import { User } from "../../../../types/User";
+import { User } from "@/app/types/User";
 
-export default function UserInfo({ name, coin }: User) {
+export default function UserInfo({
+  name,
+  coin,
+}: {
+  name: User["name"];
+  coin: User["coin"];
+}) {
   const router = useRouter();
   const caretRef = useRef<HTMLImageElement>(null);
   const modalRef = useRef<HTMLDivElement>(null);
@@ -42,7 +48,12 @@ export default function UserInfo({ name, coin }: User) {
 
   return (
     <div className={styles.container}>
-      <div className={styles.userInfoContainer} onClick={() => toggleOpen()} id={"userInfo"}>
+      <div
+        className={styles.userInfoContainer}
+        onClick={() => toggleOpen()}
+        id={"userInfo"}
+        data-testid={"userInfo"}
+      >
         <div className={styles.userImageBg}>
           <Image
             className={styles.userImage}
@@ -75,7 +86,11 @@ export default function UserInfo({ name, coin }: User) {
           alt="caret-down"
         ></Image>
       </div>
-      <div className={`${styles.modal} ${styles.close}`} ref={modalRef}>
+      <div
+        className={`${styles.modal} ${styles.close}`}
+        ref={modalRef}
+        data-testid={"modal"}
+      >
         <nav>
           <ul>
             <li className={styles.menuItem} onClick={() => handleSignOut()}>

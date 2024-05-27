@@ -1,0 +1,26 @@
+name: Frontend Test
+
+on:
+  pull_request:
+    branches: [ develop ]
+    paths:
+      - "frontend/**"
+
+jobs:
+  test:
+    runs-on: ubuntu-latest
+
+    steps:
+      - uses: actions/checkout@v3
+
+      - name: eslint
+        run: |
+          cd frontend/app
+          npm install
+          npm run lint
+
+      - name: jest
+        run: |
+          cd frontend/app
+          npm install
+          npm run test
