@@ -1,7 +1,6 @@
 import NextAuth from "next-auth";
 import GoogleProvider from "next-auth/providers/google";
 import { DefaultSession } from "next-auth";
-import axios from "axios";
 import { setCookie } from "@/app/utils/Cookie";
 
 declare module "next-auth" {
@@ -50,24 +49,27 @@ const handler = NextAuth({
       const name = user?.name;
       const email = user?.email;
       try {
-        const response = await axios.post(
-          `${apiUrl}/auth/${provider}/callback`,
-          {
+        const res = await fetch(`${apiUrl}/auth/${provider}/callback`, {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
             provider,
             uid,
             name,
             email,
-          }
-        );
-        if (response.status === 200) {
-          const data = await response.data;
+          }),
+        });
+        if (res.status === 200) {
+          const data = await res.json();
           setCookie("token", data.user.token);
           return true;
         } else {
           return false;
         }
       } catch (error) {
-        console.log("エラー", error);
+        console.log(error);
         return false;
       }
     },
